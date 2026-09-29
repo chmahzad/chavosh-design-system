@@ -1,13 +1,19 @@
+# Deploys Storybook to GitHub Pages only for a commit whose `verify` workflow run succeeded.
+# - Automatic: runs when `verify` completes successfully for a push to main in this repository,
+#   and builds exactly that commit.
+# - Manual (Run workflow on main): allowed only if `verify` already succeeded for the current main commit.
 name: Deploy Storybook
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["verify"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -16,17 +22,57 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  gate:
+    # Skip (not fail) verify runs that failed, came from pull requests or came from forks.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
-
+    outputs:
+      sha: ${{ steps.verified.outputs.sha }}
     steps:
-      - name: Checkout
+      - name: Resolve the verified commit
+        id: verified
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          RUN_SHA: ${{ github.event.workflow_run.head_sha }}
+          REF: ${{ github.ref }}
+          SHA: ${{ github.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          if [ "$EVENT" = "workflow_run" ]; then
+            sha="$RUN_SHA"
+          else
+            if [ "$REF" != "refs/heads/main" ]; then
+              echo "::error::Manual deployment is only allowed from main (got $REF)."
+              exit 1
+            fi
+            sha="$SHA"
+            passed=$(gh api "repos/$REPO/actions/workflows/verify.yml/runs?head_sha=$sha&event=push&status=success&per_page=1" --jq '.total_count')
+            if [ "$passed" -lt 1 ]; then
+              echo "::error::verify has not succeeded for $sha — refusing to deploy."
+              exit 1
+            fi
+          fi
+          echo "Deploying verified commit $sha"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the verified commit
         uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.gate.outputs.sha }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -44,13 +90,11 @@ jobs:
           path: storybook-static
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    needs: build
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
