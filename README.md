@@ -9,7 +9,7 @@ Figma variables & components
   → DTCG token source                                    packages/tokens/generated/dtcg/
   → Style Dictionary 5.5.5 (handwritten web policy)
   → CSS custom properties                                packages/tokens/dist/ch-tokens.css
-  → React components                                     packages/react/        (upcoming)
+  → React components                                     packages/react/        (Button v1)
   → Storybook                                                                   (upcoming)
 ```
 
@@ -18,7 +18,7 @@ Figma variables & components
 |---|---|
 | Token pipeline v0.3 (exporter, converter, CSS build, verification) | built · verified on test fixtures |
 | Canonical Button snapshot → production `ch-tokens.css` | captured (manual run) · built · strict verification passes |
-| React Button v1 (labels only) | upcoming — frozen mapping: `docs/decisions/0010-button-v1-implementation-mapping.md` |
+| React Button v1 (labels only) | implemented · verified (Chromium) · contract: `docs/decisions/0010-button-v1-implementation-mapping.md` |
 | Storybook | upcoming |
 | Documentation (Zeroheight) | upcoming |
 

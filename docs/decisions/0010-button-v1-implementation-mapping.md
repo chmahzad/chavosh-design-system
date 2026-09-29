@@ -53,7 +53,7 @@ No transitions in v1 (motion deferred).
 Colours (21; 11 brand-dependent, re-declared on `:root, [data-brand]`): `--ch-color-action-primary-{background-default, background-pressed, foreground-default}`, `--ch-color-action-secondary-{background-default, background-pressed, border-default, border-hover, foreground-default, foreground-hover}`, `--ch-color-action-tertiary-{foreground-default, foreground-hover, background-hover, background-pressed}`, `--ch-color-action-destructive-{background-default, background-pressed, foreground-default}`, `--ch-color-action-disabled-{background, foreground}`, `--ch-color-border-disabled`, `--ch-color-focus-{indicator, outer}`.
 Dimensions (12): `--ch-size-control-height-{sm, md, lg}`, `--ch-space-component-{lg, xl}`, `--ch-space-gap-sm`, `--ch-radius-md`, `--ch-border-width-default`, `--ch-focus-width-{indicator, outer}`, `--ch-font-family-sans`, `--ch-font-weight-medium`.
 Responsive (4): `--ch-font-size-label-{md, sm}`, `--ch-font-line-height-label-{md, sm}`.
-Forbidden in Button CSS: primitives, `--ch-brand-*`, raw design values (exceptions: `transparent` for Tertiary rest/disabled fill, the two G5 underline values, `0`, system colours in forced-colours mode).
+Forbidden in Button CSS: primitives, `--ch-brand-*`, raw design values (exceptions: `transparent` for Tertiary rest/disabled fill, the two G5 underline values, `0`/`0px`, system colours in forced-colours mode). Implementation-private `--_btn-*` variables are allowed inside `button.css` only (§8).
 
 ## 5. Typography (per-property, ADR 0004)
 `label/md` → `--ch-font-family-sans`, `--ch-font-weight-medium`, `--ch-font-size-label-md`, `--ch-font-line-height-label-md`; `label/sm` → same family/weight + `…-label-sm`. Letter spacing 0 %, case and decoration defaults: nothing emitted.
@@ -64,7 +64,7 @@ Forbidden in Button CSS: primitives, `--ch-brand-*`, raw design values (exceptio
 - `:focus-visible` Chavosh rings; not clipped by `overflow: hidden` ancestors; not obscured (2.4.11).
 - Text scaling: `min-height` + derived `padding-block`; labels wrap, never clip or truncate (1.4.4, 1.4.10, 1.4.12); 200 % text supported.
 - Hover underline = non-colour signal. Pressed is a transient colour change only.
-- **Forced colours (Decision 10):** `@media (forced-colors: active)` — disabled uses `GrayText` for text and border; focus uses the outline (box-shadow is dropped by the browser); underline survives.
+- **Forced colours (Decision 10):** `@media (forced-colors: active)` — every hierarchy gets a `ButtonText` boundary (§8.1); disabled uses `GrayText` for text and border; focus uses the outline (box-shadow is dropped by the browser); underline survives.
 - **Target size:** md 48 and lg 56 exceed 44. **sm (40) is restricted and not production-ready where the effective 44×44 hit area is required** until `size/touch-target/min` is reachable (Decision 1; §7). No hard-coded 44px, no replacement token.
 - Requires implementation-level and assistive-technology testing; Figma evidence and automated checks are not a WCAG 2.2 AA claim.
 
@@ -83,3 +83,11 @@ Forbidden in Button CSS: primitives, `--ch-brand-*`, raw design values (exceptio
 12. `box-sizing: border-box`; Secondary border counts toward final control dimensions. Figma stroke alignment is not captured by the exporter snapshot (documented, non-blocking).
 
 Deferred: loading, spinner, icons, motion tokens, Icon system, Icon Button (+ Tooltip), typography composites, Text Style description audit (both label styles have empty descriptions), full 340-variable export, Storybook, Zeroheight, native platforms, Code Connect, WebKit/Firefox coverage.
+
+## 8. Slice B implementation interpretations (approved 29 Sep 2026)
+1. **Forced-colours boundary.** In `@media (forced-colors: active)` all hierarchies receive a `ButtonText` border (width `--ch-border-width-default`, padding compensated so the height is unchanged) so borderless hierarchies remain perceivable as controls. Accessibility adaptation only; the normal visual design is unchanged. Disabled keeps `GrayText`; the focus treatment is preserved.
+2. **Secondary border inset.** `box-sizing: border-box`; Secondary padding (block and inline) is reduced by its border width so the outer control height equals the control-height token. The resulting 1px content inset relative to borderless hierarchies is accepted.
+3. **Private `--_btn-*` variables.** Implementation-private CSS plumbing scoped to `button.css`; not design tokens, not public API, never documented as consumer tokens; values derived only from approved public `--ch-*` tokens (or the §4 keyword exceptions). Consumers must not depend on them.
+4. **Cursor.** No cursor rule in Button v1; browser-native behaviour until the design system defines a cursor policy.
+5. **sm.** The documented restriction stands; no invented or hard-coded 44×44 hit area.
+6. **Packaging.** `@chavosh/react` is source-first for now; a distributable library build is addressed when package publishing/consumption is designed.

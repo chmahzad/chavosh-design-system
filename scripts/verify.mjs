@@ -12,6 +12,9 @@ const CHECKS = [
   "packages/tokens/tests/check-generated.mjs",
   "packages/tokens/tests/check-production.mjs",
   "packages/tokens/tests/check-production-render.mjs",
+  "packages/react/tests/check-react-types.mjs",
+  "packages/react/tests/check-react-tokens.mjs",
+  "packages/react/tests/check-react-browser.mjs",
 ];
 const strict = process.argv.includes("--strict");
 let failed = 0;

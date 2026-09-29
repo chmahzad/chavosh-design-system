@@ -1,0 +1,142 @@
+/*
+ * AUTHORED. Chavosh Financial — Button v1 (labels only). Contract: docs/decisions/0010-button-v1-implementation-mapping.md.
+ * Consumes ONLY public --ch-* tokens from @chavosh/tokens/ch-tokens.css (loaded once at the application entry, not here).
+ * Never: primitives, --ch-brand-*, raw design values. Documented exceptions: underline 1px / 0.15em (ADR 0010 decision 3,
+ * G5 debt), `transparent` (Tertiary rest/disabled fill, no border), `0px` (no border), system colours in forced-colours mode.
+ * --_btn-* are PRIVATE implementation variables of this file (not tokens, not API), set only from public tokens.
+ */
+.ch-button {
+  /* size md (default) */
+  --_btn-height: var(--ch-size-control-height-md);
+  --_btn-padding-x: var(--ch-space-component-xl);
+  --_btn-font-size: var(--ch-font-size-label-md);
+  --_btn-line-height: var(--ch-font-line-height-label-md);
+  /* hierarchy colours (set per hierarchy below) */
+  --_btn-bg: transparent;
+  --_btn-fg: currentColor;
+  --_btn-border-color: transparent;
+  --_btn-border-width: 0px;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ch-space-gap-sm);
+  margin: 0;
+  /* Figma fixed height → min-height; vertical padding derived so one line equals the control height (ADR 0010 decision 2).
+     The border is part of the final control dimensions (decision 12): padding is reduced by the border width. */
+  min-height: var(--_btn-height);
+  padding-block: calc((var(--_btn-height) - var(--_btn-line-height)) / 2 - var(--_btn-border-width));
+  padding-inline: calc(var(--_btn-padding-x) - var(--_btn-border-width));
+  border: var(--_btn-border-width) solid var(--_btn-border-color);
+  border-radius: var(--ch-radius-md);
+  background-color: var(--_btn-bg);
+  color: var(--_btn-fg);
+  font-family: var(--ch-font-family-sans);
+  font-weight: var(--ch-font-weight-medium);
+  font-size: var(--_btn-font-size);
+  line-height: var(--_btn-line-height);
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* ---- Sizes ---------------------------------------------------------------------------------------------------- */
+/* sm is RESTRICTED: visual size only; the effective 44×44 target is NOT implemented (size/touch-target/min unreachable). */
+.ch-button[data-size="sm"] {
+  --_btn-height: var(--ch-size-control-height-sm);
+  --_btn-padding-x: var(--ch-space-component-lg);
+  --_btn-font-size: var(--ch-font-size-label-sm);
+  --_btn-line-height: var(--ch-font-line-height-label-sm);
+}
+.ch-button[data-size="lg"] {
+  --_btn-height: var(--ch-size-control-height-lg);
+}
+
+/* ---- Hierarchies: Default -------------------------------------------------------------------------------------- */
+.ch-button[data-hierarchy="primary"] {
+  --_btn-bg: var(--ch-color-action-primary-background-default);
+  --_btn-fg: var(--ch-color-action-primary-foreground-default);
+}
+.ch-button[data-hierarchy="secondary"] {
+  --_btn-bg: var(--ch-color-action-secondary-background-default);
+  --_btn-fg: var(--ch-color-action-secondary-foreground-default);
+  --_btn-border-color: var(--ch-color-action-secondary-border-default);
+  --_btn-border-width: var(--ch-border-width-default);
+}
+.ch-button[data-hierarchy="tertiary"] {
+  --_btn-bg: transparent;
+  --_btn-fg: var(--ch-color-action-tertiary-foreground-default);
+}
+.ch-button[data-hierarchy="destructive"] {
+  --_btn-bg: var(--ch-color-action-destructive-background-default);
+  --_btn-fg: var(--ch-color-action-destructive-foreground-default);
+}
+
+/* ---- Hover: hover-capable pointers only; underline in the label colour; background unchanged except Tertiary ----- */
+@media (hover: hover) {
+  .ch-button:hover:not(:active):not(:disabled) {
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 1px; /* ADR 0010 decision 3 (G5 component-level debt) */
+    text-underline-offset: 0.15em; /* ADR 0010 decision 3 (G5 component-level debt) */
+    text-decoration-skip-ink: auto;
+  }
+  .ch-button[data-hierarchy="tertiary"]:hover:not(:active):not(:disabled) {
+    --_btn-bg: var(--ch-color-action-tertiary-background-hover);
+    --_btn-fg: var(--ch-color-action-tertiary-foreground-hover);
+  }
+}
+
+/* ---- Pressed: takes precedence over Hover; never underlined (the hover rule excludes :active) ------------------- */
+.ch-button[data-hierarchy="primary"]:active:not(:disabled) {
+  --_btn-bg: var(--ch-color-action-primary-background-pressed);
+}
+.ch-button[data-hierarchy="secondary"]:active:not(:disabled) {
+  --_btn-bg: var(--ch-color-action-secondary-background-pressed);
+  --_btn-border-color: var(--ch-color-action-secondary-border-hover);
+  --_btn-fg: var(--ch-color-action-secondary-foreground-hover);
+}
+.ch-button[data-hierarchy="tertiary"]:active:not(:disabled) {
+  --_btn-bg: var(--ch-color-action-tertiary-background-pressed);
+  --_btn-fg: var(--ch-color-action-tertiary-foreground-hover);
+}
+.ch-button[data-hierarchy="destructive"]:active:not(:disabled) {
+  --_btn-bg: var(--ch-color-action-destructive-background-pressed);
+}
+
+/* ---- Focus: keyboard focus only; 3px indicator (outline, survives forced colours) + 2px outer ring beyond it ----- */
+.ch-button:focus-visible {
+  outline: var(--ch-focus-width-indicator) solid var(--ch-color-focus-indicator);
+  outline-offset: 0px;
+  box-shadow: 0 0 0 calc(var(--ch-focus-width-indicator) + var(--ch-focus-width-outer)) var(--ch-color-focus-outer);
+}
+
+/* ---- Disabled (native only in v1): no hover, no pressed, never underlined ---------------------------------------- */
+.ch-button:disabled {
+  --_btn-bg: var(--ch-color-action-disabled-background);
+  --_btn-fg: var(--ch-color-action-disabled-foreground);
+}
+.ch-button[data-hierarchy="secondary"]:disabled {
+  --_btn-border-color: var(--ch-color-border-disabled);
+}
+.ch-button[data-hierarchy="tertiary"]:disabled {
+  --_btn-bg: transparent;
+}
+
+/* ---- Forced colours (ADR 0010 decision 10): system colours, not authored brand colours ---------------------------- */
+@media (forced-colors: active) {
+  .ch-button {
+    /* keep every control boundary visible; width comes from the token so dimensions do not change */
+    --_btn-border-width: var(--ch-border-width-default);
+    border-color: ButtonText;
+  }
+  .ch-button:disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+  .ch-button:focus-visible {
+    outline-color: Highlight;
+  }
+}

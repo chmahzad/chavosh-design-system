@@ -4,6 +4,7 @@ node_modules/
 # Scratch / temporary build dirs
 .tmp/
 *.tmp
+.tmp-*/
 *.log
 
 # Environment and credentials (never commit)

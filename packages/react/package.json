@@ -1,11 +1,29 @@
 {
   "name": "@chavosh/react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
-  "description": "Chavosh Financial React components — SCAFFOLD ONLY. Upcoming: Button v1 (labels only). React, TypeScript and Vite are added with the Button step (exact pins, G7).",
+  "description": "Chavosh Financial React components. Button v1 (labels only) \u2014 contract: docs/decisions/0010-button-v1-implementation-mapping.md.",
   "type": "module",
-  "dependencies": {
-    "@chavosh/tokens": "0.3.0"
+  "exports": {
+    ".": "./src/index.ts"
   },
-  "engines": { "node": ">=22" }
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "@chavosh/tokens": "0.3.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }
