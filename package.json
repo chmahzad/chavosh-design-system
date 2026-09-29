@@ -2,16 +2,29 @@
   "name": "chavosh-design-system",
   "version": "0.3.0",
   "private": true,
-  "description": "Chavosh Financial Design System — production workspace: Figma → read-only exporter → canonical snapshot → DTCG → Style Dictionary → CSS (→ React → Storybook, upcoming).",
+  "description": "Chavosh Financial Design System — production workspace: Figma → read-only exporter → canonical snapshot → DTCG → Style Dictionary → CSS → React → Storybook.",
   "type": "module",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bundle:exporter": "node tools/figma-exporter/bundle.mjs",
     "convert": "npm run convert -w @chavosh/tokens",
     "build:css": "npm run build:css -w @chavosh/tokens",
     "build": "npm run bundle:exporter && npm run convert && npm run build:css",
     "verify": "node scripts/verify.mjs",
-    "test": "npm run verify"
+    "test": "npm run verify",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "10.6.0",
+    "@storybook/addon-docs": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
+    "storybook": "10.6.0",
+    "storybook-addon-pseudo-states": "10.6.0"
+  }
 }

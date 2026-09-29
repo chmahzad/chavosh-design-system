@@ -56,5 +56,10 @@ No brand logic in the component. Financial is the default; `data-brand="invest"`
 ### Accessibility behaviour
 Native `<button>` (no role emulation); Enter and Space activate; visible label is the accessible name (put destructive meaning in the label, not in colour); keyboard focus is always visible, including in forced-colours mode (outline, system colours; disabled uses `GrayText`); labels wrap at 200 % text and 320px width. Automated checks are evidence, not a WCAG 2.2 AA conformance claim — screen-reader and manual testing remain required. Native `disabled` only in v1; focusable unavailable actions (`aria-disabled`) will be designed when a product case needs them.
 
+## Storybook
+`npm run storybook` (repository root) opens the Button documentation and stories at http://localhost:6006:
+Playground (controls = the real props), Hierarchies, Sizes, States, Brand comparison, Long label, Disabled, Keyboard.
+Stories sit next to the component (`src/Button/Button.stories.tsx`, `Button.mdx`) and must use only the real API.
+
 ## Verification
-`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours).
+`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.

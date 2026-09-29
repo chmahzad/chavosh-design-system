@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Design tokens" />
+
+# Design tokens
+
+Components never contain raw design values. They read **public CSS custom properties** (`--ch-*`) from one generated stylesheet, `@chavosh/tokens/ch-tokens.css`, which applications load once at their entry point.
+
+## Where the values come from
+Figma variables are the source of design decisions. A read-only exporter captures them, and a verified pipeline turns them into design tokens (DTCG) and then into CSS. Generated files are never edited by hand.
+
+## Layers
+- **Primitives** — the raw scales. Build-time only: never available to components.
+- **Brand** — which hue family plays each brand role. An internal runtime layer: not for components.
+- **Semantic, Dimension and Responsive tokens** — design intent (for example the primary action background, control heights, label sizes). This is what components use.
+
+## Brands
+Financial is the default. Setting `data-brand="invest"` on any element switches everything inside it to Invest — also in nested contexts. Components contain no brand logic.
+
+## Breakpoints
+Tokens are mobile-first. Values that change by breakpoint switch at **48rem** (Tablet) and **64rem** (Desktop) — 768 and 1024px at the default browser text size. The Storybook viewport presets are preview sizes, not breakpoint definitions.
+
+## Current scope
+The token set published today is the one Button v1 needs (37 public tokens). The full export follows as further components are released.

@@ -10,7 +10,7 @@ Figma variables & components
   → Style Dictionary 5.5.5 (handwritten web policy)
   → CSS custom properties                                packages/tokens/dist/ch-tokens.css
   → React components                                     packages/react/        (Button v1)
-  → Storybook                                                                   (upcoming)
+  → Storybook (coded-component reference)                .storybook/, *.stories.tsx
 ```
 
 ## Status (v0.3)
@@ -19,7 +19,7 @@ Figma variables & components
 | Token pipeline v0.3 (exporter, converter, CSS build, verification) | built · verified on test fixtures |
 | Canonical Button snapshot → production `ch-tokens.css` | captured (manual run) · built · strict verification passes |
 | React Button v1 (labels only) | implemented · verified (Chromium) · contract: `docs/decisions/0010-button-v1-implementation-mapping.md` |
-| Storybook | upcoming |
+| Storybook 10.6 (Button v1 docs + stories) | built locally · verified (static build, play functions, a11y addon) · not deployed |
 | Documentation (Zeroheight) | upcoming |
 
 ## Principles in the pipeline
@@ -38,7 +38,31 @@ npm run bundle:exporter           # build the Figma plugin bundle
 npm run build                     # bundle → convert → build:css
 npm run verify                    # all checks
 npm run verify -- --strict        # release gate: PENDING counts as failure
+npm run storybook                 # Storybook dev server → http://localhost:6006
+npm run build-storybook           # static Storybook → storybook-static/ (git-ignored)
 ```
+
+## Storybook and Zeroheight
+**Storybook** is the reference for *coded components*: it renders the real `@chavosh/react` components with the real
+`ch-tokens.css`, shows the actual API (controls = props), browser states, keyboard behaviour and both brands (toolbar
+**Brand** → `data-brand`), and its interaction and accessibility checks run in `npm run verify`. It is for engineers and
+designers checking how the implementation behaves. It does not define design decisions and adds no tokens.
+
+**Zeroheight** (upcoming) will hold the broader guidance — principles, content and usage guidance, patterns, and
+design/Figma documentation — and link to Storybook for live component behaviour. The contract for each component stays
+in `docs/decisions` (for Button: ADR 0010).
+
+### Storybook toolchain notes (approved, Slice C)
+- **`skipLibCheck: true`** (`packages/react/tsconfig.json`) is a toolchain compatibility workaround: TypeScript 7.0.2
+  reports errors only inside third-party declaration files (Storybook, Vite, Vitest, react-docgen-typescript). Chavosh
+  source stays under `strict` type checking, and the Button API compile-time contract (`check-react-types`, with its
+  self-test) is unchanged. Remove it once upstream declarations are compatible with TypeScript 7.
+- **Story testing** uses the repository's Playwright 1.56.1 against the static build (`tests/storybook/check-storybook.mjs`,
+  part of `npm run verify`): build, runtime errors, play functions, a11y addon results, brand switching, state
+  presentation and real-Button consumption. `@storybook/addon-vitest` / `@storybook/test-runner` are not used, so no
+  Vitest or Jest is added for Storybook alone.
+- The **States** story is a documentation-only simulation (pseudo-states addon on the real Button CSS); the Playground is
+  the real interaction. Storybook telemetry is disabled (`.storybook/main.ts`).
 
 ## Provenance
 The pipeline evolves two frozen design-to-code proofs kept in a separate archive repository: Proof #1 (multi-brand colour chain, tag `proof-1-closed`) and Proof #2 (dimension, responsive and effect tokens, tag `proof-2-closed`). See `docs/decisions/0002-token-pipeline-v0-3-lineage.md`.

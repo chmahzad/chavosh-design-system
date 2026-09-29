@@ -1,0 +1,79 @@
+import { Meta, Title, Subtitle, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as ButtonStories from "./Button.stories";
+
+<Meta of={ButtonStories} />
+
+<Title>Button</Title>
+<Subtitle>Triggers an action. v1 — labels only.</Subtitle>
+
+## Purpose
+Button starts an action in the current context: submit a form, confirm a step, open a dialog. It is a native `<button>`; its visible label is its accessible name.
+
+**Use it for** actions. **Don't use it for** navigation to another page or URL — use Link. Don't use colour alone to carry meaning: a destructive action says what it does in its label.
+
+<Canvas of={ButtonStories.Playground} />
+<Controls of={ButtonStories.Playground} />
+
+## Hierarchy
+- **Primary** — the main action of a view; use one per view.
+- **Secondary** — alternative or supporting actions.
+- **Tertiary** — low-emphasis actions; not underlined at rest.
+- **Destructive** — irreversible actions; the label must name the consequence.
+
+<Canvas of={ButtonStories.Hierarchies} />
+
+## Sizes
+`md` is the default and `lg` is for prominent actions — both are production-ready.
+`sm` is **restricted** to dense Desktop/Tablet data contexts and does **not yet implement the effective 44×44 hit area**; don't use it where that target is required.
+
+<Canvas of={ButtonStories.Sizes} />
+
+## States
+States are browser behaviour, not props.
+- **Hover** (hover-capable pointers only): the label is underlined; the background stays the same, except Tertiary, which also shows a subtle hover background.
+- **Pressed**: pressed colours, no underline — pressed wins over hover.
+- **Focus-visible** (keyboard): the Chavosh focus ring — a 3px indicator and a 2px outer ring. It can appear together with hover.
+- **Disabled**: disabled colours; no hover or pressed feedback; never underlined.
+
+The examples below are a documentation-only simulation: Hover, Pressed and Focus-visible are forced by the Storybook pseudo-states addon, which applies Button's real CSS rules — Button has no state props. The **Playground** is the real browser interaction.
+
+<Canvas of={ButtonStories.States} />
+
+## Behaviour
+- Minimum height per size; long labels wrap and the button grows — nothing is truncated or clipped.
+- `type` defaults to `"button"`, so a Button inside a form never submits it by accident. Pass `type="submit"` or `"reset"` explicitly.
+- Width follows content (`inline-flex`); full width is a layout decision of the surrounding container.
+
+<Canvas of={ButtonStories.LongLabel} />
+
+## Disabled
+Button v1 uses the native `disabled` attribute: the button leaves the tab order and cannot be activated. Explain unavailability in the surrounding content. A focusable "unavailable" variant (`aria-disabled`) is not part of v1.
+
+<Canvas of={ButtonStories.Disabled} />
+
+## Accessibility
+- Native `<button>` semantics; the visible label is the accessible name.
+- Enter and Space activate; keyboard focus shows the focus ring (`:focus-visible`).
+- Disabled buttons are removed from the tab order.
+- Hover is signalled by an underline, not by colour alone.
+- Forced-colours mode: every Button keeps a visible system-colour boundary; disabled uses the system `GrayText` colour; the focus outline remains.
+- Target size: `md` and `lg` exceed 44×44. `sm` is restricted (see Sizes).
+- Automated checks (the Accessibility panel and the design system's browser tests) are evidence, **not** a WCAG 2.2 AA conformance claim. Screen-reader and manual testing remain required.
+
+<Canvas of={ButtonStories.Keyboard} />
+
+## Brand
+Button has no brand logic. It follows the brand context it is placed in — **Financial** by default, **Invest** under `data-brand="invest"`, including nested contexts. Use the **Brand** toolbar control, or compare both below.
+
+<Canvas of={ButtonStories.BrandComparison} />
+
+## Known limitations
+- `sm` does not yet implement the effective 44×44 hit area.
+- Loading state and leading/trailing icons are planned for a later version.
+- The hover underline's thickness and offset are component-level values, not yet design tokens.
+
+## API
+
+<ArgTypes of={ButtonStories.Playground} />
+
+Other native `<button>` attributes (for example `onClick`, `form`, `name`, `value`, `id`, `aria-*`, `data-*`, `className`, `ref`) are passed through to the element. Don't use `className` or `style` to override Button's colours, spacing or typography.
