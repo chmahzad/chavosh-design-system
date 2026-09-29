@@ -2,7 +2,9 @@
   "name": "@chavosh/react",
   "version": "0.1.0",
   "private": true,
-  "description": "Chavosh Financial React components. Button v1 (labels only) \u2014 contract: docs/decisions/0010-button-v1-implementation-mapping.md.",
+  "description": "Chavosh Financial React components. Button v1 (labels only) — contract: docs/decisions/0010-button-v1-implementation-mapping.md.",
+  "license": "MIT",
+  "author": "Mahzad Chavoshi",
   "type": "module",
   "exports": {
     ".": "./src/index.ts"

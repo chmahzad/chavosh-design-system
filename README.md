@@ -1,70 +1,160 @@
 # Chavosh Financial Design System
 
-A multi-brand (Financial · Invest), accessibility-first design system, built as a traceable design-to-code pipeline.
+A multi-brand financial design system exploring scalable token architecture, accessible components and a verifiable
+design-to-code workflow.
+
+**Storybook:** coming soon · **Case study:** coming soon
+
+## About the project
+
+Chavosh Financial Design System is a **self-directed portfolio project**. Chavosh Financial is a **fictional
+financial-services ecosystem** with two brands, **Financial** and **Invest**. They are used to explore how one design
+system can serve several brands without duplicating its components, and how design decisions made in Figma can reach
+production code without being re-typed or lost on the way.
+
+## My role
+
+**Mahzad Chavoshi — Product / Design System Designer**
+
+I defined:
+- the design-system architecture and its layers;
+- the token model, naming and multi-brand theming;
+- component specifications: anatomy, variants, states and behaviour;
+- accessibility criteria, targeting WCAG 2.2 AA;
+- responsive behaviour and breakpoints;
+- governance and the design-to-code contract, recorded as [decision records](docs/decisions/README.md).
+
+## The challenge
+
+Financial products need consistent, trustworthy and accessible interfaces across brands and platforms. Two things
+make that hard to scale:
+- **Brands multiply work.** Without a clear separation between brand values and design intent, every new brand
+  risks a forked component library.
+- **Design and code drift.** Values copied by hand from design files diverge silently, and nobody can say which
+  decision a CSS value came from.
+
+The goals of this system are a layered token architecture where brands change *values* but never *components*, and a
+pipeline in which every production value can be traced back to a Figma variable and re-verified automatically.
+
+## System architecture
 
 ```
-Figma variables & components
-  → read-only exporter plugin (v0.3, manual run)        tools/figma-exporter/
-  → private raw capture → sanitized public snapshot      packages/tokens/snapshots/figma/
-  → DTCG token source                                    packages/tokens/generated/dtcg/
-  → Style Dictionary 5.5.5 (handwritten web policy)
-  → CSS custom properties                                packages/tokens/dist/ch-tokens.css
-  → React components                                     packages/react/        (Button v1)
-  → Storybook (coded-component reference)                .storybook/, *.stories.tsx
+Primitive       →  Brand              →  Semantic                                  →  Component
+color.navy.800     brand.primary.800     color.action.primary.background.default      Button
 ```
 
-## Status (v0.3)
-| Layer | Status |
-|---|---|
-| Token pipeline v0.3 (exporter, converter, CSS build, verification) | built · verified on test fixtures |
-| Canonical Button snapshot → production `ch-tokens.css` | captured (manual run) · built · strict verification passes |
-| React Button v1 (labels only) | implemented · verified (Chromium) · contract: `docs/decisions/0010-button-v1-implementation-mapping.md` |
-| Storybook 10.6 (Button v1 docs + stories) | built locally · verified (static build, play functions, a11y addon) · not deployed |
-| Documentation (Zeroheight) | upcoming |
+- **Primitive** — raw, intentional scales (colour, space, radius, type). Build-time only; never used by components.
+- **Brand** — each brand maps its roles to primitives (Financial → navy, Invest → violet). This is an internal
+  runtime layer.
+- **Semantic** — design intent (`action`, `border`, `focus`, `space`, `size`…): the public tokens (`--ch-*`) that
+  components consume.
+- **Component** — components use semantic tokens directly. Component-level tokens are added only when a semantic
+  token cannot express the decision; Button v1 needs none.
 
-## Principles in the pipeline
-- **Figma is the source of design decisions; generated files are never edited.** Every output is rebuilt and compared in `npm run verify`.
-- **Export scope is derived, not listed:** the exporter walks the Button component and follows its bindings (ADR 0005).
-- **Layers:** primitives are build-time only; `--ch-brand-*` is an internal runtime layer; components use public semantic `--ch-*` tokens.
-- **Brand at runtime:** Financial by default; `data-brand="invest"` on any ancestor, including nested contexts.
-- **Web units by policy:** rem for scalable sizes, px for borders/focus, `9999px` pill radius, mobile-first breakpoints at 48rem / 64rem.
-- **Accessibility-first:** WCAG 2.2 AA target; automated checks are evidence, not compliance claims.
+**Financial / Invest theming.** Financial is the default. Setting `data-brand="invest"` on any element re-themes
+everything inside it, including nested brand contexts, through CSS custom properties only. There is no brand logic in
+components.
 
-## Commands (Node 22)
+## Accessibility
+
+Accessibility is part of each component's specification, not a final audit. The target is **WCAG 2.2 AA**.
+
+**Automated checks** (Chromium) cover:
+- keyboard operation and visible focus (`:focus-visible`);
+- forced-colours mode;
+- 200 % text and 320 px reflow without clipping;
+- touch devices without hover;
+- per-state token colours in both brands;
+- axe-core checks in Storybook.
+
+**Still required:**
+- screen-reader testing (for example VoiceOver and NVDA);
+- manual zoom and device testing;
+- WebKit and Firefox coverage.
+
+Automated results are evidence, not a WCAG certification or conformance claim.
+
+## Design-to-code
+
+```
+Figma → Public Snapshot → DTCG → Style Dictionary → CSS Custom Properties → React → Storybook
+```
+
+1. A read-only Figma plugin captures the Button component and every variable it depends on.
+2. The raw capture is kept **private** as the root of trust. A deterministic sanitizer removes Figma file and library
+   keys and produces the **public snapshot** this repository builds from. Its provenance records the raw capture's
+   SHA-256 ([ADR 0011](docs/decisions/0011-public-snapshot-and-identifier-minimisation.md)).
+3. The snapshot is converted to Design Tokens Community Group (**DTCG**) format. Style Dictionary then applies a
+   handwritten web policy (rem units, colour format, font stacks, mobile-first breakpoints at 48rem / 64rem) and emits
+   one stylesheet, `ch-tokens.css`.
+4. React components use only the public CSS custom properties, and Storybook documents the real components with the
+   real tokens.
+
+## Current implementation
+
+**Button v1** (labels only):
+- hierarchies: **Primary, Secondary, Tertiary, Destructive**;
+- sizes: **sm / md / lg**;
+- brands: **Financial / Invest**;
+- a **37-token closure** derived from the Figma component's bindings. The pipeline exports only what the component
+  actually uses;
+- states: hover (underline, for hover-capable pointers), pressed, focus-visible and disabled;
+- behaviour: labels wrap and scale with text size;
+- a forced-colours treatment;
+- native `<button>` semantics, with `type="button"` by default;
+- **Storybook** documentation: docs page, playground, states, brand comparison, keyboard and long-label stories.
+
+**Size `sm` is restricted:** its effective 44 × 44 px target is not yet implemented, so it is not production-ready
+where that target is required. `md` and `lg` exceed 44 px.
+
+Not yet included: loading, icons, further components, full token export, native platforms.
+
+## Verification
+
+`npm run verify -- --strict` runs 14 check groups on every build:
+- the read-only exporter never writes to Figma;
+- the sanitizer changes nothing but the approved identifiers;
+- generated tokens and CSS are fresh, deterministic and never hand-edited;
+- the Button's token closure matches its approved specification;
+- the component uses only public tokens;
+- Chromium tests cover every hierarchy × size × state × brand;
+- the Storybook static build, interaction tests and accessibility checks pass.
+
+The same verification runs in CI on every push.
+
+## AI-assisted implementation
+
+The design-system architecture, token model, component specifications, accessibility criteria and design decisions
+were defined by Mahzad Chavoshi. AI-assisted development was used to support implementation, pipeline automation,
+testing and technical validation.
+
+## Run locally
+
+Requires Node 22.
+
 ```
 npm ci
-npx playwright install chromium   # only if Chromium 141 is not already available
-npm run bundle:exporter           # build the Figma plugin bundle
-npm run build                     # bundle → convert → build:css
-npm run verify                    # all checks
-npm run verify -- --strict        # release gate: PENDING counts as failure
-npm run storybook                 # Storybook dev server → http://localhost:6006
-npm run build-storybook           # static Storybook → storybook-static/ (git-ignored)
+npx playwright install chromium   # browser for the verification checks
+npm run build                     # snapshot → DTCG → CSS
+npm run verify -- --strict        # all checks
+npm run storybook                 # Storybook at http://localhost:6006
+npm run build-storybook           # static Storybook → storybook-static/
 ```
 
-## Storybook and Zeroheight
-**Storybook** is the reference for *coded components*: it renders the real `@chavosh/react` components with the real
-`ch-tokens.css`, shows the actual API (controls = props), browser states, keyboard behaviour and both brands (toolbar
-**Brand** → `data-brand`), and its interaction and accessibility checks run in `npm run verify`. It is for engineers and
-designers checking how the implementation behaves. It does not define design decisions and adds no tokens.
+## Repository structure
 
-**Zeroheight** (upcoming) will hold the broader guidance — principles, content and usage guidance, patterns, and
-design/Figma documentation — and link to Storybook for live component behaviour. The contract for each component stays
-in `docs/decisions` (for Button: ADR 0010).
+| Path | Contents |
+|---|---|
+| `tools/figma-exporter/` | read-only Figma plugin that captures a component and its variables |
+| `packages/tokens/` | public snapshot, sanitizer, DTCG conversion, Style Dictionary build, `dist/ch-tokens.css` |
+| `packages/react/` | React components (Button v1) and their tests |
+| `.storybook/`, `*.stories.tsx`, `*.mdx` | Storybook configuration and component documentation |
+| `docs/decisions/` | architecture decision records |
+| `scripts/verify.mjs`, `tests/` | verification entry point and Storybook checks |
 
-### Storybook toolchain notes (approved, Slice C)
-- **`skipLibCheck: true`** (`packages/react/tsconfig.json`) is a toolchain compatibility workaround: TypeScript 7.0.2
-  reports errors only inside third-party declaration files (Storybook, Vite, Vitest, react-docgen-typescript). Chavosh
-  source stays under `strict` type checking, and the Button API compile-time contract (`check-react-types`, with its
-  self-test) is unchanged. Remove it once upstream declarations are compatible with TypeScript 7.
-- **Story testing** uses the repository's Playwright 1.56.1 against the static build (`tests/storybook/check-storybook.mjs`,
-  part of `npm run verify`): build, runtime errors, play functions, a11y addon results, brand switching, state
-  presentation and real-Button consumption. `@storybook/addon-vitest` / `@storybook/test-runner` are not used, so no
-  Vitest or Jest is added for Storybook alone.
-- The **States** story is a documentation-only simulation (pseudo-states addon on the real Button CSS); the Playground is
-  the real interaction. Storybook telemetry is disabled (`.storybook/main.ts`).
+## License
 
-## Provenance
-The pipeline evolves two frozen design-to-code proofs kept in a separate archive repository: Proof #1 (multi-brand colour chain, tag `proof-1-closed`) and Proof #2 (dimension, responsive and effect tokens, tag `proof-2-closed`). See `docs/decisions/0002-token-pipeline-v0-3-lineage.md`.
+[MIT](LICENSE) © 2026 Mahzad Chavoshi.
 
-Decisions: [`docs/decisions`](docs/decisions/README.md).
+Chavosh Financial is a fictional brand created for this portfolio. Its name and visual identity are presented as
+portfolio and design-system material. They do not represent, and are not endorsed by, any real financial institution.

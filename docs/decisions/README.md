@@ -1,9 +1,9 @@
 # Decision records
 
-Short records of architecture decisions for the Chavosh Financial Design System production workspace. The frozen
-architecture lives in the project docs (`chavosh-token-export-architecture.md`, `chavosh-button-architecture.md`);
-the design-to-code proofs live in the separate proof archive (tags `proof-1-closed` → `427a79d`,
-`proof-2-closed` → `40b5293`).
+Short records of the architecture decisions behind the Chavosh Financial Design System. The underlying architecture
+specifications (`chavosh-token-export-architecture.md`, `chavosh-button-architecture.md`) and the two earlier
+design-to-code proofs (Proof #1, Proof #2) are kept in a separate private archive; references to them below are for
+lineage. Labels such as G1–G8 identify the original architecture decisions each record implements.
 
 | # | Decision | Status |
 |---|---|---|

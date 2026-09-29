@@ -2,7 +2,9 @@
   "name": "chavosh-design-system",
   "version": "0.3.0",
   "private": true,
-  "description": "Chavosh Financial Design System — production workspace: Figma → read-only exporter → canonical snapshot → DTCG → Style Dictionary → CSS → React → Storybook.",
+  "description": "A multi-brand financial design system exploring scalable token architecture, accessible components and a verifiable design-to-code workflow.",
+  "license": "MIT",
+  "author": "Mahzad Chavoshi",
   "type": "module",
   "workspaces": [
     "packages/*"

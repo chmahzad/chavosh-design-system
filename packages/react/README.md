@@ -63,3 +63,14 @@ Stories sit next to the component (`src/Button/Button.stories.tsx`, `Button.mdx`
 
 ## Verification
 `npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
+
+## Toolchain notes
+- **`skipLibCheck: true`** (`tsconfig.json`) is a toolchain compatibility workaround: TypeScript 7.0.2 reports errors
+  only inside third-party declaration files (Storybook, Vite, Vitest, react-docgen-typescript). Chavosh source stays
+  under `strict` type checking, and the Button API compile-time contract (`check-react-types`, with its self-test) is
+  unchanged. Remove it once upstream declarations are compatible with TypeScript 7.
+- **Story testing** uses the repository's Playwright against the static Storybook build
+  (`tests/storybook/check-storybook.mjs`): build, runtime errors, play functions, accessibility addon results, brand
+  switching, state presentation and real-Button consumption. No Vitest or Jest is added for Storybook alone.
+- The **States** story is a documentation-only simulation (pseudo-states addon on the real Button CSS); the Playground
+  is the real interaction. Storybook telemetry is disabled.
