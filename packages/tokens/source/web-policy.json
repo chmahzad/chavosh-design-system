@@ -1,0 +1,43 @@
+{
+  "$comment": "AUTHORED. Web (CSS) output policy v0.3 for DTCG → Style Dictionary → CSS. No token values. Evolved from the Proof #2 web unit policy (tag proof-2-closed) and Proof #1's brand runtime (tag proof-1-closed). Each dimension rule cites its basis in chavosh-token-export-architecture.md (frozen). Every public dimension must match exactly one rule and every source dimension must be px, or the build fails before Style Dictionary runs. Rules that match nothing in the current export are allowed (they are approved architecture) and are listed in the build report.",
+  "remBasePx": 16,
+  "dimensionRules": [
+    { "id": "component-padding", "match": ["space/component/*"], "output": "rem", "basis": "decision 4 (spacing → rem)" },
+    { "id": "gap", "match": ["space/gap/*"], "output": "rem", "basis": "decision 4 (spacing → rem)" },
+    { "id": "section-spacing", "match": ["space/section/*"], "output": "rem", "basis": "decision 4 (spacing → rem)" },
+    { "id": "control-size", "match": ["size/control/*"], "output": "rem", "basis": "decision 4 (scalable control dimensions → rem)" },
+    { "id": "icon-size", "match": ["size/icon/*"], "output": "rem", "basis": "decision 4 (scalable control dimensions → rem)" },
+    { "id": "touch-target", "match": ["size/touch-target/*"], "output": "rem", "basis": "decision 4 (scalable control dimensions → rem)" },
+    { "id": "layout", "match": ["layout/margin", "layout/gutter", "layout/max-width"], "output": "rem", "basis": "decision 4 (scalable layout dimensions → rem)" },
+    { "id": "finite-radius", "match": ["radius/sm", "radius/md", "radius/lg"], "output": "rem", "basis": "decision 15" },
+    { "id": "radius-none", "match": ["radius/none"], "output": "zero", "basis": "decision 15" },
+    { "id": "radius-full-sentinel", "match": ["radius/full"], "output": "sentinel-px", "sentinelPx": 9999, "basis": "decision 15" },
+    { "id": "border-width", "match": ["border-width/*"], "output": "px", "basis": "decision 4 (border widths → px)" },
+    { "id": "focus-width", "match": ["focus/width/*"], "output": "px", "basis": "decision 4 (focus widths → px)" },
+    { "id": "font-size", "match": ["font/size/*"], "output": "rem", "basis": "decision 4 (font sizes → rem)" },
+    { "id": "line-height-standalone", "match": ["font/line-height/*"], "output": "rem", "basis": "decision 16 (standalone line height → rem length)" }
+  ],
+  "shadowGeometry": { "fields": ["offsetX", "offsetY", "blur", "spread"], "output": "px" },
+  "color": {
+    "opaque": "hex",
+    "translucent": "rgb-modern",
+    "$comment": "G2: alpha = 1 → lowercase #rrggbb; alpha < 1 → rgb(R G B / A%)."
+  },
+  "fontFamily": {
+    "stacks": { "Inter": ["Inter", "system-ui", "sans-serif"] },
+    "$comment": "Decision 9: web font stack Inter, system-ui, sans-serif. Keyed by the Figma family value; an unknown family fails the build."
+  },
+  "fontWeight": { "min": 1, "max": 1000, "output": "number" },
+  "emittedTypes": ["dimension", "color", "shadow", "fontFamily", "fontWeight"],
+  "brand": {
+    "attribute": "data-brand",
+    "$comment": "Proof #1 runtime (decisions 2, 6, 14): internal --ch-brand-* per brand scope (default brand also on :root); brand-dependent public tokens re-declared on :root, [data-brand] so nested brand contexts re-resolve. v0.3 (ADR 0008): any public token whose value references a brand-scoped token (e.g. a shadow using a brand-dependent colour) is re-declared there too."
+  },
+  "responsive": {
+    "base": "mobile",
+    "overrides": [
+      { "mode": "tablet", "minWidth": "48rem" },
+      { "mode": "desktop", "minWidth": "64rem" }
+    ]
+  }
+}

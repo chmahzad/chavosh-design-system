@@ -1,0 +1,608 @@
+{
+  "color": {
+    "action": {
+      "destructive": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.red.700}",
+            "$description": "Fill of destructive actions (delete, cancel payment). Brand-independent red; separate intent from feedback/error. 7.4:1 with white foreground.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-destructive-background-default",
+                "brandDependent": false,
+                "figma": {
+                  "variableId": "VariableID:12:8",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/destructive/background/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-destructive-background-default)"
+                  }
+                }
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.red.900}",
+            "$description": "Destructive action fill while pressed. Brand-independent red.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-destructive-background-pressed",
+                "brandDependent": false,
+                "figma": {
+                  "variableId": "VariableID:12:10",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/destructive/background/pressed",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-destructive-background-pressed)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.neutral.0}",
+            "$description": "Label, icon and spinner on the destructive action fill. White (7.4:1 on the default fill).",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-destructive-foreground-default",
+                "brandDependent": false,
+                "figma": {
+                  "variableId": "VariableID:12:11",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/destructive/foreground/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "SHAPE_FILL",
+                    "TEXT_FILL",
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-destructive-foreground-default)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "disabled": {
+        "background": {
+          "$type": "color",
+          "$value": "{color.neutral.100}",
+          "$description": "Shared disabled fill for all action hierarchies (Button, Icon Button). Separate intent from surface/disabled.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-action-disabled-background",
+              "brandDependent": false,
+              "figma": {
+                "variableId": "VariableID:12:12",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/action/disabled/background",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "FRAME_FILL",
+                  "SHAPE_FILL"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-action-disabled-background)"
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{color.neutral.500}",
+          "$description": "Shared disabled label, icon and spinner for all action hierarchies. 3.4:1 on white; state must also be exposed programmatically (disabled / aria-disabled).",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-action-disabled-foreground",
+              "brandDependent": false,
+              "figma": {
+                "variableId": "VariableID:12:13",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/action/disabled/foreground",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL",
+                  "STROKE_COLOR"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-action-disabled-foreground)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "primary": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{brand.primary.800}",
+            "$description": "Fill of the primary action (Primary Button / Icon Button). 10.5:1 against its white foreground in both brands. One primary action per view.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-primary-background-default",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:1:173",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/primary/background/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-primary-background-default)"
+                  }
+                }
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{brand.primary.950}",
+            "$description": "Primary action fill while pressed (darkest step of the primary role).",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-primary-background-pressed",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:1:175",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/primary/background/pressed",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-primary-background-pressed)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.neutral.0}",
+            "$description": "Label, icon and spinner on the primary action fill. White in both brands (10.5:1 on the default fill).",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-primary-foreground-default",
+                "brandDependent": false,
+                "figma": {
+                  "variableId": "VariableID:1:176",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/primary/foreground/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "SHAPE_FILL",
+                    "TEXT_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-primary-foreground-default)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.neutral.0}",
+            "$description": "Fill of the secondary action (outlined Button / Icon Button). White so the brand outline carries the hierarchy.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-secondary-background-default",
+                "brandDependent": false,
+                "figma": {
+                  "variableId": "VariableID:1:177",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/secondary/background/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-secondary-background-default)"
+                  }
+                }
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{brand.secondary.100}",
+            "$description": "Secondary action fill while pressed.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-secondary-background-pressed",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:1:179",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/secondary/background/pressed",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-secondary-background-pressed)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{brand.secondary.700}",
+            "$description": "Outline of the secondary action. Meets 3:1 so the action boundary is perceivable.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-secondary-border-default",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:12:2",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/secondary/border/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-secondary-border-default)"
+                  }
+                }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{brand.secondary.800}",
+            "$description": "Outline of the secondary action on hover and pressed.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-secondary-border-hover",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:12:3",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/secondary/border/hover",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-secondary-border-hover)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{brand.secondary.700}",
+            "$description": "Label and icon of the secondary action. Uses the brand secondary role (indigo in Financial, navy in Invest). 7.4:1 on white.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-secondary-foreground-default",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:1:180",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/secondary/foreground/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "SHAPE_FILL",
+                    "TEXT_FILL",
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-secondary-foreground-default)"
+                  }
+                }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{brand.secondary.800}",
+            "$description": "Label and icon of the secondary action on hover and pressed.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-secondary-foreground-hover",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:1:181",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/secondary/foreground/hover",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "SHAPE_FILL",
+                    "TEXT_FILL",
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-secondary-foreground-hover)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "tertiary": {
+        "background": {
+          "hover": {
+            "$type": "color",
+            "$value": "{brand.primary.50}",
+            "$description": "Tertiary action background on hover. Default has no fill (transparent in code).",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-tertiary-background-hover",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:12:6",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/tertiary/background/hover",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-tertiary-background-hover)"
+                  }
+                }
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{brand.primary.100}",
+            "$description": "Tertiary action background while pressed. Brand-tinted; distinct intent from selection/background even where values match.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-tertiary-background-pressed",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:12:7",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/tertiary/background/pressed",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-tertiary-background-pressed)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{brand.primary.700}",
+            "$description": "Label and icon of the tertiary (low-emphasis, no-container) action. Not underlined: underlines are reserved for links. 7.4:1 on white.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-tertiary-foreground-default",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:12:4",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/tertiary/foreground/default",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "SHAPE_FILL",
+                    "TEXT_FILL",
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-tertiary-foreground-default)"
+                  }
+                }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{brand.primary.800}",
+            "$description": "Tertiary action label and icon on hover and pressed.",
+            "$extensions": {
+              "chavosh": {
+                "layer": "semantic",
+                "visibility": "public",
+                "css": "--ch-color-action-tertiary-foreground-hover",
+                "brandDependent": true,
+                "figma": {
+                  "variableId": "VariableID:12:5",
+                  "collection": "Color",
+                  "collectionId": "VariableCollectionId:1:148",
+                  "path": "color/action/tertiary/foreground/hover",
+                  "resolvedType": "COLOR",
+                  "scopes": [
+                    "SHAPE_FILL",
+                    "TEXT_FILL",
+                    "STROKE_COLOR"
+                  ],
+                  "codeSyntax": {
+                    "WEB": "var(--color-action-tertiary-foreground-hover)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "border": {
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.300}",
+        "$description": "Boundary of disabled controls. 1.84:1 on white, 1.6:1 on surface/disabled: perceivable structure without appearing interactive (enabled border/input is 5.0:1).",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-border-disabled",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:172",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/border/disabled",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-border-disabled)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "focus": {
+      "indicator": {
+        "$type": "color",
+        "$value": "{color.yellow.200}",
+        "$description": "Keyboard focus indicator: 3px ring next to the component (outline in production). Brand-independent; paired with focus/outer, ≥9:1 between them (WCAG C40 two-tone). Used by every interactive component.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-focus-indicator",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:184",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/focus/indicator",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-focus-indicator)"
+              }
+            }
+          }
+        }
+      },
+      "outer": {
+        "$type": "color",
+        "$value": "{color.neutral.950}",
+        "$description": "Outer 2px focus ring that carries contrast on light surfaces. Always paired with focus/indicator. Brand-independent.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-focus-outer",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:185",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/focus/outer",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR",
+                "EFFECT_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-focus-outer)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

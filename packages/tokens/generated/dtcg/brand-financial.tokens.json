@@ -1,0 +1,216 @@
+{
+  "brand": {
+    "primary": {
+      "50": {
+        "$type": "color",
+        "$value": "{color.navy.50}",
+        "$description": "Financial → color/navy/50 · Invest → color/violet/50. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-primary-50",
+            "figma": {
+              "variableId": "VariableID:1:115",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/primary/50",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-primary-50)"
+              }
+            }
+          }
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": "{color.navy.100}",
+        "$description": "Financial → color/navy/100 · Invest → color/violet/100. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-primary-100",
+            "figma": {
+              "variableId": "VariableID:1:116",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/primary/100",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-primary-100)"
+              }
+            }
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "{color.navy.700}",
+        "$description": "Financial → color/navy/700 · Invest → color/violet/700. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-primary-700",
+            "figma": {
+              "variableId": "VariableID:1:122",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/primary/700",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-primary-700)"
+              }
+            }
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "{color.navy.800}",
+        "$description": "Financial → color/navy/800 · Invest → color/violet/800. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-primary-800",
+            "figma": {
+              "variableId": "VariableID:1:123",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/primary/800",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-primary-800)"
+              }
+            }
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": "{color.navy.950}",
+        "$description": "Financial → color/navy/950 · Invest → color/violet/950. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-primary-950",
+            "figma": {
+              "variableId": "VariableID:1:125",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/primary/950",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-primary-950)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "secondary": {
+      "100": {
+        "$type": "color",
+        "$value": "{color.indigo.100}",
+        "$description": "Financial → color/indigo/100 · Invest → color/navy/100. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-secondary-100",
+            "figma": {
+              "variableId": "VariableID:1:127",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/secondary/100",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-secondary-100)"
+              }
+            }
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": "{color.indigo.700}",
+        "$description": "Financial → color/indigo/700 · Invest → color/navy/700. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-secondary-700",
+            "figma": {
+              "variableId": "VariableID:1:133",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/secondary/700",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-secondary-700)"
+              }
+            }
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "{color.indigo.800}",
+        "$description": "Financial → color/indigo/800 · Invest → color/navy/800. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-secondary-800",
+            "figma": {
+              "variableId": "VariableID:1:134",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/secondary/800",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-secondary-800)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

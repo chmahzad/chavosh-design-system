@@ -1,0 +1,22 @@
+{
+  "name": "@chavosh/tokens",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Chavosh Financial design tokens — token pipeline v0.3 (public Figma snapshot → DTCG → Style Dictionary → CSS custom properties). Public output: dist/ch-tokens.css.",
+  "type": "module",
+  "exports": {
+    "./ch-tokens.css": "./dist/ch-tokens.css"
+  },
+  "files": ["dist/ch-tokens.css"],
+  "scripts": {
+    "sanitize": "node build/sanitize-snapshot.mjs",
+    "convert": "node build/convert-snapshot.mjs",
+    "build:css": "node build/build-css.mjs",
+    "build": "npm run convert && npm run build:css"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1",
+    "style-dictionary": "5.5.5"
+  },
+  "engines": { "node": ">=22" }
+}

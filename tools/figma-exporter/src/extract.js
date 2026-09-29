@@ -1,0 +1,235 @@
+// Chavosh Financial — read-only Figma extractor v0.3.0 (core). AUTHORED.
+// Production evolution of the frozen proof exporters (proof archive: v0.1.0 Proof #1 / tag proof-1-closed,
+// v0.2.0 Proof #2 / tag proof-2-closed). Not a dependency on them.
+//
+// NEW IN v0.3: roots are COMPONENTS, not hand-listed variables. The extractor walks every variant of each
+// root component set (hidden layers included), records every variable binding and style reference it finds,
+// and follows the alias closure across all modes. The dependency list is therefore derived from Figma,
+// never typed by hand.
+//
+// RESPONSIBILITY: extraction only. Output = raw snapshot of what Figma supplies. It must NOT decode
+// descriptions, convert units, resolve aliases into literals, apply scope or unit policy, or modify Figma.
+//
+// READ-ONLY CONTRACT: the only Figma APIs called are the getters
+//   figma.getNodeByIdAsync, figma.getStyleByIdAsync,
+//   figma.variables.getVariableByIdAsync, figma.variables.getVariableCollectionByIdAsync,
+//   node.getStyledTextSegments
+// plus property reads. No assignment to Figma objects; no create*/set*/remove*/delete*/import*/load* calls.
+// Enforced by tests/check-exporter-readonly.mjs (static scan + call allow-list + write-throwing mock).
+//
+// Determinism: bindings sorted by variant/layer/field/variable, variables by name then id, collections by id,
+// styles by name then key; raw objects copied with sorted keys; no timestamps.
+
+const SNAPSHOT_SCHEMA_VERSION = "1.2.0";
+const EXTRACTOR_VERSION = "0.3.0";
+
+function chavoshRawCopy(value) {
+  if (Array.isArray(value)) return value.map(chavoshRawCopy);
+  if (value && typeof value === "object") {
+    const out = {};
+    for (const k of Object.keys(value).sort()) {
+      const v = value[k];
+      if (v !== undefined && typeof v !== "function" && typeof v !== "symbol") out[k] = chavoshRawCopy(v);
+    }
+    return out;
+  }
+  return value;
+}
+
+function chavoshIsAlias(val) {
+  return !!val && typeof val === "object" && val.type === "VARIABLE_ALIAS" && typeof val.id === "string";
+}
+
+function chavoshCompare(a, b) {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+
+/** Collect every VARIABLE_ALIAS inside a boundVariables-like value, with a field path. */
+function chavoshAliases(value, field, out) {
+  if (chavoshIsAlias(value)) {
+    out.push({ field, id: value.id });
+  } else if (Array.isArray(value)) {
+    value.forEach((v, i) => chavoshAliases(v, `${field}[${i}]`, out));
+  } else if (value && typeof value === "object") {
+    for (const k of Object.keys(value).sort()) chavoshAliases(value[k], field ? `${field}.${k}` : k, out);
+  }
+  return out;
+}
+
+// eslint-disable-next-line no-unused-vars
+async function chavoshExtractV3(figmaApi, roots) {
+  const componentRoots = [...(roots.components || [])];
+  if (!componentRoots.length) throw new Error("No component roots given.");
+  if (figmaApi.skipInvisibleInstanceChildren === true) {
+    throw new Error("figma.skipInvisibleInstanceChildren is true: hidden layers inside instances would be skipped. Run the plugin in the Figma design editor (default false), not Dev Mode.");
+  }
+
+  const components = [];
+  const styleIds = new Set();
+  const variableIds = new Set();
+
+  for (const root of componentRoots) {
+    const node = await figmaApi.getNodeByIdAsync(root.nodeId);
+    if (!node) throw new Error(`Component root ${root.nodeId} ("${root.name}") not found in this file.`);
+    if (node.type !== root.type || node.name !== root.name) {
+      throw new Error(`Component root ${root.nodeId} is ${node.type} "${node.name}", expected ${root.type} "${root.name}".`);
+    }
+    let page = node.parent;
+    while (page && page.type !== "PAGE") page = page.parent;
+    if (!page) throw new Error(`Component root ${root.nodeId} is not on a page.`);
+    if (!figmaApi.currentPage || figmaApi.currentPage.id !== page.id) {
+      throw new Error(`Open the "${page.name}" page before running the exporter (component "${root.name}" lives there; the plugin does not switch pages).`);
+    }
+
+    const bindings = [];
+    const styleRefs = [];
+    const variantNames = [];
+    const visit = (n, variant, layerPath, visible) => {
+      const effectiveVisible = visible && n.visible !== false;
+      const here = { variant, layer: layerPath.join("/"), visible: effectiveVisible, nodeType: n.type };
+      const add = (field, id) => {
+        bindings.push({ ...here, field, variableId: id });
+        variableIds.add(id);
+      };
+      // Node-level fills/strokes/effects aliases duplicate the paint/effect-level bindings read below.
+      const nodeBound = n.boundVariables || {};
+      for (const k of Object.keys(nodeBound).sort()) {
+        if (k === "fills" || k === "strokes" || k === "effects") continue;
+        for (const a of chavoshAliases(nodeBound[k], k, [])) add(a.field, a.id);
+      }
+      for (const prop of ["fills", "strokes", "effects"]) {
+        const list = n[prop];
+        if (!Array.isArray(list)) continue;
+        list.forEach((item, i) => {
+          for (const a of chavoshAliases((item && item.boundVariables) || {}, "", [])) add(`${prop}[${i}].${a.field}`, a.id);
+        });
+      }
+      for (const prop of ["textStyleId", "fillStyleId", "strokeStyleId", "effectStyleId", "gridStyleId"]) {
+        if (!(prop in n)) continue;
+        const v = n[prop];
+        if (typeof v === "string") {
+          if (v) {
+            styleRefs.push({ ...here, field: prop, styleId: v });
+            styleIds.add(v);
+          }
+        } else if (v !== undefined && n.type === "TEXT" && (prop === "textStyleId" || prop === "fillStyleId")) {
+          // mixed text styles: read them per segment
+          for (const seg of n.getStyledTextSegments([prop])) {
+            if (seg[prop]) {
+              styleRefs.push({ ...here, field: `${prop}[${seg.start}:${seg.end}]`, styleId: seg[prop] });
+              styleIds.add(seg[prop]);
+            }
+          }
+        } else if (v !== undefined) {
+          throw new Error(`Mixed ${prop} on ${variant}/${here.layer} is not supported.`);
+        }
+      }
+      if (n.type === "TEXT" && !Array.isArray(n.fills)) {
+        // mixed fills: read colour bindings per segment
+        for (const seg of n.getStyledTextSegments(["fills"])) {
+          seg.fills.forEach((p, i) => {
+            for (const a of chavoshAliases((p && p.boundVariables) || {}, "", [])) add(`fills[${seg.start}:${seg.end}][${i}].${a.field}`, a.id);
+          });
+        }
+      }
+      if ("children" in n && n.children) for (const c of n.children) visit(c, variant, [...layerPath, c.name], effectiveVisible);
+    };
+    for (const variant of node.children) {
+      if (variant.type !== "COMPONENT") throw new Error(`Unexpected ${variant.type} "${variant.name}" inside component set "${root.name}".`);
+      variantNames.push(variant.name);
+      visit(variant, variant.name, [], true);
+    }
+    const sortKey = (r) => [r.variant, r.layer, r.field, r.variableId || r.styleId].join("\u0000");
+    bindings.sort((a, b) => chavoshCompare(sortKey(a), sortKey(b)));
+    styleRefs.sort((a, b) => chavoshCompare(sortKey(a), sortKey(b)));
+    components.push({
+      nodeId: node.id,
+      key: node.key,
+      name: node.name,
+      type: node.type,
+      description: node.description,
+      page: { id: page.id, name: page.name },
+      variants: variantNames.sort(chavoshCompare),
+      bindings,
+      styleRefs,
+    });
+  }
+
+  // ---- Styles referenced by the components ------------------------------------------------
+  const textStyles = [];
+  const effectStyles = [];
+  for (const id of [...styleIds].sort()) {
+    const s = await figmaApi.getStyleByIdAsync(id);
+    if (!s) throw new Error(`Referenced style ${id} not found.`);
+    if (s.remote) throw new Error(`Style "${s.name}" is a remote library style; only local styles are supported.`);
+    for (const a of chavoshAliases(s.boundVariables || {}, "", [])) variableIds.add(a.id);
+    if (s.type === "TEXT") {
+      textStyles.push({
+        id: s.id, key: s.key, name: s.name, type: s.type, description: s.description,
+        fontName: chavoshRawCopy(s.fontName), fontSize: s.fontSize, lineHeight: chavoshRawCopy(s.lineHeight),
+        letterSpacing: chavoshRawCopy(s.letterSpacing), textCase: s.textCase, textDecoration: s.textDecoration,
+        boundVariables: chavoshRawCopy(s.boundVariables || {}),
+      });
+    } else if (s.type === "EFFECT") {
+      for (const e of s.effects) for (const a of chavoshAliases(e.boundVariables || {}, "", [])) variableIds.add(a.id);
+      effectStyles.push({
+        id: s.id, key: s.key, name: s.name, type: s.type, description: s.description,
+        effects: s.effects.map(chavoshRawCopy), boundVariables: chavoshRawCopy(s.boundVariables || {}),
+      });
+    } else {
+      // PAINT/GRID styles are not part of the Chavosh architecture (colour lives in variables).
+      throw new Error(`Style "${s.name}" of type ${s.type} is referenced but not supported by extractor ${EXTRACTOR_VERSION}.`);
+    }
+  }
+
+  // ---- Variables: bindings + style dependencies, transitive alias closure over all modes ----
+  const seen = new Map();
+  const queue = [...variableIds].sort();
+  while (queue.length) {
+    const id = queue.shift();
+    if (seen.has(id)) continue;
+    const v = await figmaApi.variables.getVariableByIdAsync(id);
+    if (!v) throw new Error(`Bound or aliased variable ${id} not found.`);
+    if (v.remote) throw new Error(`Variable "${v.name}" is a remote library variable; only local variables are supported.`);
+    seen.set(id, v);
+    for (const modeId of Object.keys(v.valuesByMode).sort()) {
+      const val = v.valuesByMode[modeId];
+      if (chavoshIsAlias(val)) queue.push(val.id); // followed, never resolved into a literal
+    }
+  }
+
+  const collectionIds = [...new Set([...seen.values()].map((v) => v.variableCollectionId))].sort();
+  const collections = [];
+  for (const cid of collectionIds) {
+    const c = await figmaApi.variables.getVariableCollectionByIdAsync(cid);
+    if (!c) throw new Error(`Missing variable collection ${cid}.`);
+    collections.push({ id: c.id, name: c.name, defaultModeId: c.defaultModeId, modes: c.modes.map((m) => ({ modeId: m.modeId, name: m.name })) });
+  }
+
+  const variables = [...seen.values()]
+    .sort((a, b) => chavoshCompare(a.name, b.name) || chavoshCompare(a.id, b.id))
+    .map((v) => {
+      const valuesByMode = {};
+      for (const modeId of Object.keys(v.valuesByMode).sort()) valuesByMode[modeId] = chavoshRawCopy(v.valuesByMode[modeId]);
+      return {
+        id: v.id, name: v.name, variableCollectionId: v.variableCollectionId, resolvedType: v.resolvedType,
+        description: v.description, scopes: [...v.scopes], codeSyntax: chavoshRawCopy(v.codeSyntax || {}), valuesByMode,
+      };
+    });
+  const byNameKey = (a, b) => chavoshCompare(a.name, b.name) || chavoshCompare(a.key, b.key);
+
+  return {
+    schema: "chavosh.figma-raw-snapshot",
+    schemaVersion: SNAPSHOT_SCHEMA_VERSION,
+    extractor: { name: "chavosh-figma-exporter", version: EXTRACTOR_VERSION, readOnly: true },
+    source: {
+      fileKey: figmaApi.fileKey || null,
+      fileName: figmaApi.root.name,
+      roots: { components: componentRoots.map((r) => ({ nodeId: r.nodeId, name: r.name, type: r.type })) },
+    },
+    components,
+    collections,
+    variables,
+    styles: { text: textStyles.sort(byNameKey), effect: effectStyles.sort(byNameKey) },
+  };
+}

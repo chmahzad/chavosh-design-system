@@ -1,0 +1,17 @@
+{
+  "$comment": "AUTHORED. Cross-check contract for the Button v1 (labels only) export closure, transcribed from chavosh-button-architecture.md (approved; §4 token additions and mapping, §5 focus, sizes table; reused tokens list). Used by check-production.mjs once the canonical snapshot exists: the tokens Button binds in scope must equal this list. Any difference is reported as a Design/code mismatch for designer review — never auto-corrected.",
+  "source": "chavosh-button-architecture.md (Button & Icon Button Architecture v1)",
+  "boundTokens": [
+    "color/action/primary/background/default", "color/action/primary/background/pressed", "color/action/primary/foreground/default",
+    "color/action/secondary/background/default", "color/action/secondary/background/pressed", "color/action/secondary/border/default", "color/action/secondary/border/hover", "color/action/secondary/foreground/default", "color/action/secondary/foreground/hover",
+    "color/action/tertiary/foreground/default", "color/action/tertiary/foreground/hover", "color/action/tertiary/background/hover", "color/action/tertiary/background/pressed",
+    "color/action/destructive/background/default", "color/action/destructive/background/pressed", "color/action/destructive/foreground/default",
+    "color/action/disabled/background", "color/action/disabled/foreground", "color/border/disabled",
+    "color/focus/indicator", "color/focus/outer",
+    "size/control/height/sm", "size/control/height/md", "size/control/height/lg",
+    "space/component/lg", "space/component/xl", "space/gap/sm",
+    "radius/md", "border-width/default", "focus/width/indicator", "focus/width/outer",
+    "font/family/sans", "font/weight/medium", "font/size/label/md", "font/size/label/sm", "font/line-height/label/md", "font/line-height/label/sm"
+  ],
+  "textStyles": ["label/md", "label/sm"]
+}

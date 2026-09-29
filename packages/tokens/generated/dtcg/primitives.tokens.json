@@ -1,0 +1,1042 @@
+{
+  "border-width": {
+    "1": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:29",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "border-width/1",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--border-width-1)"
+            }
+          }
+        }
+      }
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:30",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "border-width/2",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--border-width-2)"
+            }
+          }
+        }
+      }
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": {
+        "value": 3,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:31",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "border-width/3",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--border-width-3)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "color": {
+    "indigo": {
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9254902005195618,
+            0.9372549057006836,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#ecefff"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:38",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/indigo/100",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-indigo-100)"
+              }
+            }
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3019607961177826,
+            0.239215686917305,
+            0.7960784435272217
+          ],
+          "alpha": 1,
+          "hex": "#4d3dcb"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:44",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/indigo/700",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-indigo-700)"
+              }
+            }
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.22745098173618317,
+            0.15294118225574493,
+            0.6431372761726379
+          ],
+          "alpha": 1,
+          "hex": "#3a27a4"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:45",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/indigo/800",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-indigo-800)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "navy": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9607843160629272,
+            0.9725490212440491,
+            0.9960784316062927
+          ],
+          "alpha": 1,
+          "hex": "#f5f8fe"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:15",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/navy/50",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-navy-50)"
+              }
+            }
+          }
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9058823585510254,
+            0.9372549057006836,
+            0.9960784316062927
+          ],
+          "alpha": 1,
+          "hex": "#e7effe"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:16",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/navy/100",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-navy-100)"
+              }
+            }
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.20000000298023224,
+            0.3294117748737335,
+            0.5764706134796143
+          ],
+          "alpha": 1,
+          "hex": "#335493"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:22",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/navy/700",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-navy-700)"
+              }
+            }
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.11764705926179886,
+            0.239215686917305,
+            0.47843137383461
+          ],
+          "alpha": 1,
+          "hex": "#1e3d7a"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:23",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/navy/800",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-navy-800)"
+              }
+            }
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.007843137718737125,
+            0.10980392247438431,
+            0.33725491166114807
+          ],
+          "alpha": 1,
+          "hex": "#021c56"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:25",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/navy/950",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-navy-950)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "neutral": {
+      "0": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:3",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/neutral/0",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-neutral-0)"
+              }
+            }
+          }
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9215686321258545,
+            0.9411764740943909,
+            0.9607843160629272
+          ],
+          "alpha": 1,
+          "hex": "#ebf0f5"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:5",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/neutral/100",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-neutral-100)"
+              }
+            }
+          }
+        }
+      },
+      "300": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7215686440467834,
+            0.7529411911964417,
+            0.7882353067398071
+          ],
+          "alpha": 1,
+          "hex": "#b8c0c9"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:7",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/neutral/300",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-neutral-300)"
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5137255191802979,
+            0.5490196347236633,
+            0.5960784554481506
+          ],
+          "alpha": 1,
+          "hex": "#838c98"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:9",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/neutral/500",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-neutral-500)"
+              }
+            }
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.10588235408067703,
+            0.13333334028720856,
+            0.1725490242242813
+          ],
+          "alpha": 1,
+          "hex": "#1b222c"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:14",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/neutral/950",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-neutral-950)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "red": {
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6823529601097107,
+            0.019607843831181526,
+            0.10588235408067703
+          ],
+          "alpha": 1,
+          "hex": "#ae051b"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:99",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/red/700",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-red-700)"
+              }
+            }
+          }
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3960784375667572,
+            0.003921568859368563,
+            0.04313725605607033
+          ],
+          "alpha": 1,
+          "hex": "#65010b"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:101",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/red/900",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-red-900)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "violet": {
+      "50": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9764705896377563,
+            0.9725490212440491,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#f9f8ff"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:48",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/violet/50",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-violet-50)"
+              }
+            }
+          }
+        }
+      },
+      "100": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9450980424880981,
+            0.929411768913269,
+            0.9960784316062927
+          ],
+          "alpha": 1,
+          "hex": "#f1edfe"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:49",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/violet/100",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-violet-100)"
+              }
+            }
+          }
+        }
+      },
+      "700": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4470588266849518,
+            0.14901961386203766,
+            0.7882353067398071
+          ],
+          "alpha": 1,
+          "hex": "#7226c9"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:55",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/violet/700",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-violet-700)"
+              }
+            }
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3490196168422699,
+            0.05098039284348488,
+            0.6352941393852234
+          ],
+          "alpha": 1,
+          "hex": "#590da2"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:56",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/violet/800",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-violet-800)"
+              }
+            }
+          }
+        }
+      },
+      "950": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.19607843458652496,
+            0.003921568859368563,
+            0.3803921639919281
+          ],
+          "alpha": 1,
+          "hex": "#320161"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:58",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/violet/950",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-violet-950)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "yellow": {
+      "200": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9843137264251709,
+            0.8745098114013672,
+            0.0235294122248888
+          ],
+          "alpha": 1,
+          "hex": "#fbdf06"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:105",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/yellow/200",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-yellow-200)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "inter": {
+        "$type": "fontFamily",
+        "$value": "Inter",
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:5:53",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "font/family/inter",
+              "resolvedType": "STRING",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--font-family-inter)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "line-height": {
+      "20": {
+        "$type": "dimension",
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:5:45",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "font/line-height/20",
+              "resolvedType": "FLOAT",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--font-line-height-20)"
+              }
+            }
+          }
+        }
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:5:46",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "font/line-height/24",
+              "resolvedType": "FLOAT",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--font-line-height-24)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "size": {
+      "14": {
+        "$type": "dimension",
+        "$value": {
+          "value": 14,
+          "unit": "px"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:5:35",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "font/size/14",
+              "resolvedType": "FLOAT",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--font-size-14)"
+              }
+            }
+          }
+        }
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:5:36",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "font/size/16",
+              "resolvedType": "FLOAT",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--font-size-16)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "weight": {
+      "500": {
+        "$type": "fontWeight",
+        "$value": 500,
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:5:33",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "font/weight/500",
+              "resolvedType": "FLOAT",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--font-weight-500)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "radius": {
+    "200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:26",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "radius/200",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--radius-200)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "size": {
+    "1000": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:19",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "size/1000",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--size-1000)"
+            }
+          }
+        }
+      }
+    },
+    "1200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:21",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "size/1200",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--size-1200)"
+            }
+          }
+        }
+      }
+    },
+    "1400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:22",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "size/1400",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--size-1400)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "space": {
+    "200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:4",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "space/200",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--space-200)"
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:6",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "space/400",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--space-400)"
+            }
+          }
+        }
+      }
+    },
+    "600": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:8",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "space/600",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--space-600)"
+            }
+          }
+        }
+      }
+    }
+  }
+}

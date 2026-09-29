@@ -1,0 +1,11 @@
+{
+  "name": "Chavosh read-only token exporter v0.3.0",
+  "id": "chavosh-readonly-exporter-v3-local",
+  "api": "1.0.0",
+  "main": "dist-plugin/code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "enablePrivatePluginApi": true,
+  "networkAccess": { "allowedDomains": ["none"] }
+}

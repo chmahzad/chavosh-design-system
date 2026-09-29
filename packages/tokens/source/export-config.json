@@ -1,0 +1,53 @@
+{
+  "$comment": "AUTHORED. Token export policy v0.3 for snapshot → DTCG (architecture: chavosh-token-export-architecture.md, frozen; evolved from the proof archive, tags proof-1-closed / proof-2-closed; see docs/decisions). Contains no token values: all values come from the public Figma snapshot (derived from the private raw capture; ADR 0011).",
+  "publicSnapshot": {
+    "path": "snapshots/figma/chavosh-button.snapshot.public.json",
+    "provenance": "snapshots/figma/chavosh-button.snapshot.public.provenance.json"
+  },
+  "cssPrefix": "ch",
+  "collections": {
+    "Primitives": { "layer": "primitive", "visibility": "source-only", "set": "primitives" },
+    "Brand": {
+      "layer": "brand",
+      "visibility": "internal",
+      "modeSets": { "Financial": "brand-financial", "Invest": "brand-invest" },
+      "modeSlugs": { "Financial": "financial", "Invest": "invest" },
+      "defaultMode": "Financial"
+    },
+    "Color": { "layer": "semantic", "visibility": "public", "set": "color" },
+    "Dimension": { "layer": "dimension", "visibility": "public", "set": "dimension" },
+    "Responsive": {
+      "layer": "responsive",
+      "visibility": "public",
+      "modeSets": { "Mobile": "responsive-mobile", "Tablet": "responsive-tablet", "Desktop": "responsive-desktop" },
+      "modeSlugs": { "Mobile": "mobile", "Tablet": "tablet", "Desktop": "desktop" }
+    }
+  },
+  "variableTypes": {
+    "$comment": "Figma resolvedType → DTCG $type. FLOAT and STRING carry no DTCG type in Figma: every FLOAT/STRING path must match exactly one rule, otherwise conversion fails. Dimensions are Figma px, recorded as DTCG dimension objects {value, unit: \"px\"}. font/weight/* → DTCG fontWeight (number 1–1000). font/family/* → DTCG fontFamily (string exactly as Figma stores it; web fallbacks live in web-policy.json, not in DTCG). layout/columns stays unclassified (deferred).",
+    "COLOR": [{ "match": ["*"], "type": "color" }],
+    "FLOAT": [
+      { "match": ["space/*", "size/*", "radius/*", "border-width/*", "focus/width/*", "font/size/*", "font/line-height/*", "layout/margin", "layout/gutter", "layout/max-width"], "type": "dimension", "unit": "px" },
+      { "match": ["font/weight/*"], "type": "fontWeight" }
+    ],
+    "STRING": [{ "match": ["font/family/*"], "type": "fontFamily" }]
+  },
+  "effectStyles": {
+    "layer": "composite",
+    "visibility": "public",
+    "set": "effects",
+    "supported": { "type": ["DROP_SHADOW"], "blendMode": ["NORMAL"], "visible": [true], "colorBinding": "required" }
+  },
+  "textStyles": {
+    "$comment": "G3: no typography composites in v1. Text styles are validated and recorded in the manifest for traceability (style → per-property tokens); nothing is emitted for them."
+  },
+  "components": {
+    "Button": {
+      "figmaNodeId": "20:2",
+      "type": "COMPONENT_SET",
+      "exportScope": "button-v1-labels-only",
+      "excludedLayers": ["leading-icon", "trailing-icon", "spinner"],
+      "$comment": "G4: export = dependency closure of Button's bindings. G6: Button v1 is labels only, so bindings on (or inside) the icon and spinner layers are recorded in the snapshot but do not enter the export closure. Layer names as they exist in Figma (read-only inspection, 29 Sep 2026)."
+    }
+  }
+}

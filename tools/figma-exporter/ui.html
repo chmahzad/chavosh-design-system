@@ -1,0 +1,31 @@
+<!-- Chavosh Financial — exporter v0.3.0 UI. AUTHORED. Displays and downloads the raw snapshot; no network access. -->
+<style>
+  body { font: 13px/1.4 system-ui, sans-serif; margin: 12px; }
+  textarea { width: 100%; height: 200px; font: 11px/1.3 ui-monospace, monospace; }
+  button { margin-top: 8px; }
+</style>
+<p><strong>Chavosh read-only exporter v0.3.0</strong> — component dependency closure (nothing converted, nothing changed).</p>
+<p id="summary">Extracting…</p>
+<textarea id="out" readonly></textarea>
+<button id="dl" disabled>Download snapshot</button>
+<button id="close">Close</button>
+<script>
+  let json = "";
+  onmessage = (e) => {
+    const m = e.data.pluginMessage;
+    if (m.type === "snapshot") {
+      json = m.json;
+      out.value = json;
+      dl.disabled = false;
+      summary.textContent = `${m.summary.components} · ${m.summary.variables} variables · ${m.summary.collections} collections · ${m.summary.textStyles} text style(s) · ${m.summary.effectStyles} effect style(s)`;
+    }
+    if (m.type === "error") { summary.textContent = "ERROR"; out.value = "ERROR: " + m.message; }
+  };
+  dl.onclick = () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
+    a.download = "chavosh-button-figma-snapshot.json";
+    a.click();
+  };
+  document.getElementById("close").onclick = () => parent.postMessage({ pluginMessage: { type: "close" } }, "*");
+</script>

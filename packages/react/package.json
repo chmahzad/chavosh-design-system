@@ -1,0 +1,11 @@
+{
+  "name": "@chavosh/react",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Chavosh Financial React components — SCAFFOLD ONLY. Upcoming: Button v1 (labels only). React, TypeScript and Vite are added with the Button step (exact pins, G7).",
+  "type": "module",
+  "dependencies": {
+    "@chavosh/tokens": "0.3.0"
+  },
+  "engines": { "node": ">=22" }
+}

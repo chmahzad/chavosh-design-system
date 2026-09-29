@@ -1,0 +1,328 @@
+{
+  "border-width": {
+    "default": {
+      "$type": "dimension",
+      "$value": "{border-width.1}",
+      "$description": "Standard width for any visible edge: inputs, cards, dividers, outlined buttons and overlay edges.",
+      "$extensions": {
+        "chavosh": {
+          "layer": "dimension",
+          "visibility": "public",
+          "css": "--ch-border-width-default",
+          "figma": {
+            "variableId": "VariableID:5:86",
+            "collection": "Dimension",
+            "collectionId": "VariableCollectionId:5:58",
+            "path": "border-width/default",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "STROKE_FLOAT"
+            ],
+            "codeSyntax": {
+              "WEB": "var(--border-width-default)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "focus": {
+    "width": {
+      "indicator": {
+        "$type": "dimension",
+        "$value": "{border-width.3}",
+        "$description": "Width of the main focus ring drawn directly around the focused element; pairs with color/focus/indicator. Always used with focus/width/outer; never for borders. In forced-colours mode, both rings become one system outline.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-focus-width-indicator",
+            "figma": {
+              "variableId": "VariableID:5:89",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "focus/width/indicator",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "STROKE_FLOAT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--focus-width-indicator)"
+              }
+            }
+          }
+        }
+      },
+      "outer": {
+        "$type": "dimension",
+        "$value": "{border-width.2}",
+        "$description": "Width of the contrast ring drawn outside the main focus ring; pairs with color/focus/outer so focus stays visible on any background. Always used with focus/width/indicator.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-focus-width-outer",
+            "figma": {
+              "variableId": "VariableID:5:90",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "focus/width/outer",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "STROKE_FLOAT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--focus-width-outer)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "{font.family.inter}",
+        "$description": "The shared typeface for all interface and content text across brands. Applied through the system's text styles.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-font-family-sans",
+            "figma": {
+              "variableId": "VariableID:5:59",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "font/family/sans",
+              "resolvedType": "STRING",
+              "scopes": [
+                "FONT_FAMILY"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--font-family-sans)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "weight": {
+      "medium": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.500}",
+        "$description": "Weight for labelling and interactive text: button, link and field labels (label/*) and mid-size data (data/md). Separates labels from body text without heading emphasis.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-font-weight-medium",
+            "figma": {
+              "variableId": "VariableID:5:61",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "font/weight/medium",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "FONT_WEIGHT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--font-weight-medium)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "radius": {
+    "md": {
+      "$type": "dimension",
+      "$value": "{radius.200}",
+      "$description": "Prominent action controls and raised or contained surfaces, e.g. Buttons and the Listbox overlay.",
+      "$extensions": {
+        "chavosh": {
+          "layer": "dimension",
+          "visibility": "public",
+          "css": "--ch-radius-md",
+          "figma": {
+            "variableId": "VariableID:5:83",
+            "collection": "Dimension",
+            "collectionId": "VariableCollectionId:5:58",
+            "path": "radius/md",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "CORNER_RADIUS"
+            ],
+            "codeSyntax": {
+              "WEB": "var(--radius-md)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "size": {
+    "control": {
+      "height": {
+        "lg": {
+          "$type": "dimension",
+          "$value": "{size.1400}",
+          "$description": "Prominent height for high-emphasis actions, such as primary calls to action on mobile.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "dimension",
+              "visibility": "public",
+              "css": "--ch-size-control-height-lg",
+              "figma": {
+                "variableId": "VariableID:5:79",
+                "collection": "Dimension",
+                "collectionId": "VariableCollectionId:5:58",
+                "path": "size/control/height/lg",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "WIDTH_HEIGHT"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--size-control-height-lg)"
+                }
+              }
+            }
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "{size.1200}",
+          "$description": "Default height for interactive controls (Button, Icon Button, Text Field, Select). Use unless the restricted small or prominent large height applies. Acts as a minimum when content wraps.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "dimension",
+              "visibility": "public",
+              "css": "--ch-size-control-height-md",
+              "figma": {
+                "variableId": "VariableID:5:78",
+                "collection": "Dimension",
+                "collectionId": "VariableCollectionId:5:58",
+                "path": "size/control/height/md",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "WIDTH_HEIGHT"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--size-control-height-md)"
+                }
+              }
+            }
+          }
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "{size.1000}",
+          "$description": "RESTRICTED. For dense, pointer-first Desktop and Tablet contexts only (tables, filter bars, toolbars). Not the default and not the accessible minimum; never on Mobile or native. The hit area must still reach size/touch-target/min.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "dimension",
+              "visibility": "public",
+              "css": "--ch-size-control-height-sm",
+              "figma": {
+                "variableId": "VariableID:5:77",
+                "collection": "Dimension",
+                "collectionId": "VariableCollectionId:5:58",
+                "path": "size/control/height/sm",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "WIDTH_HEIGHT"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--size-control-height-sm)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "space": {
+    "component": {
+      "lg": {
+        "$type": "dimension",
+        "$value": "{space.400}",
+        "$description": "Left and right padding for compact actions, e.g. small Buttons.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-component-lg",
+            "figma": {
+              "variableId": "VariableID:5:66",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/component/lg",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-component-lg)"
+              }
+            }
+          }
+        }
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{space.600}",
+        "$description": "Left and right padding for standard and large Buttons.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-component-xl",
+            "figma": {
+              "variableId": "VariableID:5:67",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/component/xl",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-component-xl)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "gap": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{space.200}",
+        "$description": "Default gap between parts of one component: icon to label in Button, label to input and icon to value in Text Field.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-gap-sm",
+            "figma": {
+              "variableId": "VariableID:5:69",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/gap/sm",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-gap-sm)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

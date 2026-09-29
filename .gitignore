@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Scratch / temporary build dirs
+.tmp/
+*.tmp
+*.log
+
+# Environment and credentials (never commit)
+.env
+.env.*
+
+# Private raw Figma captures (ADR 0011) — only the sanitized public snapshot is committed
+*.snapshot.json
+*.raw.json
+!*.snapshot.public.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Test and tool output (not source of truth; generated token outputs under packages/tokens are committed and verified)
+coverage/
+test-results/
+playwright-report/
