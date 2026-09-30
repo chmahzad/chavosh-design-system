@@ -14,5 +14,5 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["react", "react-dom"]
   },
-  "include": ["src", "tests/types", "tests/harness"]
+  "include": ["src", "tests/types", "tests/harness", "tests/link-harness"]
 }

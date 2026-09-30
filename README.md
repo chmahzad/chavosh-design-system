@@ -80,7 +80,7 @@ Automated results are evidence, not a WCAG certification or conformance claim.
 Figma → Public Snapshot → DTCG → Style Dictionary → CSS Custom Properties → React → Storybook
 ```
 
-1. A read-only Figma plugin captures the Button component and every variable it depends on.
+1. A read-only Figma plugin captures each component (one capture per component) and every variable it depends on.
 2. The raw capture is kept **private** as the root of trust. A deterministic sanitizer removes Figma file and library
    keys and produces the **public snapshot** this repository builds from. Its provenance records the raw capture's
    SHA-256 ([ADR 0011](docs/decisions/0011-public-snapshot-and-identifier-minimisation.md)).
@@ -107,17 +107,26 @@ Figma → Public Snapshot → DTCG → Style Dictionary → CSS Custom Propertie
 **Size `sm` is restricted:** its effective 44 × 44 px target is not yet implemented, so it is not production-ready
 where that target is required. `md` and `lg` exceed 44 px.
 
-Not yet included: loading, icons, further components, full token export, native platforms.
+**Link v1** (standalone, labels only):
+- native `<a href>` navigation, sizes **md / sm** (`label/md`, `label/sm`);
+- a **15-token closure** from its own Figma capture; together with Button, the stylesheet publishes **42 public tokens**;
+- always underlined (1px, 2px on hover), 44 px minimum target, focus-visible rings, forced-colours treatment;
+- Financial / Invest through `data-brand` only;
+- **Storybook** documentation: docs page, playground, sizes, states, brand comparison, examples, keyboard and
+  long-label stories. Inline links are a documented recipe, not a component.
+
+Not yet included: loading, icons, Checkbox, Radio, Switch, Text Field (captured, not yet released), Select, full token
+export, native platforms.
 
 ## Verification
 
-`npm run verify -- --strict` runs 14 check groups on every build:
+`npm run verify -- --strict` runs 17 check groups on every build:
 - the read-only exporter never writes to Figma;
 - the sanitizer changes nothing but the approved identifiers;
 - generated tokens and CSS are fresh, deterministic and never hand-edited;
-- the Button's token closure matches its approved specification;
-- the component uses only public tokens;
-- Chromium tests cover every hierarchy × size × state × brand;
+- each released component's token closure matches its approved specification, and captures are mutually consistent;
+- components use only public tokens; Button is frozen against a regression baseline;
+- Chromium tests cover every Button hierarchy × size × state × brand and every Link size × state × brand;
 - the Storybook static build, interaction tests and accessibility checks pass.
 
 The same verification runs in CI on every push.
@@ -147,7 +156,7 @@ npm run build-storybook           # static Storybook → storybook-static/
 |---|---|
 | `tools/figma-exporter/` | read-only Figma plugin that captures a component and its variables |
 | `packages/tokens/` | public snapshot, sanitizer, DTCG conversion, Style Dictionary build, `dist/ch-tokens.css` |
-| `packages/react/` | React components (Button v1) and their tests |
+| `packages/react/` | React components (Button v1, Link v1) and their tests |
 | `.storybook/`, `*.stories.tsx`, `*.mdx` | Storybook configuration and component documentation |
 | `docs/decisions/` | architecture decision records |
 | `scripts/verify.mjs`, `tests/` | verification entry point and Storybook checks |

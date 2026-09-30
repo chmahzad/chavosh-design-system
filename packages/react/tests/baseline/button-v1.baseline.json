@@ -7,7 +7,7 @@
     "packages/react/src/Button/Button.stories.tsx": "6f8fdeaa5740c543116bbe97f1bccef08461eb68c457979752543573804955f2",
     "packages/react/src/Button/Button.mdx": "79986d463a77614d0a2a03f1045318dd18e4eb721542a6b07e4ac7e2f46a8e44",
     "packages/react/tests/check-react-browser.mjs": "bd704daa00fc6698e81822e7baf12be1d2edec674a14961849f5cd3f04ce1e48",
-    "packages/react/tests/check-react-tokens.mjs": "99ef5010a89092387890da17eade7e6d33aa2a7f13e7c34dc233c525d4184f2b",
+    "packages/react/tests/check-react-tokens.mjs": "eb11572599222d73a1e4e90538dd99a00ee8c0c39f6e8398ac2f62fae5d9cea6",
     "packages/react/tests/check-react-types.mjs": "4edb6428c136b43a231310fa151a20d47688d08a7c98a913b13116bd23531834",
     "packages/react/tests/build-harness.mjs": "b9d548717dbcbd2669440fc294cb024af776a366be7a6be9716ef16c7252dcf6",
     "packages/react/tests/harness/index.html": "4c9cc885a6c61d1228ae0299585f74ea82083ad6e3fe98226862a4dc0abacfe2",
@@ -16,6 +16,15 @@
     "packages/tokens/tests/button-v1-spec.json": "007131688d1f0f132dada9fb8e2177208c8f8a913c4ffcd9016d49b6c91b7cdd",
     "docs/decisions/0010-button-v1-implementation-mapping.md": "833deedca9aa63fc2b0060bfa08d7e36bb64efe2d75daf257d85edfce13726a9"
   },
+  "amendments": [
+    {
+      "file": "packages/react/tests/check-react-tokens.mjs",
+      "from": "99ef5010a89092387890da17eade7e6d33aa2a7f13e7c34dc233c525d4184f2b",
+      "to": "eb11572599222d73a1e4e90538dd99a00ee8c0c39f6e8398ac2f62fae5d9cea6",
+      "adr": "docs/decisions/0013-link-v1-implementation-mapping.md",
+      "reason": "One assertion assumed the public stylesheet contained only Button's tokens ('Button should consume the whole 37-token closure'). ADR 0012 allows later components to add tokens, so the assertion now compares button.css with Button's approved contract (tests/button-v1-spec.json) instead of the whole stylesheet. Button's source, CSS, stories, docs and every other check are unchanged; the linter, its self-tests and the 37-token requirement are unchanged."
+    }
+  ],
   "publicTokens": [
     "--ch-border-width-default",
     "--ch-color-action-destructive-background-default",

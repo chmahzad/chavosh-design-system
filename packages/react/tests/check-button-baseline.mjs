@@ -1,4 +1,4 @@
-// AUTHORED. Button v1 regression guard (ADR 0012). Button is the frozen reference implementation: its source, CSS,
+// AUTHORED. Button v1 regression guard (ADR 0012; amendments recorded in the baseline with their ADR, e.g. ADR 0013). Button is the frozen reference implementation: its source, CSS,
 // stories, docs, its own verification files and ADR 0010 must stay byte-identical to the published baseline, and
 // the resolved CSS contract of its 37 public tokens — every declaration of those names (selector, media query,
 // value) plus the internal --ch-brand-* declarations they reference — must be exactly the baseline set. A new
@@ -31,6 +31,11 @@ export async function run() {
   const baseline = JSON.parse(readFileSync(join(HERE, "baseline/button-v1.baseline.json"), "utf8"));
   const changed = Object.entries(baseline.files).filter(([f, sha]) => createHash("sha256").update(readFileSync(join(REPO, f))).digest("hex") !== sha).map(([f]) => f);
   assert(changed.length === 0, `Button reference files changed since ${baseline.sourceCommit.slice(0, 7)}: ${changed.join(", ")} — Button is frozen (ADR 0012)`);
+  // Approved amendments (each with its ADR): the recorded hash must be the amendment's result, and the ADR must exist.
+  for (const a of baseline.amendments || []) {
+    assert(baseline.files[a.file] === a.to && a.from !== a.to && /^[0-9a-f]{64}$/.test(a.from), `baseline amendment for ${a.file} is inconsistent`);
+    readFileSync(join(REPO, a.adr));
+  }
   const css = readFileSync(join(REPO, "packages/tokens/dist/ch-tokens.css"), "utf8");
   const problems = compareButtonContract(css, baseline);
   assert(problems.length === 0, `Button public token contract changed: ${problems.slice(0, 5).join("; ")}`);
@@ -43,7 +48,7 @@ export async function run() {
   ];
   for (const [i, p] of probes.entries()) assert(p !== css && compareButtonContract(p, baseline).length > 0, `baseline self-test ${i} was not detected`);
   return [
-    `files: ${Object.keys(baseline.files).length} Button reference files byte-identical to ${baseline.sourceCommit.slice(0, 7)} (source, CSS, stories, docs, Button checks, harness, spec, ADR 0010)`,
+    `files: ${Object.keys(baseline.files).length} Button reference files byte-identical to ${baseline.sourceCommit.slice(0, 7)} (source, CSS, stories, docs, Button checks, harness, spec, ADR 0010)${(baseline.amendments || []).length ? `; approved amendments: ${baseline.amendments.map((a) => `${a.file.split("/").pop()} (${a.adr.split("/").pop().slice(0, 4)})`).join(", ")}` : ""}`,
     `contract: ${baseline.publicTokens.length} public Button tokens + ${baseline.declarations.length - baseline.publicTokens.length} referenced brand declarations — ${baseline.declarations.length} declarations exactly as published; nothing added, removed or overridden`,
     "self-test: changed value, removed declaration and added breakpoint override are all detected",
   ];

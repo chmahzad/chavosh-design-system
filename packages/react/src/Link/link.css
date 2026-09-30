@@ -1,0 +1,72 @@
+/*
+ * AUTHORED. Chavosh Financial — Link v1 (standalone, labels only). Contract: docs/decisions/0013-link-v1-implementation-mapping.md.
+ * Consumes ONLY public --ch-* tokens from @chavosh/tokens/ch-tokens.css (loaded once at the application entry, not here).
+ * Never: primitives, --ch-brand-*, raw design values. Documented exceptions (approved Link decisions, ADR 0013):
+ * underline thickness 1px (rest) / 2px (hover), text-underline-offset 0.15em — component-level constants, not tokens;
+ * `0px` (no padding / outline offset); system colours in forced-colours mode.
+ * --_link-* are PRIVATE implementation variables of this file (not tokens, not API), set only from public tokens.
+ */
+.ch-link {
+  /* size md (default) */
+  --_link-font-size: var(--ch-font-size-label-md);
+  --_link-line-height: var(--ch-font-line-height-label-md);
+  --_link-fg: var(--ch-color-text-link-default);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ch-space-gap-xs);
+  margin: 0;
+  padding: 0px;
+  /* Figma: 44px container = the interactive target, not a fixed height (Link architecture §7) → min-height.
+     Wrapped labels and larger text grow the link; the target never shrinks below the token. */
+  min-height: var(--ch-size-touch-target-min);
+  border-radius: var(--ch-radius-sm); /* shapes the focus ring only; the link has no fill */
+  color: var(--_link-fg);
+  font-family: var(--ch-font-family-sans);
+  font-weight: var(--ch-font-weight-medium);
+  font-size: var(--_link-font-size);
+  line-height: var(--_link-line-height);
+  /* Always underlined (never colour alone, WCAG 1.4.1). Figma draws a 1px underline layer; production uses native
+     text decoration in the link colour. */
+  text-decoration-line: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px; /* ADR 0013 (approved component-level constant) */
+  text-underline-offset: 0.15em; /* ADR 0013 (approved component-level constant) */
+  text-decoration-skip-ink: auto;
+  overflow-wrap: break-word;
+}
+
+/* ---- Sizes ---------------------------------------------------------------------------------------------------- */
+.ch-link[data-size="sm"] {
+  --_link-font-size: var(--ch-font-size-label-sm);
+  --_link-line-height: var(--ch-font-line-height-label-sm);
+}
+
+/* ---- Hover: hover-capable pointers only; darker link colour + thicker underline (never removed) ------------------ */
+@media (hover: hover) {
+  .ch-link:hover {
+    --_link-fg: var(--ch-color-text-link-hover);
+    text-decoration-thickness: 2px; /* ADR 0013 (approved component-level constant) */
+  }
+}
+
+/* ---- Focus: keyboard focus only; 3px indicator (outline, survives forced colours) + 2px outer ring beyond it ----- */
+/* No Visited, Active, Disabled or Current state in v1 (Link architecture §2). :visited is deliberately not styled:
+   the authored colour applies to visited links too. */
+.ch-link:focus-visible {
+  outline: var(--ch-focus-width-indicator) solid var(--ch-color-focus-indicator);
+  outline-offset: 0px;
+  box-shadow: 0 0 0 calc(var(--ch-focus-width-indicator) + var(--ch-focus-width-outer)) var(--ch-color-focus-outer);
+}
+
+/* ---- Forced colours: system link colour; the underline and the focus outline remain ------------------------------ */
+@media (forced-colors: active) {
+  .ch-link {
+    color: LinkText;
+    text-decoration-color: LinkText;
+  }
+  .ch-link:focus-visible {
+    outline-color: Highlight;
+  }
+}

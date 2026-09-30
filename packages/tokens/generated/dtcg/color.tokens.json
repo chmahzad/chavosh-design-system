@@ -603,6 +603,66 @@
           }
         }
       }
+    },
+    "text": {
+      "link": {
+        "default": {
+          "$type": "color",
+          "$value": "{brand.primary.700}",
+          "$description": "Link text and link icons (inline and standalone). 7.4:1 on white in both brands. Links must always be underlined; colour alone never identifies a link (1.4.1).",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-text-link-default",
+              "brandDependent": true,
+              "figma": {
+                "variableId": "VariableID:1:154",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/text/link/default",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL",
+                  "STROKE_COLOR"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-text-link-default)"
+                }
+              }
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{brand.primary.800}",
+          "$description": "Link text and icons on hover (with thicker underline in production). 10.5:1 on white.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-text-link-hover",
+              "brandDependent": true,
+              "figma": {
+                "variableId": "VariableID:1:155",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/text/link/hover",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "SHAPE_FILL",
+                  "TEXT_FILL",
+                  "STROKE_COLOR"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-text-link-hover)"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

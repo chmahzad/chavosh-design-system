@@ -5,7 +5,7 @@
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { assert, throwsWith, config, policy, fixturePipeline, parseCss } from "./lib.mjs";
+import { assert, throwsWith, fixtureConfig as config, policy, fixturePipeline, parseCss } from "./lib.mjs";
 import { loadDtcg, runStyleDictionary, buildPlan, validateDeclarations, TRANSFORMS, SD_VERSION } from "../build/build-css.mjs";
 
 export const FIXTURE_EXPECTED = {

@@ -866,6 +866,30 @@
     }
   },
   "radius": {
+    "100": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:25",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "radius/100",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--radius-100)"
+            }
+          }
+        }
+      }
+    },
     "200": {
       "$type": "dimension",
       "$value": {
@@ -911,6 +935,30 @@
             "scopes": [],
             "codeSyntax": {
               "WEB": "var(--size-1000)"
+            }
+          }
+        }
+      }
+    },
+    "1100": {
+      "$type": "dimension",
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:20",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "size/1100",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--size-1100)"
             }
           }
         }
@@ -966,6 +1014,30 @@
     }
   },
   "space": {
+    "100": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:3",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "space/100",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--space-100)"
+            }
+          }
+        }
+      }
+    },
     "200": {
       "$type": "dimension",
       "$value": {

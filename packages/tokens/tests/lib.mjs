@@ -25,6 +25,19 @@ export async function throwsWith(fn, re, label) {
 }
 export const config = () => readJson("source/export-config.json");
 export const policy = () => readJson("source/web-policy.json");
+/**
+ * Fixture checks run the real export policy restricted to the component(s) the fixture captures (Button): the real
+ * config also lists released components (e.g. Link) whose captures are production data, never fixture data.
+ */
+export const fixtureConfig = () => {
+  const c = config();
+  const names = FIXTURE_ROOTS.components.map((r) => r.name);
+  return {
+    ...c,
+    publicSnapshots: c.publicSnapshots.filter((e) => e.components.every((n) => names.includes(n))),
+    components: Object.fromEntries(Object.entries(c.components).filter(([n]) => names.includes(n))),
+  };
+};
 
 /** Raw fixture capture (exporter output, raw schema). */
 export async function fixtureRawSnapshot(mutateFixture) {
@@ -39,7 +52,7 @@ export async function fixtureSnapshot(mutateFixture) {
 }
 
 /** Snapshot → DTCG → CSS in a temp dir. Returns { dir, dtcgDir, cssText, build, manifest, cleanup }. */
-export async function fixturePipeline({ snapshot, mutateSnapshot, cfg = config(), policyPath } = {}) {
+export async function fixturePipeline({ snapshot, mutateSnapshot, cfg = fixtureConfig(), policyPath } = {}) {
   const snap = snapshot || (await fixtureSnapshot());
   if (mutateSnapshot) mutateSnapshot(snap);
   const dir = mkdtempSync(join(tmpdir(), "ch-tokens-"));

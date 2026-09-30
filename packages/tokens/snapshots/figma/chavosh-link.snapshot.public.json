@@ -1,0 +1,1986 @@
+{
+  "schema": "chavosh.figma-public-snapshot",
+  "schemaVersion": "1.0.0",
+  "derivedFrom": {
+    "schema": "chavosh.figma-raw-snapshot",
+    "schemaVersion": "1.2.0"
+  },
+  "sanitizer": {
+    "name": "chavosh-snapshot-sanitizer",
+    "version": "1.0.0"
+  },
+  "extractor": {
+    "name": "chavosh-figma-exporter",
+    "version": "0.3.0",
+    "readOnly": true
+  },
+  "source": {
+    "fileName": "Chavosh Financial — Design System",
+    "roots": {
+      "components": [
+        {
+          "nodeId": "34:944",
+          "name": "Link",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "nodeId": "34:944",
+      "name": "Link",
+      "type": "COMPONENT_SET",
+      "description": "Link — standalone navigation to a destination or resource (native <a href>). Use Button for actions/processes; decide by behaviour, not appearance (e.g. Download statement). Always underlined. Hover = color/text/link/hover; production also thickens the underline to 2px — Figma cannot show this because text decoration is shared across all variants through the Label property (documented design/code difference). Focus = documentation of :focus-visible (existing focus ring). No Visited, Disabled or current state in v1 (current → Navigation). The 44px height represents the interactive target, not a fixed production height (use min-height/padding). Inline links are a text recipe, not this component. External links: avoid new tabs; if needed use Icon/external + \"(opens in a new tab)\" in the accessible name. Downloads: include file type and size. Spec: chavosh-link-architecture.md",
+      "page": {
+        "id": "15:2",
+        "name": "Components"
+      },
+      "variants": [
+        "Size=md, State=Default",
+        "Size=md, State=Focus",
+        "Size=md, State=Hover",
+        "Size=sm, State=Default",
+        "Size=sm, State=Focus",
+        "Size=sm, State=Hover"
+      ],
+      "bindings": [
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "height",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:110"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:61"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:111"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/underline",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "leading-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "trailing-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "height",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:184"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:185"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:110"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:61"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:111"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/underline",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "leading-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "trailing-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "height",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:110"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:61"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:111"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/underline",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "leading-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:75"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "trailing-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "height",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:112"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:61"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:113"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/underline",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "leading-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "trailing-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "height",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:184"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:185"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:112"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:61"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:113"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/underline",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "leading-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "trailing-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:154"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "height",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:82"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:112"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:61"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:113"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/underline",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "leading-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "leading-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:155"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "height",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "trailing-icon",
+          "visible": false,
+          "nodeType": "INSTANCE",
+          "field": "width",
+          "variableId": "VariableID:5:74"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "trailing-icon/glyph",
+          "visible": false,
+          "nodeType": "VECTOR",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:155"
+        }
+      ],
+      "styleRefs": [
+        {
+          "variant": "Size=md, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/label/md"
+        },
+        {
+          "variant": "Size=md, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/label/md"
+        },
+        {
+          "variant": "Size=md, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/label/md"
+        },
+        {
+          "variant": "Size=sm, State=Default",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/label/sm"
+        },
+        {
+          "variant": "Size=sm, State=Focus",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/label/sm"
+        },
+        {
+          "variant": "Size=sm, State=Hover",
+          "layer": "label-wrap/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/label/sm"
+        }
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "id": "VariableCollectionId:1:114",
+      "name": "Brand",
+      "defaultModeId": "1:1",
+      "modes": [
+        {
+          "modeId": "1:1",
+          "name": "Financial"
+        },
+        {
+          "modeId": "1:2",
+          "name": "Invest"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:1:148",
+      "name": "Color",
+      "defaultModeId": "1:3",
+      "modes": [
+        {
+          "modeId": "1:3",
+          "name": "Light"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:1:2",
+      "name": "Primitives",
+      "defaultModeId": "1:0",
+      "modes": [
+        {
+          "modeId": "1:0",
+          "name": "Value"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:5:58",
+      "name": "Dimension",
+      "defaultModeId": "5:0",
+      "modes": [
+        {
+          "modeId": "5:0",
+          "name": "Default"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:5:95",
+      "name": "Responsive",
+      "defaultModeId": "5:1",
+      "modes": [
+        {
+          "modeId": "5:1",
+          "name": "Desktop"
+        },
+        {
+          "modeId": "5:2",
+          "name": "Tablet"
+        },
+        {
+          "modeId": "5:3",
+          "name": "Mobile"
+        }
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "id": "VariableID:5:30",
+      "name": "border-width/2",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--border-width-2)"
+      },
+      "valuesByMode": {
+        "1:0": 2
+      }
+    },
+    {
+      "id": "VariableID:5:31",
+      "name": "border-width/3",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--border-width-3)"
+      },
+      "valuesByMode": {
+        "1:0": 3
+      }
+    },
+    {
+      "id": "VariableID:1:122",
+      "name": "brand/primary/700",
+      "variableCollectionId": "VariableCollectionId:1:114",
+      "resolvedType": "COLOR",
+      "description": "Financial → color/navy/700 · Invest → color/violet/700. Not for direct component use.",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--brand-primary-700)"
+      },
+      "valuesByMode": {
+        "1:1": {
+          "id": "VariableID:1:22",
+          "type": "VARIABLE_ALIAS"
+        },
+        "1:2": {
+          "id": "VariableID:1:55",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:123",
+      "name": "brand/primary/800",
+      "variableCollectionId": "VariableCollectionId:1:114",
+      "resolvedType": "COLOR",
+      "description": "Financial → color/navy/800 · Invest → color/violet/800. Not for direct component use.",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--brand-primary-800)"
+      },
+      "valuesByMode": {
+        "1:1": {
+          "id": "VariableID:1:23",
+          "type": "VARIABLE_ALIAS"
+        },
+        "1:2": {
+          "id": "VariableID:1:56",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:184",
+      "name": "color/focus/indicator",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Keyboard focus indicator: 3px ring next to the component (outline in production). Brand-independent; paired with focus/outer, ≥9:1 between them (WCAG C40 two-tone). Used by every interactive component.",
+      "scopes": [
+        "STROKE_COLOR",
+        "EFFECT_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-focus-indicator)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:105",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:185",
+      "name": "color/focus/outer",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Outer 2px focus ring that carries contrast on light surfaces. Always paired with focus/indicator. Brand-independent.",
+      "scopes": [
+        "STROKE_COLOR",
+        "EFFECT_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-focus-outer)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:14",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:22",
+      "name": "color/navy/700",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-navy-700)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.5764706134796143,
+          "g": 0.3294117748737335,
+          "r": 0.20000000298023224
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:23",
+      "name": "color/navy/800",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-navy-800)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.47843137383461,
+          "g": 0.239215686917305,
+          "r": 0.11764705926179886
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:14",
+      "name": "color/neutral/950",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-950)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.1725490242242813,
+          "g": 0.13333334028720856,
+          "r": 0.10588235408067703
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:154",
+      "name": "color/text/link/default",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Link text and link icons (inline and standalone). 7.4:1 on white in both brands. Links must always be underlined; colour alone never identifies a link (1.4.1).",
+      "scopes": [
+        "SHAPE_FILL",
+        "TEXT_FILL",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-text-link-default)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:122",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:155",
+      "name": "color/text/link/hover",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Link text and icons on hover (with thicker underline in production). 10.5:1 on white.",
+      "scopes": [
+        "SHAPE_FILL",
+        "TEXT_FILL",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-text-link-hover)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:123",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:55",
+      "name": "color/violet/700",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-violet-700)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.7882353067398071,
+          "g": 0.14901961386203766,
+          "r": 0.4470588266849518
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:56",
+      "name": "color/violet/800",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-violet-800)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.6352941393852234,
+          "g": 0.05098039284348488,
+          "r": 0.3490196168422699
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:105",
+      "name": "color/yellow/200",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-yellow-200)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.0235294122248888,
+          "g": 0.8745098114013672,
+          "r": 0.9843137264251709
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:89",
+      "name": "focus/width/indicator",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Width of the main focus ring drawn directly around the focused element; pairs with color/focus/indicator. Always used with focus/width/outer; never for borders. In forced-colours mode, both rings become one system outline.",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--focus-width-indicator)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:31",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:90",
+      "name": "focus/width/outer",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Width of the contrast ring drawn outside the main focus ring; pairs with color/focus/outer so focus stays visible on any background. Always used with focus/width/indicator.",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--focus-width-outer)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:30",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:53",
+      "name": "font/family/inter",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "STRING",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-family-inter)"
+      },
+      "valuesByMode": {
+        "1:0": "Inter"
+      }
+    },
+    {
+      "id": "VariableID:5:59",
+      "name": "font/family/sans",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "STRING",
+      "description": "The shared typeface for all interface and content text across brands. Applied through the system's text styles.",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-family-sans)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:53",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:45",
+      "name": "font/line-height/20",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-20)"
+      },
+      "valuesByMode": {
+        "1:0": 20
+      }
+    },
+    {
+      "id": "VariableID:5:46",
+      "name": "font/line-height/24",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-24)"
+      },
+      "valuesByMode": {
+        "1:0": 24
+      }
+    },
+    {
+      "id": "VariableID:5:111",
+      "name": "font/line-height/label/md",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Line height for the label/md text role; use only with font/size/label/md.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-label-md)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:46",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:46",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:46",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:113",
+      "name": "font/line-height/label/sm",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Line height for the label/sm text role; use only with font/size/label/sm.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-label-sm)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:45",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:45",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:45",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:35",
+      "name": "font/size/14",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-size-14)"
+      },
+      "valuesByMode": {
+        "1:0": 14
+      }
+    },
+    {
+      "id": "VariableID:5:36",
+      "name": "font/size/16",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-size-16)"
+      },
+      "valuesByMode": {
+        "1:0": 16
+      }
+    },
+    {
+      "id": "VariableID:5:110",
+      "name": "font/size/label/md",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Font size for standard labels on controls and fields. Distinguished from body text by weight, not size.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-size-label-md)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:36",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:36",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:36",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:112",
+      "name": "font/size/label/sm",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Font size for compact labels, e.g. in small controls.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-size-label-sm)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:35",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:35",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:35",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:33",
+      "name": "font/weight/500",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-weight-500)"
+      },
+      "valuesByMode": {
+        "1:0": 500
+      }
+    },
+    {
+      "id": "VariableID:5:61",
+      "name": "font/weight/medium",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Weight for labelling and interactive text: button, link and field labels (label/*) and mid-size data (data/md). Separates labels from body text without heading emphasis.",
+      "scopes": [
+        "FONT_WEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-weight-medium)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:33",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:25",
+      "name": "radius/100",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--radius-100)"
+      },
+      "valuesByMode": {
+        "1:0": 4
+      }
+    },
+    {
+      "id": "VariableID:5:82",
+      "name": "radius/sm",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Compact controls and field-like elements, e.g. text inputs, Select trigger, Checkbox box.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--radius-sm)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:25",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:20",
+      "name": "size/1100",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--size-1100)"
+      },
+      "valuesByMode": {
+        "1:0": 44
+      }
+    },
+    {
+      "id": "VariableID:5:15",
+      "name": "size/400",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--size-400)"
+      },
+      "valuesByMode": {
+        "1:0": 16
+      }
+    },
+    {
+      "id": "VariableID:5:16",
+      "name": "size/500",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--size-500)"
+      },
+      "valuesByMode": {
+        "1:0": 20
+      }
+    },
+    {
+      "id": "VariableID:5:75",
+      "name": "size/icon/md",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Default icon size, paired with body/md and label/md text in standard controls and fields.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--size-icon-md)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:16",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:74",
+      "name": "size/icon/sm",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Compact icon size, paired with small text (label/sm, body/sm) in small Buttons and Links.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--size-icon-sm)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:15",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:80",
+      "name": "size/touch-target/min",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "System minimum interactive target, in both directions, for every interactive element, including small controls. Stricter than WCAG 2.5.8 AA. Android's 48dp is handled per platform.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--size-touch-target-min)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:20",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:3",
+      "name": "space/100",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--space-100)"
+      },
+      "valuesByMode": {
+        "1:0": 4
+      }
+    },
+    {
+      "id": "VariableID:5:68",
+      "name": "space/gap/xs",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Smallest gap between tightly coupled parts: label to supporting text, icon to text in Link, an overlay's offset from its trigger.",
+      "scopes": [
+        "GAP"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--space-gap-xs)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:3",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    }
+  ],
+  "styles": {
+    "text": [
+      {
+        "id": "style:text/label/md",
+        "name": "label/md",
+        "type": "TEXT",
+        "description": "",
+        "fontName": {
+          "family": "Inter",
+          "style": "Medium",
+          "variationSettings": {
+            "slnt": 0,
+            "wght": 500
+          }
+        },
+        "fontSize": 16,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 24
+        },
+        "letterSpacing": {
+          "unit": "PERCENT",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "boundVariables": {
+          "fontFamily": {
+            "id": "VariableID:5:59",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontSize": {
+            "id": "VariableID:5:110",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontWeight": {
+            "id": "VariableID:5:61",
+            "type": "VARIABLE_ALIAS"
+          },
+          "lineHeight": {
+            "id": "VariableID:5:111",
+            "type": "VARIABLE_ALIAS"
+          }
+        }
+      },
+      {
+        "id": "style:text/label/sm",
+        "name": "label/sm",
+        "type": "TEXT",
+        "description": "",
+        "fontName": {
+          "family": "Inter",
+          "style": "Medium",
+          "variationSettings": {
+            "slnt": 0,
+            "wght": 500
+          }
+        },
+        "fontSize": 14,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 20
+        },
+        "letterSpacing": {
+          "unit": "PERCENT",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "boundVariables": {
+          "fontFamily": {
+            "id": "VariableID:5:59",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontSize": {
+            "id": "VariableID:5:112",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontWeight": {
+            "id": "VariableID:5:61",
+            "type": "VARIABLE_ALIAS"
+          },
+          "lineHeight": {
+            "id": "VariableID:5:113",
+            "type": "VARIABLE_ALIAS"
+          }
+        }
+      }
+    ],
+    "effect": []
+  }
+}

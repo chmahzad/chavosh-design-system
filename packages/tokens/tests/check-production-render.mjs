@@ -1,12 +1,12 @@
-// AUTHORED. Chromium (Playwright 1.56.1) check of the PRODUCTION stylesheet dist/ch-tokens.css for the Button closure:
-// every brand-dependent Button colour resolves to the expected Financial / Invest value in default, explicit, nested
+// AUTHORED. Chromium (Playwright 1.56.1) check of the PRODUCTION stylesheet dist/ch-tokens.css for the released
+// closures (union of the component contracts — Button, Link): every brand-dependent colour resolves to the expected Financial / Invest value in default, explicit, nested
 // and page-level brand contexts; brand-independent colours never change; dimension/typography tokens compute to the
 // DTCG values at 375 / 768 / 1024 px. Expected values are computed from the generated DTCG (primitive → brand →
 // semantic), independently of the CSS build. PENDING until the canonical snapshot exists.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { chromium } from "playwright";
-import { assert, config, ROOT } from "./lib.mjs";
+import { assert, config, readJson, ROOT } from "./lib.mjs";
 import { flatten } from "../build/build-css.mjs";
 
 const hexToRgb = (h) => `rgb(${parseInt(h.slice(1, 3), 16)}, ${parseInt(h.slice(3, 5), 16)}, ${parseInt(h.slice(5, 7), 16)})`;
@@ -29,7 +29,8 @@ export async function run() {
     fin: hexToRgb(resolve(t.$value, "financial").hex), inv: hexToRgb(resolve(t.$value, "invest").hex),
   }));
   const dependent = colours.filter((c) => c.brandDependent);
-  assert(dependent.length === 11 && colours.length === 21, `expected 21 Button colours (11 brand-dependent), got ${colours.length}/${dependent.length}`);
+  const contractColours = [...new Set(Object.values(cfg.components).flatMap((c) => readJson(c.contract).boundTokens))].filter((t) => t.startsWith("color/")).map((t) => `--ch-${t.split("/").join("-")}`).sort();
+  assert(JSON.stringify(colours.map((c) => c.css).sort()) === JSON.stringify(contractColours), `colour tokens in DTCG ≠ colours of the released contracts (${Object.keys(cfg.components).join(", ")}): ${colours.length} vs ${contractColours.length}`);
   assert(dependent.every((c) => c.fin !== c.inv || c.css.includes("secondary")), "brand-dependent colours should differ between brands (except where the mapping assigns equal hues)");
 
   const css = readFileSync(join(ROOT, "dist/ch-tokens.css"), "utf8");
@@ -39,6 +40,7 @@ export async function run() {
 <div data-brand="invest"><div id="invest">${probes}</div><div data-brand="financial"><div id="fin-in-inv">${probes}</div></div></div>
 <div data-brand="financial"><div data-brand="invest"><div id="inv-in-fin">${probes}</div></div></div>
 <div id="dims" style="min-height: var(--ch-size-control-height-sm); padding-inline: var(--ch-space-component-xl); gap: var(--ch-space-gap-sm); border-radius: var(--ch-radius-md); border: var(--ch-border-width-default) solid; outline: var(--ch-focus-width-indicator) solid; font-family: var(--ch-font-family-sans); font-weight: var(--ch-font-weight-medium); font-size: var(--ch-font-size-label-sm); line-height: var(--ch-font-line-height-label-sm); display: flex"></div>
+${cfg.components.Link ? `<div id="link-dims" style="min-height: var(--ch-size-touch-target-min); gap: var(--ch-space-gap-xs); border-radius: var(--ch-radius-sm); outline: var(--ch-focus-width-outer) solid; font-size: var(--ch-font-size-label-md); line-height: var(--ch-font-line-height-label-md); display: flex"></div>` : ""}
 </body></html>`;
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
   const lines = [];
@@ -54,7 +56,7 @@ export async function run() {
     await page.evaluate(() => document.documentElement.setAttribute("data-brand", "invest"));
     const pageLevel = await read(page, "default");
     colours.forEach((c, i) => assert(pageLevel[i] === c.inv, `${c.css} with <html data-brand="invest">: ${pageLevel[i]}`));
-    lines.push(`brand (${browser.version()}): all ${colours.length} Button colours correct in default (Financial), explicit Invest, Financial-in-Invest, Invest-in-Financial and page-level Invest; ${dependent.length} brand-dependent switch, ${colours.length - dependent.length} brand-independent constant`);
+    lines.push(`brand (${browser.version()}): all ${colours.length} released colours (${Object.keys(cfg.components).join()}) correct in default (Financial), explicit Invest, Financial-in-Invest, Invest-in-Financial and page-level Invest; ${dependent.length} brand-dependent switch, ${colours.length - dependent.length} brand-independent constant`);
 
     const px = (m, p) => `${m.get(p).$value.value}px`;
     for (const w of [375, 768, 1024]) {
@@ -63,8 +65,13 @@ export async function run() {
       const res = (m, p) => { const t = m.get(p); return typeof t.$value === "string" ? prim.get(t.$value.slice(1, -1)).$value : t.$value; };
       const exp = { h: `${res(dim, "size.control.height.sm").value}px`, pad: `${res(dim, "space.component.xl").value}px`, gap: `${res(dim, "space.gap.sm").value}px`, r: `${res(dim, "radius.md").value}px`, bw: `${res(dim, "border-width.default").value}px`, ow: `${res(dim, "focus.width.indicator").value}px`, ff: "Inter, system-ui, sans-serif", fw: String(res(dim, "font.weight.medium")), fs: `${res(mob, "font.size.label.sm").value}px`, lh: `${res(mob, "font.line-height.label.sm").value}px` };
       assert(JSON.stringify(d) === JSON.stringify(exp), `computed at ${w}px ${JSON.stringify(d)} ≠ ${JSON.stringify(exp)}`);
+      if (cfg.components.Link) {
+        const l = await page.evaluate(() => { const s = getComputedStyle(document.getElementById("link-dims")); return { h: s.minHeight, gap: s.columnGap, r: s.borderTopLeftRadius, ow: s.outlineWidth, fs: s.fontSize, lh: s.lineHeight }; });
+        const le = { h: `${res(dim, "size.touch-target.min").value}px`, gap: `${res(dim, "space.gap.xs").value}px`, r: `${res(dim, "radius.sm").value}px`, ow: `${res(dim, "focus.width.outer").value}px`, fs: `${res(mob, "font.size.label.md").value}px`, lh: `${res(mob, "font.line-height.label.md").value}px` };
+        assert(JSON.stringify(l) === JSON.stringify(le), `Link dimensions at ${w}px ${JSON.stringify(l)} ≠ ${JSON.stringify(le)}`);
+      }
     }
-    lines.push("dimensions/typography: min-height, padding, gap, radius, border and focus widths, font family/weight/size/line-height compute to the DTCG values at 375 / 768 / 1024 px");
+    lines.push(`dimensions/typography: min-height, padding, gap, radius, border and focus widths, font family/weight/size/line-height compute to the DTCG values at 375 / 768 / 1024 px${cfg.components.Link ? " (Button set + Link set: touch target, gap/xs, radius/sm, focus outer width, label/md)" : ""}`);
   } finally {
     await browser.close();
   }

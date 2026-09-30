@@ -5,14 +5,14 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
-import { assert, throwsWith, config, fixtureSnapshot, fixtureRawSnapshot, flattenSets } from "./lib-dtcg.mjs";
+import { assert, throwsWith, fixtureConfig, fixtureSnapshot, fixtureRawSnapshot, flattenSets } from "./lib-dtcg.mjs";
 import { convertSnapshot, loadPublicSnapshot, mergeSnapshots } from "../build/convert-snapshot.mjs";
 import { sanitizeSnapshot, assertOnlyApprovedChanges, publicProvenance, publicStyleId, toPublicText } from "../build/sanitize-snapshot.mjs";
 import { toText } from "../../../tools/figma-exporter/tests/mock.mjs";
 
 export async function run() {
   const lines = [];
-  const cfg = config();
+  const cfg = fixtureConfig();
   const snap = await fixtureSnapshot();
   const { sets, report } = convertSnapshot(snap, cfg);
   const all = flattenSets(sets);

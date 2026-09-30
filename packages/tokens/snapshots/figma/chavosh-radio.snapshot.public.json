@@ -1,0 +1,3534 @@
+{
+  "schema": "chavosh.figma-public-snapshot",
+  "schemaVersion": "1.0.0",
+  "derivedFrom": {
+    "schema": "chavosh.figma-raw-snapshot",
+    "schemaVersion": "1.2.0"
+  },
+  "sanitizer": {
+    "name": "chavosh-snapshot-sanitizer",
+    "version": "1.0.0"
+  },
+  "extractor": {
+    "name": "chavosh-figma-exporter",
+    "version": "0.3.0",
+    "readOnly": true
+  },
+  "source": {
+    "fileName": "Chavosh Financial — Design System",
+    "roots": {
+      "components": [
+        {
+          "nodeId": "56:1281",
+          "name": "Radio",
+          "type": "COMPONENT_SET"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "nodeId": "56:1281",
+      "name": "Radio",
+      "type": "COMPONENT_SET",
+      "description": "Radio — one option in a mutually exclusive set (native <input type=\"radio\"> + <label>, shared name). Selection: Unselected/Selected. State: Default/Hover/Focus/Disabled (Focus = :focus-visible representation). Validation, legend, required and error live in the future Radio Group. Zero new tokens. Spec: chavosh-radio-architecture.md",
+      "page": {
+        "id": "15:2",
+        "name": "Components"
+      },
+      "variants": [
+        "Selection=Selected, State=Default",
+        "Selection=Selected, State=Disabled",
+        "Selection=Selected, State=Focus",
+        "Selection=Selected, State=Hover",
+        "Selection=Unselected, State=Default",
+        "Selection=Unselected, State=Disabled",
+        "Selection=Unselected, State=Focus",
+        "Selection=Unselected, State=Hover"
+      ],
+      "bindings": [
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:162"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:51:2"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "control-wrap/circle/dot",
+          "visible": true,
+          "nodeType": "ELLIPSE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:51:2"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:149"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:150"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:42:3"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:172"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "control-wrap/circle/dot",
+          "visible": true,
+          "nodeType": "ELLIPSE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:158"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:151"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:151"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:162"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:51:2"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/dot",
+          "visible": true,
+          "nodeType": "ELLIPSE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:51:2"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:184"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:185"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:149"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:150"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:162"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:51:3"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "control-wrap/circle/dot",
+          "visible": true,
+          "nodeType": "ELLIPSE",
+          "field": "fills[0].color",
+          "variableId": "VariableID:51:3"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:149"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:150"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:162"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:170"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:149"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:150"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:42:3"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:172"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:151"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:151"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:162"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:170"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:89"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:184"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-indicator",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:90"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:185"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "control-wrap/circle/focus-outer",
+          "visible": true,
+          "nodeType": "RECTANGLE",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:149"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:150"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:70"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "minHeight",
+          "variableId": "VariableID:5:80"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingBottom",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "",
+          "visible": true,
+          "nodeType": "COMPONENT",
+          "field": "paddingTop",
+          "variableId": "VariableID:5:64"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "bottomRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:162"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "height",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeBottomWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeLeftWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeRightWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokeTopWeight",
+          "variableId": "VariableID:5:87"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "strokes[0].color",
+          "variableId": "VariableID:1:171"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topLeftRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "topRightRadius",
+          "variableId": "VariableID:5:85"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "control-wrap/circle",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "width",
+          "variableId": "VariableID:51:4"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text",
+          "visible": true,
+          "nodeType": "FRAME",
+          "field": "itemSpacing",
+          "variableId": "VariableID:5:68"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:149"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:106"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:107"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fills[0].color",
+          "variableId": "VariableID:1:150"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontFamily[0]",
+          "variableId": "VariableID:5:59"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontSize[0]",
+          "variableId": "VariableID:5:108"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "fontWeight[0]",
+          "variableId": "VariableID:5:60"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "lineHeight[0]",
+          "variableId": "VariableID:5:109"
+        }
+      ],
+      "styleRefs": [
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Selected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Selected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Selected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Selected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Unselected, State=Default",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Unselected, State=Disabled",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Unselected, State=Focus",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/label",
+          "visible": true,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/md"
+        },
+        {
+          "variant": "Selection=Unselected, State=Hover",
+          "layer": "text/supporting-text",
+          "visible": false,
+          "nodeType": "TEXT",
+          "field": "textStyleId",
+          "styleId": "style:text/body/sm"
+        }
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "id": "VariableCollectionId:1:114",
+      "name": "Brand",
+      "defaultModeId": "1:1",
+      "modes": [
+        {
+          "modeId": "1:1",
+          "name": "Financial"
+        },
+        {
+          "modeId": "1:2",
+          "name": "Invest"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:1:148",
+      "name": "Color",
+      "defaultModeId": "1:3",
+      "modes": [
+        {
+          "modeId": "1:3",
+          "name": "Light"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:1:2",
+      "name": "Primitives",
+      "defaultModeId": "1:0",
+      "modes": [
+        {
+          "modeId": "1:0",
+          "name": "Value"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:5:58",
+      "name": "Dimension",
+      "defaultModeId": "5:0",
+      "modes": [
+        {
+          "modeId": "5:0",
+          "name": "Default"
+        }
+      ]
+    },
+    {
+      "id": "VariableCollectionId:5:95",
+      "name": "Responsive",
+      "defaultModeId": "5:1",
+      "modes": [
+        {
+          "modeId": "5:1",
+          "name": "Desktop"
+        },
+        {
+          "modeId": "5:2",
+          "name": "Tablet"
+        },
+        {
+          "modeId": "5:3",
+          "name": "Mobile"
+        }
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "id": "VariableID:5:30",
+      "name": "border-width/2",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--border-width-2)"
+      },
+      "valuesByMode": {
+        "1:0": 2
+      }
+    },
+    {
+      "id": "VariableID:5:31",
+      "name": "border-width/3",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--border-width-3)"
+      },
+      "valuesByMode": {
+        "1:0": 3
+      }
+    },
+    {
+      "id": "VariableID:5:87",
+      "name": "border-width/strong",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Emphasised edge for selection-control outlines and error borders on fields. Not for focus; use focus/width/*.",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--border-width-strong)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:30",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:123",
+      "name": "brand/primary/800",
+      "variableCollectionId": "VariableCollectionId:1:114",
+      "resolvedType": "COLOR",
+      "description": "Financial → color/navy/800 · Invest → color/violet/800. Not for direct component use.",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--brand-primary-800)"
+      },
+      "valuesByMode": {
+        "1:1": {
+          "id": "VariableID:1:23",
+          "type": "VARIABLE_ALIAS"
+        },
+        "1:2": {
+          "id": "VariableID:1:56",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:124",
+      "name": "brand/primary/900",
+      "variableCollectionId": "VariableCollectionId:1:114",
+      "resolvedType": "COLOR",
+      "description": "Financial → color/navy/900 · Invest → color/violet/900. Not for direct component use.",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--brand-primary-900)"
+      },
+      "valuesByMode": {
+        "1:1": {
+          "id": "VariableID:1:24",
+          "type": "VARIABLE_ALIAS"
+        },
+        "1:2": {
+          "id": "VariableID:1:57",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:172",
+      "name": "color/border/disabled",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Boundary of disabled controls. 1.84:1 on white, 1.6:1 on surface/disabled: perceivable structure without appearing interactive (enabled border/input is 5.0:1).",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-border-disabled)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:7",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:170",
+      "name": "color/border/input",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Boundary of interactive controls: fields, unchecked Checkbox/Radio, Switch Off track, read-only field. 5.0:1 on white, 4.4:1 on surface/sunken (meets 1.4.11).",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-border-input)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:10",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:171",
+      "name": "color/border/strong",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Emphasised control boundary, used for Hover on fields and unchecked controls. 10.5:1 on white.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-border-strong)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:12",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:51:2",
+      "name": "color/control/checked",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Checked state of checked-type controls: Checkbox checked and indeterminate, Radio selected, Switch On (fill/border). Maps to checked / aria-checked. 10.5:1 on white. Selection of options, tabs or rows uses color/selection/*, not this token.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-control-checked)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:123",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:51:3",
+      "name": "color/control/checked-hover",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Hover of a checked control (Checkbox, Radio, Switch). 13.5:1 on white.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-control-checked-hover)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:124",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:184",
+      "name": "color/focus/indicator",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Keyboard focus indicator: 3px ring next to the component (outline in production). Brand-independent; paired with focus/outer, ≥9:1 between them (WCAG C40 two-tone). Used by every interactive component.",
+      "scopes": [
+        "STROKE_COLOR",
+        "EFFECT_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-focus-indicator)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:105",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:185",
+      "name": "color/focus/outer",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Outer 2px focus ring that carries contrast on light surfaces. Always paired with focus/indicator. Brand-independent.",
+      "scopes": [
+        "STROKE_COLOR",
+        "EFFECT_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-focus-outer)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:14",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:158",
+      "name": "color/icon/disabled",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Disabled icons and internal control marks (check, dash, dot, thumb). 3.4:1 on white, 2.97:1 on surface/disabled. Disabled exemption is not a target: marks keep their shape so state stays structural.",
+      "scopes": [
+        "SHAPE_FILL",
+        "STROKE_COLOR"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-icon-disabled)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:9",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:23",
+      "name": "color/navy/800",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-navy-800)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.47843137383461,
+          "g": 0.239215686917305,
+          "r": 0.11764705926179886
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:24",
+      "name": "color/navy/900",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-navy-900)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.4000000059604645,
+          "g": 0.16862745583057404,
+          "r": 0.054901961237192154
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:3",
+      "name": "color/neutral/0",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-0)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 1,
+          "g": 1,
+          "r": 1
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:5",
+      "name": "color/neutral/100",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-100)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.9607843160629272,
+          "g": 0.9411764740943909,
+          "r": 0.9215686321258545
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:7",
+      "name": "color/neutral/300",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-300)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.7882353067398071,
+          "g": 0.7529411911964417,
+          "r": 0.7215686440467834
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:9",
+      "name": "color/neutral/500",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-500)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.5960784554481506,
+          "g": 0.5490196347236633,
+          "r": 0.5137255191802979
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:10",
+      "name": "color/neutral/600",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-600)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.48235294222831726,
+          "g": 0.43921568989753723,
+          "r": 0.40784314274787903
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:11",
+      "name": "color/neutral/700",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-700)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.3803921639919281,
+          "g": 0.33725491166114807,
+          "r": 0.30588236451148987
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:12",
+      "name": "color/neutral/800",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-800)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.2862745225429535,
+          "g": 0.250980406999588,
+          "r": 0.21960784494876862
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:13",
+      "name": "color/neutral/900",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-900)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.21960784494876862,
+          "g": 0.18431372940540314,
+          "r": 0.1568627506494522
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:14",
+      "name": "color/neutral/950",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-neutral-950)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.1725490242242813,
+          "g": 0.13333334028720856,
+          "r": 0.10588235408067703
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:162",
+      "name": "color/surface/default",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Default surface for components and content areas: cards, fields, unchecked controls, Switch Off track.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-surface-default)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:3",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:42:3",
+      "name": "color/surface/disabled",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Background of disabled non-action controls (Text Field, Checkbox, Radio, Switch). Separate intent from action/disabled/background even though values match.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-surface-disabled)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:5",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:149",
+      "name": "color/text/default",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Primary text: body copy, labels, values and headings on light surfaces. 13.5:1 on white. Default choice for any readable text.",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-text-default)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:13",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:151",
+      "name": "color/text/disabled",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Text of disabled controls. 3.4:1 on white (disabled content is exempt from 1.4.3, but the exemption is not a target). Never for readable content that is merely de-emphasised; use text/subtle.",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-text-disabled)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:9",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:150",
+      "name": "color/text/subtle",
+      "variableCollectionId": "VariableCollectionId:1:148",
+      "resolvedType": "COLOR",
+      "description": "Secondary text: helper text, supporting text, metadata and captions. 7.4:1 on white. Not for disabled or placeholder content.",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--color-text-subtle)"
+      },
+      "valuesByMode": {
+        "1:3": {
+          "id": "VariableID:1:11",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:56",
+      "name": "color/violet/800",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-violet-800)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.6352941393852234,
+          "g": 0.05098039284348488,
+          "r": 0.3490196168422699
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:57",
+      "name": "color/violet/900",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-violet-900)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.4941176474094391,
+          "g": 0.0117647061124444,
+          "r": 0.26274511218070984
+        }
+      }
+    },
+    {
+      "id": "VariableID:1:105",
+      "name": "color/yellow/200",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "COLOR",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--color-yellow-200)"
+      },
+      "valuesByMode": {
+        "1:0": {
+          "a": 1,
+          "b": 0.0235294122248888,
+          "g": 0.8745098114013672,
+          "r": 0.9843137264251709
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:89",
+      "name": "focus/width/indicator",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Width of the main focus ring drawn directly around the focused element; pairs with color/focus/indicator. Always used with focus/width/outer; never for borders. In forced-colours mode, both rings become one system outline.",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--focus-width-indicator)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:31",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:90",
+      "name": "focus/width/outer",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Width of the contrast ring drawn outside the main focus ring; pairs with color/focus/outer so focus stays visible on any background. Always used with focus/width/indicator.",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--focus-width-outer)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:30",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:53",
+      "name": "font/family/inter",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "STRING",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-family-inter)"
+      },
+      "valuesByMode": {
+        "1:0": "Inter"
+      }
+    },
+    {
+      "id": "VariableID:5:59",
+      "name": "font/family/sans",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "STRING",
+      "description": "The shared typeface for all interface and content text across brands. Applied through the system's text styles.",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-family-sans)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:53",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:45",
+      "name": "font/line-height/20",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-20)"
+      },
+      "valuesByMode": {
+        "1:0": 20
+      }
+    },
+    {
+      "id": "VariableID:5:46",
+      "name": "font/line-height/24",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-24)"
+      },
+      "valuesByMode": {
+        "1:0": 24
+      }
+    },
+    {
+      "id": "VariableID:5:107",
+      "name": "font/line-height/body/md",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Line height for the default body text role. Also sets the height of the wrapper that aligns selection controls with the first line of their label.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-body-md)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:46",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:46",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:46",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:109",
+      "name": "font/line-height/body/sm",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Line height for the body/sm text role; use only with font/size/body/sm.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-line-height-body-sm)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:45",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:45",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:45",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:35",
+      "name": "font/size/14",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-size-14)"
+      },
+      "valuesByMode": {
+        "1:0": 14
+      }
+    },
+    {
+      "id": "VariableID:5:36",
+      "name": "font/size/16",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-size-16)"
+      },
+      "valuesByMode": {
+        "1:0": 16
+      }
+    },
+    {
+      "id": "VariableID:5:106",
+      "name": "font/size/body/md",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Default font size for body copy and input content, including inside small controls.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-size-body-md)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:36",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:36",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:36",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:108",
+      "name": "font/size/body/sm",
+      "variableCollectionId": "VariableCollectionId:5:95",
+      "resolvedType": "FLOAT",
+      "description": "Font size for supporting text such as metadata, helper text and dense supporting information. Not for primary reading text.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-size-body-sm)"
+      },
+      "valuesByMode": {
+        "5:1": {
+          "id": "VariableID:5:35",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:2": {
+          "id": "VariableID:5:35",
+          "type": "VARIABLE_ALIAS"
+        },
+        "5:3": {
+          "id": "VariableID:5:35",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:32",
+      "name": "font/weight/400",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--font-weight-400)"
+      },
+      "valuesByMode": {
+        "1:0": 400
+      }
+    },
+    {
+      "id": "VariableID:5:60",
+      "name": "font/weight/regular",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Weight for reading text: body copy, input values, supporting text and small data (body/*, data/sm). Not for labels or headings.",
+      "scopes": [
+        "FONT_WEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-weight-regular)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:32",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:85",
+      "name": "radius/full",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Fully rounded ends for circular or pill-shaped controls, e.g. Radio and Switch. Use instead of a large fixed radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--radius-full)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:28",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:28",
+      "name": "radius/max",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "End of the radius scale (fully rounded). Index-based radius scale: radius/100 = 4px; \"max\" avoids a false numeric reading. Semantic alias: Dimension radius/full.",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--radius-max)"
+      },
+      "valuesByMode": {
+        "1:0": 9999
+      }
+    },
+    {
+      "id": "VariableID:5:20",
+      "name": "size/1100",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--size-1100)"
+      },
+      "valuesByMode": {
+        "1:0": 44
+      }
+    },
+    {
+      "id": "VariableID:5:16",
+      "name": "size/500",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--size-500)"
+      },
+      "valuesByMode": {
+        "1:0": 20
+      }
+    },
+    {
+      "id": "VariableID:51:4",
+      "name": "size/control/indicator",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Visible size of square/circular selection indicators (Checkbox box, Radio circle). Not the touch target; Switch geometry is intrinsic.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--size-control-indicator)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:16",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:80",
+      "name": "size/touch-target/min",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "System minimum interactive target, in both directions, for every interactive element, including small controls. Stricter than WCAG 2.5.8 AA. Android's 48dp is handled per platform.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--size-touch-target-min)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:20",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:3",
+      "name": "space/100",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--space-100)"
+      },
+      "valuesByMode": {
+        "1:0": 4
+      }
+    },
+    {
+      "id": "VariableID:5:4",
+      "name": "space/200",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--space-200)"
+      },
+      "valuesByMode": {
+        "1:0": 8
+      }
+    },
+    {
+      "id": "VariableID:5:5",
+      "name": "space/300",
+      "variableCollectionId": "VariableCollectionId:1:2",
+      "resolvedType": "FLOAT",
+      "description": "",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--space-300)"
+      },
+      "valuesByMode": {
+        "1:0": 12
+      }
+    },
+    {
+      "id": "VariableID:5:64",
+      "name": "space/component/sm",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Compact padding, e.g. top and bottom padding of Checkbox, Radio and Switch rows.",
+      "scopes": [
+        "GAP"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--space-component-sm)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:4",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:70",
+      "name": "space/gap/md",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Gap between a selection control and its label (Checkbox, Radio, Switch).",
+      "scopes": [
+        "GAP"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--space-gap-md)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:5",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    },
+    {
+      "id": "VariableID:5:68",
+      "name": "space/gap/xs",
+      "variableCollectionId": "VariableCollectionId:5:58",
+      "resolvedType": "FLOAT",
+      "description": "Smallest gap between tightly coupled parts: label to supporting text, icon to text in Link, an overlay's offset from its trigger.",
+      "scopes": [
+        "GAP"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--space-gap-xs)"
+      },
+      "valuesByMode": {
+        "5:0": {
+          "id": "VariableID:5:3",
+          "type": "VARIABLE_ALIAS"
+        }
+      }
+    }
+  ],
+  "styles": {
+    "text": [
+      {
+        "id": "style:text/body/md",
+        "name": "body/md",
+        "type": "TEXT",
+        "description": "Default body and input text.",
+        "fontName": {
+          "family": "Inter",
+          "style": "Regular",
+          "variationSettings": {
+            "slnt": 0,
+            "wght": 400
+          }
+        },
+        "fontSize": 16,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 24
+        },
+        "letterSpacing": {
+          "unit": "PERCENT",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "boundVariables": {
+          "fontFamily": {
+            "id": "VariableID:5:59",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontSize": {
+            "id": "VariableID:5:106",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontWeight": {
+            "id": "VariableID:5:60",
+            "type": "VARIABLE_ALIAS"
+          },
+          "lineHeight": {
+            "id": "VariableID:5:107",
+            "type": "VARIABLE_ALIAS"
+          }
+        }
+      },
+      {
+        "id": "style:text/body/sm",
+        "name": "body/sm",
+        "type": "TEXT",
+        "description": "Supporting metadata, captions and dense data only. Caption = body/sm + color/text/subtle.",
+        "fontName": {
+          "family": "Inter",
+          "style": "Regular",
+          "variationSettings": {
+            "slnt": 0,
+            "wght": 400
+          }
+        },
+        "fontSize": 14,
+        "lineHeight": {
+          "unit": "PIXELS",
+          "value": 20
+        },
+        "letterSpacing": {
+          "unit": "PERCENT",
+          "value": 0
+        },
+        "textCase": "ORIGINAL",
+        "textDecoration": "NONE",
+        "boundVariables": {
+          "fontFamily": {
+            "id": "VariableID:5:59",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontSize": {
+            "id": "VariableID:5:108",
+            "type": "VARIABLE_ALIAS"
+          },
+          "fontWeight": {
+            "id": "VariableID:5:60",
+            "type": "VARIABLE_ALIAS"
+          },
+          "lineHeight": {
+            "id": "VariableID:5:109",
+            "type": "VARIABLE_ALIAS"
+          }
+        }
+      }
+    ],
+    "effect": []
+  }
+}

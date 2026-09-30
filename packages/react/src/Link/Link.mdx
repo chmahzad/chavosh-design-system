@@ -1,0 +1,73 @@
+import { Meta, Title, Subtitle, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as LinkStories from "./Link.stories";
+
+<Meta of={LinkStories} />
+
+<Title>Link</Title>
+<Subtitle>Navigates to a destination or resource. v1 — standalone, labels only.</Subtitle>
+
+## Purpose
+Link takes people somewhere: another page, a section, a document or an external resource. It is a native `<a href>`; its visible label is its accessible name.
+
+**Link or Button? Decide by behaviour, not appearance.** Link navigates; Button performs an action or starts a process. "Download statement" is a Link when it points to a static file, and a Button when it generates a file, asks for options or runs an asynchronous process.
+
+<Canvas of={LinkStories.Playground} />
+<Controls of={LinkStories.Playground} />
+
+## Sizes
+`md` (default) uses `label/md`; `sm` uses `label/sm`. Both keep the 44px minimum target.
+
+<Canvas of={LinkStories.Sizes} />
+
+## States
+States are browser behaviour, not props. A Link is **always underlined** — colour alone never identifies a link.
+- **Hover** (hover-capable pointers only): darker link colour and a thicker underline (1px → 2px). The underline never disappears.
+- **Focus-visible** (keyboard): the Chavosh focus ring — a 3px indicator and a 2px outer ring. The underline stays.
+- **Pressed** has no separate signal. There is no **Visited**, **Disabled** or **Current** state in v1: if a destination is unavailable, show plain text; the current page belongs to future Navigation components.
+
+The examples below are a documentation-only simulation: Hover and Focus-visible are forced by the Storybook pseudo-states addon, which applies Link's real CSS rules — Link has no state props. The **Playground** is the real browser interaction.
+
+<Canvas of={LinkStories.States} />
+
+## Content
+- Link text must make sense out of context: "Learn more about fees", not "click here".
+- **Downloads**: include the file type and size — "Download statement (PDF, 240 KB)"; use the native `download` attribute where appropriate.
+- **External links**: avoid opening new tabs. If a new tab is justified, say so in the accessible name — "(opens in a new tab)" — and pass `target` and `rel` as native attributes. The external-link icon arrives with the Icon system.
+
+<Canvas of={LinkStories.Examples} />
+
+## Behaviour
+- The 44px minimum height is the interactive target, not a fixed height: long labels wrap, stay underlined and the link grows — nothing is truncated or clipped.
+- Width follows the label (`inline-flex`); placing a standalone Link on its own line is a layout decision of the surrounding content.
+
+<Canvas of={LinkStories.LongLabel} />
+
+## Inline links (recipe, not a component)
+Links inside paragraphs, table cells or help text are not Link instances. Keep the surrounding text style (`body/lg`, `body/md` or `body/sm`), and give only the linked words the link colour `color/text/link/default` and a native underline; on hover use `color/text/link/hover` and the thicker underline. Inline links rely on WCAG 2.5.8's inline exception for target size — keep the paragraph's line height and avoid adjacent links in dense text. In production the focus outline wraps the text across line breaks.
+
+## Accessibility
+- Native `<a href>` semantics: announced as a link; the visible label is the accessible name. Any `aria-label` must contain the visible text.
+- Keyboard: Tab reaches the link in document order; **Enter** activates it; Space does not (native link behaviour). Keyboard focus shows the focus ring (`:focus-visible`); a mouse click does not.
+- Always underlined, so links are identifiable without colour. Link colour contrast: 7.4:1 at rest and 10.5:1 on hover on white, in both brands.
+- Forced-colours mode: the system link colour (`LinkText`) for text and underline; the underline and the focus outline remain.
+- Target size: at least 44×44 CSS px in height via `min-height`; it grows with text scaling and wrapping.
+- Automated checks (the Accessibility panel and the design system's browser tests) are evidence, **not** a WCAG 2.2 AA conformance claim. Screen-reader and manual testing remain required.
+
+<Canvas of={LinkStories.Keyboard} />
+
+## Brand
+Link has no brand logic. It follows the brand context it is placed in — **Financial** by default, **Invest** under `data-brand="invest"`, including nested contexts. Only the link colours change; the focus ring is brand-independent. Use the **Brand** toolbar control, or compare both below.
+
+<Canvas of={LinkStories.BrandComparison} />
+
+## Known limitations
+- Leading and trailing icons (for example back arrows and the external-link icon) are planned with the Icon system.
+- `:visited` is not styled in v1.
+- The underline's thickness (1px, 2px on hover) and offset are component-level values, not design tokens.
+- Figma draws the underline as a separate 1px layer and cannot show the 2px hover underline; production uses native text decoration.
+
+## API
+
+<ArgTypes of={LinkStories.Playground} />
+
+Other native `<a>` attributes (for example `onClick`, `target`, `rel`, `download`, `hrefLang`, `type`, `id`, `aria-*`, `data-*`, `className`, `ref`) are passed through to the element. Don't use `className` or `style` to override Link's colours, spacing or typography.

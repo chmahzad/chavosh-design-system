@@ -9,8 +9,13 @@ Each one is derived from a manual, read-only Figma capture that stays private.
 - `chavosh-<component>.snapshot.public.provenance.json` — generated: public SHA-256/size, raw capture attestation,
   sanitizer version, transformation counts and the capture record.
 
-Configured captures: see `publicSnapshots` in `source/export-config.json`. The Button capture (29 Sep 2026, raw
-SHA-256 `adecb1cc8587634f057eb4bddb34a6a789012d65340f08cdd92dc81abe6b0a52`) is frozen and never re-captured.
+Configured captures: see `source/export-config.json`.
+- `publicSnapshots` — released components, built into DTCG and CSS: Button (29 Sep 2026, raw SHA-256
+  `adecb1cc8587634f057eb4bddb34a6a789012d65340f08cdd92dc81abe6b0a52`, frozen and never re-captured) and Link
+  (30 Sep 2026, raw `aea3ff36c54d1096572d6cb8604dfd70632f3e7656b326c4c14da2c5b7c7bab4`).
+- `stagedSnapshots` — recorded canonical captures of components not released yet (30 Sep 2026): Text Field, Checkbox,
+  Radio, Switch. They pass the provenance gate and the consistency check but produce no tokens until their milestone
+  (ADR 0013).
 Captures must be mutually consistent: a variable shared by two captures must be identical in both.
 
 ## Capture procedure (exporter plugin v0.4.0, extractor v0.3.0)

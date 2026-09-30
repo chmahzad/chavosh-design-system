@@ -56,7 +56,8 @@ export async function run() {
   const tokensCss = read("../../tokens/dist/ch-tokens.css");
   const { problems, used, publicTokens } = lintButtonCss(css, tokensCss);
   assert(problems.length === 0, `button.css token discipline: ${problems.join("; ")}`);
-  assert(used.length === publicTokens.size && used.every((t) => publicTokens.has(t)), `Button should consume the whole 37-token closure (uses ${used.length} of ${publicTokens.size})`);
+  const contract = JSON.parse(read("../../tokens/tests/button-v1-spec.json")).boundTokens.map((t) => `--ch-${t.split("/").join("-")}`);
+  assert(used.length === contract.length && used.every((t) => contract.includes(t) && publicTokens.has(t)), `Button should consume exactly its ${contract.length}-token approved closure (uses ${used.length}; the stylesheet publishes ${publicTokens.size})`);
 
   // Self-test: the linter really catches violations.
   const bad = [

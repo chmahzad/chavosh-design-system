@@ -1,0 +1,11 @@
+{
+  "$comment": "AUTHORED. Cross-check contract for the Link v1 (labels only) export closure, transcribed from chavosh-link-architecture.md (approved 29 Sep 2026; §5 tokens, §6 typography, §7 anatomy and token mapping). Used by check-production.mjs: the tokens Link binds in scope must equal this list. Any difference is reported as a Design/code mismatch for designer review — never auto-corrected. Icon sizes (size/icon/sm, size/icon/md) belong to the icon layers, which are out of the v1 scope.",
+  "source": "chavosh-link-architecture.md (Link Architecture v1)",
+  "boundTokens": [
+    "color/text/link/default", "color/text/link/hover",
+    "color/focus/indicator", "color/focus/outer", "focus/width/indicator", "focus/width/outer",
+    "size/touch-target/min", "space/gap/xs", "radius/sm",
+    "font/family/sans", "font/weight/medium", "font/size/label/md", "font/size/label/sm", "font/line-height/label/md", "font/line-height/label/sm"
+  ],
+  "textStyles": ["label/md", "label/sm"]
+}

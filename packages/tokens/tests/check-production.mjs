@@ -13,7 +13,7 @@ import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { assert, config, readJson, diffDirs, parseCss, ROOT } from "./lib.mjs";
-import { convert, loadPublicSnapshots, mergeSnapshots } from "../build/convert-snapshot.mjs";
+import { convert, loadPublicSnapshot, loadPublicSnapshots, mergeSnapshots } from "../build/convert-snapshot.mjs";
 import { rederive } from "../build/sanitize-snapshot.mjs";
 import { buildCss, flatten } from "../build/build-css.mjs";
 import { captureTargets } from "../../../tools/figma-exporter/tests/mock.mjs";
@@ -59,11 +59,26 @@ export async function run() {
     const expected = { components: l.components.map((n) => ({ nodeId: cfg.components[n].figmaNodeId, name: n, type: cfg.components[n].type })) };
     assert(JSON.stringify(l.snapshot.source.roots) === JSON.stringify(expected), `snapshot ${l.id} was taken with roots ${JSON.stringify(l.snapshot.source.roots)}, expected ${JSON.stringify(expected)}`);
   }
-  mergeSnapshots(loaded.map((l) => ({ id: l.id, snapshot: l.snapshot })));
+  // Staged captures (recorded, not released): same provenance gate, roots = exporter capture target, consistent with
+  // every released capture; their components are not configured, so nothing of them reaches DTCG or CSS.
+  const staged = (cfg.stagedSnapshots || []).map((e) => {
+    assert(e.components.length === 1 && !cfg.components[e.components[0]], `staged capture ${e.id} must hold one unreleased component`);
+    const t = targets.find((x) => x.name === e.components[0]);
+    assert(t, `staged capture ${e.id} (${e.components[0]}) is not an exporter capture target`);
+    const l = { id: e.id, ...loadPublicSnapshot(join(ROOT, e.path), join(ROOT, e.provenance)) };
+    const expected = { components: [{ nodeId: t.nodeId, name: t.name, type: t.type }] };
+    assert(JSON.stringify(l.snapshot.source.roots) === JSON.stringify(expected) && l.snapshot.components.length === 1, `staged capture ${e.id} roots ${JSON.stringify(l.snapshot.source.roots)} ≠ ${JSON.stringify(expected)}`);
+    return l;
+  });
+  const recorded = [...loaded.flatMap((l) => l.components), ...staged.map((l) => l.snapshot.components[0].name)];
+  for (const t of targets) assert(recorded.includes(t.name), `capture target ${t.name} has no recorded public snapshot`);
+  mergeSnapshots([...loaded, ...staged].map((l) => ({ id: l.id, snapshot: l.snapshot })));
+  const stagedLine = staged.length ? `staged captures (recorded, not released): ${staged.map((l) => `${l.id} ${l.hash.slice(0, 12)}…`).join(", ")} match provenance; roots = exporter capture targets; consistent with the released captures; excluded from DTCG and CSS` : null;
   lines.push(`public snapshots: ${loaded.map((l) => `${l.id} ${l.hash.slice(0, 12)}…`).join(", ")} match provenance; no private identifiers; roots = export-config; extractor ${[...new Set(loaded.map((l) => l.snapshot.extractor.version))]}; sanitizer ${[...new Set(loaded.map((l) => l.snapshot.sanitizer.version))]}${loaded.length > 1 ? `; ${loaded.length} captures mutually consistent` : ""}`);
+  if (stagedLine) lines.push(stagedLine);
   const raws = rawCandidates(process.env.CHAVOSH_RAW_SNAPSHOT);
   const verified = [];
-  for (const l of loaded) {
+  for (const l of [...loaded, ...staged]) {
     const raw = raws.find((r) => r.sha256 === l.provenance.derivedFrom.sha256);
     if (!raw) continue;
     const r = rederive(raw.file, l.bytes.toString("utf8"));
@@ -71,7 +86,7 @@ export async function run() {
     verified.push(l.id);
   }
   if (raws.length) assert(verified.length > 0, "CHAVOSH_RAW_SNAPSHOT is set but contains no file matching an attested raw capture");
-  lines.push(`raw captures: ${loaded.map((l) => `${l.id} ${l.provenance.derivedFrom.sha256.slice(0, 12)}… ${verified.includes(l.id) ? "re-derived byte-identical" : "attested (private, not in this repository)"}`).join("; ")}`);
+  lines.push(`raw captures: ${[...loaded, ...staged].map((l) => `${l.id} ${l.provenance.derivedFrom.sha256.slice(0, 12)}… ${verified.includes(l.id) ? "re-derived byte-identical" : "attested (private, not in this repository)"}`).join("; ")}`);
 
   const tmp = mkdtempSync(join(tmpdir(), "ch-prod-"));
   try {

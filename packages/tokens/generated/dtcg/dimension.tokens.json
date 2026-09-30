@@ -161,6 +161,31 @@
           }
         }
       }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{radius.100}",
+      "$description": "Compact controls and field-like elements, e.g. text inputs, Select trigger, Checkbox box.",
+      "$extensions": {
+        "chavosh": {
+          "layer": "dimension",
+          "visibility": "public",
+          "css": "--ch-radius-sm",
+          "figma": {
+            "variableId": "VariableID:5:82",
+            "collection": "Dimension",
+            "collectionId": "VariableCollectionId:5:58",
+            "path": "radius/sm",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "CORNER_RADIUS"
+            ],
+            "codeSyntax": {
+              "WEB": "var(--radius-sm)"
+            }
+          }
+        }
+      }
     }
   },
   "size": {
@@ -242,6 +267,33 @@
           }
         }
       }
+    },
+    "touch-target": {
+      "min": {
+        "$type": "dimension",
+        "$value": "{size.1100}",
+        "$description": "System minimum interactive target, in both directions, for every interactive element, including small controls. Stricter than WCAG 2.5.8 AA. Android's 48dp is handled per platform.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-size-touch-target-min",
+            "figma": {
+              "variableId": "VariableID:5:80",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "size/touch-target/min",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "WIDTH_HEIGHT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--size-touch-target-min)"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "space": {
@@ -318,6 +370,31 @@
               ],
               "codeSyntax": {
                 "WEB": "var(--space-gap-sm)"
+              }
+            }
+          }
+        }
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{space.100}",
+        "$description": "Smallest gap between tightly coupled parts: label to supporting text, icon to text in Link, an overlay's offset from its trigger.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-gap-xs",
+            "figma": {
+              "variableId": "VariableID:5:68",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/gap/xs",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-gap-xs)"
               }
             }
           }

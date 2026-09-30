@@ -1,7 +1,7 @@
 # @chavosh/react
 
-Production React components of the Chavosh Financial Design System. **Current scope: Button v1 (labels only).**
-Detailed implementation contract: [`docs/decisions/0010-button-v1-implementation-mapping.md`](../../docs/decisions/0010-button-v1-implementation-mapping.md) (frozen). This README does not repeat it.
+Production React components of the Chavosh Financial Design System. **Current scope: Button v1 (labels only) and Link v1 (standalone, labels only).**
+Detailed implementation contracts: [`docs/decisions/0010-button-v1-implementation-mapping.md`](../../docs/decisions/0010-button-v1-implementation-mapping.md) (frozen) and [`docs/decisions/0013-link-v1-implementation-mapping.md`](../../docs/decisions/0013-link-v1-implementation-mapping.md). This README does not repeat them.
 
 Stack: React 19.3.0 · TypeScript 7.0.2 (strict) · plain CSS · Vite 8.3.1 (bundling) — exact pins, npm workspaces, Node 22.
 
@@ -9,7 +9,7 @@ Stack: React 19.3.0 · TypeScript 7.0.2 (strict) · plain CSS · Vite 8.3.1 (bun
 Load the generated token stylesheet **once** at the application entry, then use components. Each component imports its own CSS.
 ```tsx
 import "@chavosh/tokens/ch-tokens.css"; // once, at the entry
-import { Button } from "@chavosh/react";
+import { Button, Link } from "@chavosh/react";
 ```
 The package is source-first (`exports: "./src/index.ts"`) and expects a bundler that handles TSX and CSS imports (Vite). A published library build is not part of v1.
 
@@ -56,13 +56,29 @@ No brand logic in the component. Financial is the default; `data-brand="invest"`
 ### Accessibility behaviour
 Native `<button>` (no role emulation); Enter and Space activate; visible label is the accessible name (put destructive meaning in the label, not in colour); keyboard focus is always visible, including in forced-colours mode (outline, system colours; disabled uses `GrayText`); labels wrap at 200 % text and 320px width. Automated checks are evidence, not a WCAG 2.2 AA conformance claim — screen-reader and manual testing remain required. Native `disabled` only in v1; focusable unavailable actions (`aria-disabled`) will be designed when a product case needs them.
 
+## Link
+```tsx
+<Link href="/transactions">View transactions</Link>
+<Link href="/fees" size="sm">Learn more about fees</Link>
+<Link href="/statement.pdf" download type="application/pdf">Download statement (PDF, 240 KB)</Link>
+```
+| Prop | Type | Default |
+|---|---|---|
+| `href` | `string` (required) | — |
+| `size` | `"md" \| "sm"` | `"md"` |
+| `children` | `ReactNode` (required) — the visible label and accessible name | — |
+| `ref` | `Ref<HTMLAnchorElement>` (React 19 ref-as-prop) | — |
+
+Other native `<a>` attributes pass through. Not part of Link v1: `disabled` (render plain text instead), `as` / `asChild`, icons (with the Icon system), visited styling, hierarchy/variant, current-page state (Navigation components), state props. Link navigates; actions are Buttons.
+
 ## Storybook
-`npm run storybook` (repository root) opens the Button documentation and stories at http://localhost:6006:
-Playground (controls = the real props), Hierarchies, Sizes, States, Brand comparison, Long label, Disabled, Keyboard.
-Stories sit next to the component (`src/Button/Button.stories.tsx`, `Button.mdx`) and must use only the real API.
+`npm run storybook` (repository root) opens the documentation and stories at http://localhost:6006.
+Button: Playground (controls = the real props), Hierarchies, Sizes, States, Brand comparison, Long label, Disabled, Keyboard.
+Link: Playground, Sizes, States, Brand comparison, Examples, Long label, Keyboard.
+Stories sit next to each component (`src/<Component>/<Component>.stories.tsx`, `<Component>.mdx`) and must use only the real API.
 
 ## Verification
-`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
+`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). Link adds `check-link-tokens` (link.css consumes exactly Link's 15-token contract; API contract self-test) and `check-link-browser` (Chromium: size × state × brand incl. nested contexts, underline, 44px target, keyboard — Enter activates, Space does not — wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours); `check-button-baseline` keeps Button frozen. `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
 
 ## Toolchain notes
 - **`skipLibCheck: true`** (`tsconfig.json`) is a toolchain compatibility workaround: TypeScript 7.0.2 reports errors
