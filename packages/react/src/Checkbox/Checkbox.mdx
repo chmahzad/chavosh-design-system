@@ -1,0 +1,85 @@
+import { Meta, Title, Subtitle, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as CheckboxStories from "./Checkbox.stories";
+
+<Meta of={CheckboxStories} />
+
+<Title>Checkbox</Title>
+<Subtitle>One boolean choice. v1.</Subtitle>
+
+## Purpose
+Checkbox lets people turn one option on or off, independently of other options, usually as part of a form that is submitted later. It is a native `<input type="checkbox">` with its label; the whole row — box, label and supporting text — is the target.
+
+**Checkbox, Radio or Switch?** Use Checkbox for independent choices and for single consents such as agreeing to terms. Use Radio when exactly one option of a set applies. Use Switch only for a setting that takes effect immediately.
+
+<Canvas of={CheckboxStories.Playground} />
+<Controls of={CheckboxStories.Playground} />
+
+## Selection
+- **Unchecked** — empty box.
+- **Checked** — check mark.
+- **Indeterminate** — dash: a parent whose children are only partly selected. It is a visual "mixed" state set by the owner, **not a third submitted value**: the form submits `checked`.
+
+Each selection has its own mark, so it never depends on colour alone — also when disabled.
+
+<Canvas of={CheckboxStories.Selection} />
+
+## States
+States are browser behaviour, not props.
+- **Hover** (hover-capable pointers only): anywhere on the row — a stronger border when unchecked, a darker fill when checked.
+- **Focus-visible** (keyboard): the Chavosh focus ring around the box — a 3px indicator and a 2px outer ring.
+- **Disabled**: the native `disabled` attribute, including a disabled `<fieldset>`. Disabled checkboxes leave the tab order and cannot change.
+
+The examples below are a documentation-only simulation: Hover and Focus-visible are forced by the Storybook pseudo-states addon, which applies Checkbox's real CSS rules. The **Playground** is the real browser interaction.
+
+<Canvas of={CheckboxStories.States} />
+
+## Supporting text
+Optional detail under the label. It is announced as the checkbox's description, not as part of its name.
+
+<Canvas of={CheckboxStories.SupportingText} />
+
+## Hidden label
+In tables and lists where the row already shows the context, the label can be visually hidden with `hideLabel`. The label text is still required and is still the accessible name — make it specific ("Select transaction 12 Sep, Harbour Energy, $120.00").
+
+<Canvas of={CheckboxStories.SelectAll} />
+
+## Groups
+Several related checkboxes are composed with a native `<fieldset>` and `<legend>`. Group-level rules — required selections, validation and error messages such as "Select at least one communication preference" — belong to a future Checkbox Group / field wrapper. Checkbox itself has no error state.
+
+<Canvas of={CheckboxStories.Group} />
+
+## Behaviour
+- The row is at least 44px high and grows with wrapping text; the box stays aligned with the first line of the label.
+- Width follows the content, up to the width of the container.
+- Don't put links or other interactive content inside the label. Consent text with links (for example terms) is a pattern: the links must stay independently focusable, and activating them must not toggle the checkbox.
+
+<Canvas of={CheckboxStories.LongLabel} />
+
+## Accessibility
+- Native checkbox semantics: announced as a checkbox with its checked, unchecked or **mixed** state.
+- Name: the label text only; description: the supporting text (and any `aria-describedby` you pass).
+- Keyboard: Tab reaches the checkbox in document order; **Space** toggles it; Enter does not. Keyboard focus shows the focus ring on the box; a mouse click does not.
+- Target: the whole row, at least 44px high.
+- Forced-colours mode: the box keeps a system-colour border, the check and dash are drawn in the system text colour, disabled uses `GrayText`, and the focus outline remains.
+- Automated checks (the Accessibility panel and the design system's browser tests) are evidence, **not** a WCAG 2.2 AA conformance claim. Screen-reader (VoiceOver, NVDA, TalkBack) and manual testing remain required.
+
+<Canvas of={CheckboxStories.Keyboard} />
+
+## Disabled
+<Canvas of={CheckboxStories.Disabled} />
+
+## Brand
+Checkbox has no brand logic. Only the selected colour follows the brand context — **Financial** by default, **Invest** under `data-brand="invest"`, including nested contexts. Unchecked, disabled and focus colours are shared.
+
+<Canvas of={CheckboxStories.BrandComparison} />
+
+## Known limitations
+- No error state or group validation in v1 (future Checkbox Group / field wrapper).
+- One size.
+- The check and dash marks are internal component geometry, not icons.
+
+## API
+
+<ArgTypes of={CheckboxStories.Playground} />
+
+Other native `<input>` attributes (for example `checked`, `onChange`, `name`, `value`, `required`, `form`, `id`, `aria-*`, `data-*`, `ref`) are passed to the input. `className` is applied to the row. Don't use `className` or `style` to override Checkbox's colours, spacing or typography.

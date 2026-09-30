@@ -7,3 +7,7 @@
 .sb-caption { margin: 0; font: 0.8125rem/1.4 system-ui, sans-serif; opacity: 0.75; }
 .sb-panel { padding: 1.5rem; border: 1px dashed currentColor; border-radius: 0.5rem; }
 .sb-narrow { max-width: 12rem; }
+.sb-fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.sb-legend { padding: 0; margin-bottom: 0.5rem; font: 600 1rem/1.5 system-ui, sans-serif; }
+.sb-table { border-collapse: collapse; font: 0.875rem/1.4 system-ui, sans-serif; }
+.sb-table th, .sb-table td { padding: 0 1rem 0 0; text-align: start; vertical-align: middle; }

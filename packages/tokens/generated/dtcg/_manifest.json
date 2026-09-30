@@ -32,17 +32,32 @@
       "rawCaptureSha256": "aea3ff36c54d1096572d6cb8604dfd70632f3e7656b326c4c14da2c5b7c7bab4",
       "extractorVersion": "0.3.0",
       "sourceFileName": "Chavosh Financial — Design System"
+    },
+    {
+      "id": "checkbox",
+      "components": [
+        "Checkbox"
+      ],
+      "path": "snapshots/figma/chavosh-checkbox.snapshot.public.json",
+      "sha256": "b00d10728ff3081547582fdfae4d37c71b4fa75f3dbdb8c735ae8da003a5586f",
+      "bytes": 136853,
+      "schema": "chavosh.figma-public-snapshot",
+      "schemaVersion": "1.0.0",
+      "sanitizerVersion": "1.0.0",
+      "rawCaptureSha256": "a18ff7ab351c6f865c845621173f62d4bea3cefa39daf19d35f1a382f38f70a7",
+      "extractorVersion": "0.3.0",
+      "sourceFileName": "Chavosh Financial — Design System"
     }
   ],
   "tokenCounts": {
-    "brand-financial": 8,
-    "brand-invest": 8,
-    "color": 23,
-    "dimension": 15,
-    "primitives": 40,
-    "responsive-desktop": 4,
-    "responsive-mobile": 4,
-    "responsive-tablet": 4
+    "brand-financial": 9,
+    "brand-invest": 9,
+    "color": 34,
+    "dimension": 20,
+    "primitives": 49,
+    "responsive-desktop": 8,
+    "responsive-mobile": 8,
+    "responsive-tablet": 8
   },
   "traceability": {
     "components": [
@@ -143,9 +158,90 @@
           "size/icon/md",
           "size/icon/sm"
         ]
+      },
+      {
+        "name": "Checkbox",
+        "figmaNodeId": "52:1034",
+        "exportScope": "checkbox-v1",
+        "variants": 12,
+        "bindings": 374,
+        "bindingsInScope": 374,
+        "excludedLayers": [],
+        "boundTokens": [
+          "border-width/strong",
+          "color/border/disabled",
+          "color/border/input",
+          "color/border/strong",
+          "color/control/checked",
+          "color/control/checked-hover",
+          "color/focus/indicator",
+          "color/focus/outer",
+          "color/icon/disabled",
+          "color/icon/inverse",
+          "color/surface/default",
+          "color/surface/disabled",
+          "color/text/default",
+          "color/text/disabled",
+          "color/text/subtle",
+          "focus/width/indicator",
+          "focus/width/outer",
+          "font/family/sans",
+          "font/line-height/body/md",
+          "font/line-height/body/sm",
+          "font/size/body/md",
+          "font/size/body/sm",
+          "font/weight/regular",
+          "radius/sm",
+          "size/control/indicator",
+          "size/touch-target/min",
+          "space/component/sm",
+          "space/gap/md",
+          "space/gap/xs"
+        ],
+        "styles": [
+          "body/md",
+          "body/sm"
+        ],
+        "excludedOnly": []
       }
     ],
     "textStyles": [
+      {
+        "name": "body/md",
+        "id": "style:text/body/md",
+        "properties": {
+          "fontFamily": "font/family/sans",
+          "fontSize": "font/size/body/md",
+          "fontWeight": "font/weight/regular",
+          "lineHeight": "font/line-height/body/md"
+        },
+        "unboundProperties": {
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE"
+        }
+      },
+      {
+        "name": "body/sm",
+        "id": "style:text/body/sm",
+        "properties": {
+          "fontFamily": "font/family/sans",
+          "fontSize": "font/size/body/sm",
+          "fontWeight": "font/weight/regular",
+          "lineHeight": "font/line-height/body/sm"
+        },
+        "unboundProperties": {
+          "letterSpacing": {
+            "unit": "PERCENT",
+            "value": 0
+          },
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE"
+        }
+      },
       {
         "name": "label/md",
         "id": "style:text/label/md",
@@ -185,7 +281,6 @@
     ],
     "outOfClosure": [
       "size/400",
-      "size/500",
       "size/600",
       "size/icon/lg",
       "size/icon/md",
@@ -193,13 +288,13 @@
     ]
   },
   "files": {
-    "brand-financial.tokens.json": "06a4b0d67d8e085f9998a6e5ff988071e0d5703929d5c1efb17d7ec01d816b98",
-    "brand-invest.tokens.json": "17745b86a8a58df96311123a2bcbdbc2a559dae8f5cff2242b5235206ca9147c",
-    "color.tokens.json": "442a47a28db1383e806f90fea9d0b093414be0d86fc1c0e9c9549c8823994ecd",
-    "dimension.tokens.json": "8eb9e208c4a123e88bd6590d14e52ad6e06dc0f42c97b66e1dc96b0c466f336e",
-    "primitives.tokens.json": "fd6e9608407e42a0d3770ea64c37b72ca1d1316826e77293f551d6a48466c16f",
-    "responsive-desktop.tokens.json": "3bf32ebcfd99d17a64b3654ccdcd5a6e4440261713d1d30384d1faaeba91844b",
-    "responsive-mobile.tokens.json": "89aa013acd4da0859631d5300a523eaa66ec600bd8cb54970fa4f8c98288f2e0",
-    "responsive-tablet.tokens.json": "2460974ae32be3ab47a20686888402b21eed5c4dbe88e1f244bc9466f5c82316"
+    "brand-financial.tokens.json": "63ae0c6313579dd1c933159cee19e740b717d1b105d47650c959352607b6fa84",
+    "brand-invest.tokens.json": "9cdaa9b8f89279c5f87b973c9e050079360f5c08a5e13689d1fd3ceecc813a7b",
+    "color.tokens.json": "bc6c59a5773d06e6fb54023d4375b8a0201216aea0d7481064b141eb23ec6247",
+    "dimension.tokens.json": "fed0be014d8011d9b8edc96fb70dae8ab2b4d5260b9b9feb99c747daf4e6a000",
+    "primitives.tokens.json": "9e362c98fad35bd529ac16ece7610862ed714816192dcf41f9e705cbebb3a283",
+    "responsive-desktop.tokens.json": "69e4c7c8abbf0ebced4f9c99083661b9bfa462dde14f2fb3c102b1416773f865",
+    "responsive-mobile.tokens.json": "d3704e078d20430e7dea4b8794643452cd4baf65e7a29cf7857d2b445d34f128",
+    "responsive-tablet.tokens.json": "8e9b182b144bd381ffbc10ef659d7a91e148553644c45c1e517e3f79104ec637"
   }
 }

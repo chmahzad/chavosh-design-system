@@ -1,7 +1,7 @@
 # @chavosh/react
 
-Production React components of the Chavosh Financial Design System. **Current scope: Button v1 (labels only) and Link v1 (standalone, labels only).**
-Detailed implementation contracts: [`docs/decisions/0010-button-v1-implementation-mapping.md`](../../docs/decisions/0010-button-v1-implementation-mapping.md) (frozen) and [`docs/decisions/0013-link-v1-implementation-mapping.md`](../../docs/decisions/0013-link-v1-implementation-mapping.md). This README does not repeat them.
+Production React components of the Chavosh Financial Design System. **Current scope: Button v1 (labels only), Link v1 (standalone, labels only) and Checkbox v1.**
+Detailed implementation contracts: [`docs/decisions/0010-button-v1-implementation-mapping.md`](../../docs/decisions/0010-button-v1-implementation-mapping.md) (frozen) , [`0013-link-v1-implementation-mapping.md`](../../docs/decisions/0013-link-v1-implementation-mapping.md) and [`0014-checkbox-v1-implementation-mapping.md`](../../docs/decisions/0014-checkbox-v1-implementation-mapping.md). This README does not repeat them.
 
 Stack: React 19.3.0 · TypeScript 7.0.2 (strict) · plain CSS · Vite 8.3.1 (bundling) — exact pins, npm workspaces, Node 22.
 
@@ -9,7 +9,7 @@ Stack: React 19.3.0 · TypeScript 7.0.2 (strict) · plain CSS · Vite 8.3.1 (bun
 Load the generated token stylesheet **once** at the application entry, then use components. Each component imports its own CSS.
 ```tsx
 import "@chavosh/tokens/ch-tokens.css"; // once, at the entry
-import { Button, Link } from "@chavosh/react";
+import { Button, Checkbox, Link } from "@chavosh/react";
 ```
 The package is source-first (`exports: "./src/index.ts"`) and expects a bundler that handles TSX and CSS imports (Vite). A published library build is not part of v1.
 
@@ -71,14 +71,31 @@ Native `<button>` (no role emulation); Enter and Space activate; visible label i
 
 Other native `<a>` attributes pass through. Not part of Link v1: `disabled` (render plain text instead), `as` / `asChild`, icons (with the Icon system), visited styling, hierarchy/variant, current-page state (Navigation components), state props. Link navigates; actions are Buttons.
 
+## Checkbox
+```tsx
+<Checkbox label="Remember my preference" />
+<Checkbox label="Email" supportingText="Statements and account notices" name="channels" value="email" defaultChecked />
+<Checkbox label="Select all transactions" hideLabel checked={all} indeterminate={some} onChange={toggleAll} />
+```
+| Prop | Type | Default |
+|---|---|---|
+| `label` | `ReactNode` (required) — visible label and accessible name | — |
+| `supportingText` | `ReactNode` — announced as the description | — |
+| `hideLabel` | `boolean` — visually hidden label (still the name) | `false` |
+| `indeterminate` | `boolean` — "mixed" state; not a submitted value | `false` |
+| `ref` | `Ref<HTMLInputElement>` (React 19 ref-as-prop) | — |
+
+Native input attributes (`checked`, `defaultChecked`, `onChange`, `disabled`, `name`, `value`, `required`, …) reach the `<input>`; `className` goes on the row. Not part of Checkbox v1: `type`, `children`, error/validation props (future Checkbox Group / field wrapper), sizes, state props. Groups: native `<fieldset>` + `<legend>`.
+
 ## Storybook
 `npm run storybook` (repository root) opens the documentation and stories at http://localhost:6006.
 Button: Playground (controls = the real props), Hierarchies, Sizes, States, Brand comparison, Long label, Disabled, Keyboard.
 Link: Playground, Sizes, States, Brand comparison, Examples, Long label, Keyboard.
+Checkbox: Playground, Selection, States, Supporting text, Select all, Group, Brand comparison, Long label, Keyboard, Disabled.
 Stories sit next to each component (`src/<Component>/<Component>.stories.tsx`, `<Component>.mdx`) and must use only the real API.
 
 ## Verification
-`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). Link adds `check-link-tokens` (link.css consumes exactly Link's 15-token contract; API contract self-test) and `check-link-browser` (Chromium: size × state × brand incl. nested contexts, underline, 44px target, keyboard — Enter activates, Space does not — wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours); `check-button-baseline` keeps Button frozen. `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
+`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). Link adds `check-link-tokens` (link.css consumes exactly Link's 15-token contract; API contract self-test) and `check-link-browser` (Chromium: size × state × brand incl. nested contexts, underline, 44px target, keyboard — Enter activates, Space does not — wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours); Checkbox adds `check-checkbox-tokens` and `check-checkbox-browser` (selection × state × brand, name/description/mixed, row target, keyboard — Space toggles, Enter does not — form submission, `<fieldset disabled>`, select-all, wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours). `check-button-baseline` and `check-link-baseline` keep Button and Link frozen. `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
 
 ## Toolchain notes
 - **`skipLibCheck: true`** (`tsconfig.json`) is a toolchain compatibility workaround: TypeScript 7.0.2 reports errors

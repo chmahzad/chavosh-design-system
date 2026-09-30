@@ -1,0 +1,168 @@
+/*
+ * AUTHORED. Chavosh Financial — Checkbox v1. Contract: docs/decisions/0014-checkbox-v1-implementation-mapping.md.
+ * Consumes ONLY public --ch-* tokens from @chavosh/tokens/ch-tokens.css (loaded once at the application entry, not here).
+ * Never: primitives, --ch-brand-*, raw design values. Documented exceptions (ADR 0014): layout keywords and 0 / 100%
+ * (hidden native input over the box, glyph over the border box); the 1px visually-hidden utility (accessibility
+ * technique, not a design value); system colours in forced-colours mode. Glyph geometry (paths, 2-unit stroke in the
+ * 20-unit box) lives in the SVG markup and scales with the box.
+ * --_cb-* are PRIVATE implementation variables of this file (not tokens, not API), set only from public tokens.
+ */
+.ch-checkbox {
+  --_cb-bg: var(--ch-color-surface-default);
+  --_cb-border: var(--ch-color-border-input);
+  --_cb-glyph: var(--ch-color-icon-inverse);
+  --_cb-label: var(--ch-color-text-default);
+  --_cb-support: var(--ch-color-text-subtle);
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start; /* top-aligned: wrapping text keeps the box on the first line */
+  gap: var(--ch-space-gap-md);
+  width: fit-content;
+  max-width: 100%;
+  min-height: var(--ch-size-touch-target-min); /* the whole row is the target; it grows with text */
+  margin: 0;
+  padding-block: var(--ch-space-component-sm);
+  padding-inline: 0px;
+  cursor: pointer;
+  font-family: var(--ch-font-family-sans);
+  font-weight: var(--ch-font-weight-regular);
+}
+
+/* ---- Control: box aligned to the first label line (Figma control-wrap = body/md line height) ------------------- */
+.ch-checkbox__control {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--ch-font-line-height-body-md);
+}
+.ch-checkbox__box {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: var(--ch-size-control-indicator);
+  height: var(--ch-size-control-indicator);
+  border: var(--ch-border-width-strong) solid var(--_cb-border);
+  border-radius: var(--ch-radius-sm);
+  background-color: var(--_cb-bg);
+}
+/* Native input: transparent, exactly over the box — real checkbox semantics, focus, keyboard and click. */
+.ch-checkbox__input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.ch-checkbox__glyph {
+  position: absolute;
+  inset: calc(var(--ch-border-width-strong) * -1); /* cover the border box: the Figma glyph geometry includes the border */
+  width: calc(100% + var(--ch-border-width-strong) * 2);
+  height: calc(100% + var(--ch-border-width-strong) * 2);
+  stroke: var(--_cb-glyph);
+}
+.ch-checkbox__check,
+.ch-checkbox__dash {
+  display: none;
+}
+.ch-checkbox__input:checked:not(:indeterminate) + .ch-checkbox__box .ch-checkbox__check,
+.ch-checkbox__input:indeterminate + .ch-checkbox__box .ch-checkbox__dash {
+  display: inline;
+}
+
+/* ---- Text: label body/md, supporting text body/sm ------------------------------------------------------------ */
+.ch-checkbox__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ch-space-gap-xs);
+  min-width: 0;
+}
+.ch-checkbox__label {
+  color: var(--_cb-label);
+  font-size: var(--ch-font-size-body-md);
+  line-height: var(--ch-font-line-height-body-md);
+  overflow-wrap: break-word;
+}
+.ch-checkbox__supporting {
+  color: var(--_cb-support);
+  font-size: var(--ch-font-size-body-sm);
+  line-height: var(--ch-font-line-height-body-sm);
+  overflow-wrap: break-word;
+}
+/* hideLabel: visually hidden, still the accessible name / description (standard visually-hidden technique). */
+.ch-checkbox[data-hide-label] .ch-checkbox__text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Checked / indeterminate --------------------------------------------------------------------------------- */
+.ch-checkbox__input:checked + .ch-checkbox__box,
+.ch-checkbox__input:indeterminate + .ch-checkbox__box {
+  --_cb-bg: var(--ch-color-control-checked);
+  --_cb-border: var(--ch-color-control-checked);
+}
+
+/* ---- Hover (row or box; hover-capable pointers only; never when disabled) -------------------------------------- */
+@media (hover: hover) {
+  .ch-checkbox:hover .ch-checkbox__input:enabled + .ch-checkbox__box {
+    --_cb-border: var(--ch-color-border-strong);
+  }
+  .ch-checkbox:hover .ch-checkbox__input:enabled:checked + .ch-checkbox__box,
+  .ch-checkbox:hover .ch-checkbox__input:enabled:indeterminate + .ch-checkbox__box {
+    --_cb-bg: var(--ch-color-control-checked-hover);
+    --_cb-border: var(--ch-color-control-checked-hover);
+  }
+}
+
+/* ---- Focus: keyboard focus only, on the box; 3px indicator (outline) + 2px outer ring beyond it ---------------- */
+.ch-checkbox__input:focus-visible + .ch-checkbox__box {
+  outline: var(--ch-focus-width-indicator) solid var(--ch-color-focus-indicator);
+  outline-offset: 0px;
+  box-shadow: 0 0 0 calc(var(--ch-focus-width-indicator) + var(--ch-focus-width-outer)) var(--ch-color-focus-outer);
+}
+
+/* ---- Disabled (native, incl. a disabled <fieldset>): no hover, structure unchanged ---------------------------- */
+.ch-checkbox__input:disabled + .ch-checkbox__box {
+  --_cb-bg: var(--ch-color-surface-disabled);
+  --_cb-border: var(--ch-color-border-disabled);
+  --_cb-glyph: var(--ch-color-icon-disabled);
+}
+.ch-checkbox:has(.ch-checkbox__input:disabled) {
+  --_cb-label: var(--ch-color-text-disabled);
+  --_cb-support: var(--ch-color-text-disabled);
+  cursor: default;
+}
+
+/* ---- Forced colours: real boundary, glyph in the system text colour, focus outline preserved ------------------- */
+@media (forced-colors: active) {
+  .ch-checkbox__box,
+  .ch-checkbox__input:checked + .ch-checkbox__box,
+  .ch-checkbox__input:indeterminate + .ch-checkbox__box {
+    border-color: CanvasText;
+    background-color: Canvas;
+  }
+  .ch-checkbox__glyph {
+    stroke: CanvasText;
+  }
+  .ch-checkbox__input:disabled + .ch-checkbox__box {
+    border-color: GrayText;
+  }
+  .ch-checkbox__input:disabled + .ch-checkbox__box .ch-checkbox__glyph {
+    stroke: GrayText;
+  }
+  .ch-checkbox:has(.ch-checkbox__input:disabled) .ch-checkbox__label,
+  .ch-checkbox:has(.ch-checkbox__input:disabled) .ch-checkbox__supporting {
+    color: GrayText;
+  }
+  .ch-checkbox__input:focus-visible + .ch-checkbox__box {
+    outline-color: Highlight;
+  }
+}

@@ -105,6 +105,32 @@
           }
         }
       },
+      "900": {
+        "$type": "color",
+        "$value": "{color.navy.900}",
+        "$description": "Financial → color/navy/900 · Invest → color/violet/900. Not for direct component use.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "brand",
+            "visibility": "internal",
+            "mode": "financial",
+            "css": "--ch-brand-primary-900",
+            "figma": {
+              "variableId": "VariableID:1:124",
+              "collection": "Brand",
+              "collectionId": "VariableCollectionId:1:114",
+              "mode": "Financial",
+              "modeId": "1:1",
+              "path": "brand/primary/900",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--brand-primary-900)"
+              }
+            }
+          }
+        }
+      },
       "950": {
         "$type": "color",
         "$value": "{color.navy.950}",

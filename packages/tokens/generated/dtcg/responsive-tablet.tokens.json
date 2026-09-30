@@ -1,6 +1,64 @@
 {
   "font": {
     "line-height": {
+      "body": {
+        "md": {
+          "$type": "dimension",
+          "$value": "{font.line-height.24}",
+          "$description": "Line height for the default body text role. Also sets the height of the wrapper that aligns selection controls with the first line of their label.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "responsive",
+              "visibility": "public",
+              "mode": "tablet",
+              "css": "--ch-font-line-height-body-md",
+              "figma": {
+                "variableId": "VariableID:5:107",
+                "collection": "Responsive",
+                "collectionId": "VariableCollectionId:5:95",
+                "mode": "Tablet",
+                "modeId": "5:2",
+                "path": "font/line-height/body/md",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "LINE_HEIGHT"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--font-line-height-body-md)"
+                }
+              }
+            }
+          }
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "{font.line-height.20}",
+          "$description": "Line height for the body/sm text role; use only with font/size/body/sm.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "responsive",
+              "visibility": "public",
+              "mode": "tablet",
+              "css": "--ch-font-line-height-body-sm",
+              "figma": {
+                "variableId": "VariableID:5:109",
+                "collection": "Responsive",
+                "collectionId": "VariableCollectionId:5:95",
+                "mode": "Tablet",
+                "modeId": "5:2",
+                "path": "font/line-height/body/sm",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "LINE_HEIGHT"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--font-line-height-body-sm)"
+                }
+              }
+            }
+          }
+        }
+      },
       "label": {
         "md": {
           "$type": "dimension",
@@ -61,6 +119,64 @@
       }
     },
     "size": {
+      "body": {
+        "md": {
+          "$type": "dimension",
+          "$value": "{font.size.16}",
+          "$description": "Default font size for body copy and input content, including inside small controls.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "responsive",
+              "visibility": "public",
+              "mode": "tablet",
+              "css": "--ch-font-size-body-md",
+              "figma": {
+                "variableId": "VariableID:5:106",
+                "collection": "Responsive",
+                "collectionId": "VariableCollectionId:5:95",
+                "mode": "Tablet",
+                "modeId": "5:2",
+                "path": "font/size/body/md",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "FONT_SIZE"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--font-size-body-md)"
+                }
+              }
+            }
+          }
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "{font.size.14}",
+          "$description": "Font size for supporting text such as metadata, helper text and dense supporting information. Not for primary reading text.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "responsive",
+              "visibility": "public",
+              "mode": "tablet",
+              "css": "--ch-font-size-body-sm",
+              "figma": {
+                "variableId": "VariableID:5:108",
+                "collection": "Responsive",
+                "collectionId": "VariableCollectionId:5:95",
+                "mode": "Tablet",
+                "modeId": "5:2",
+                "path": "font/size/body/sm",
+                "resolvedType": "FLOAT",
+                "scopes": [
+                  "FONT_SIZE"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--font-size-body-sm)"
+                }
+              }
+            }
+          }
+        }
+      },
       "label": {
         "md": {
           "$type": "dimension",

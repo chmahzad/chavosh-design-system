@@ -546,6 +546,116 @@
             }
           }
         }
+      },
+      "input": {
+        "$type": "color",
+        "$value": "{color.neutral.600}",
+        "$description": "Boundary of interactive controls: fields, unchecked Checkbox/Radio, Switch Off track, read-only field. 5.0:1 on white, 4.4:1 on surface/sunken (meets 1.4.11).",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-border-input",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:170",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/border/input",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-border-input)"
+              }
+            }
+          }
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.800}",
+        "$description": "Emphasised control boundary, used for Hover on fields and unchecked controls. 10.5:1 on white.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-border-strong",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:171",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/border/strong",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-border-strong)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "control": {
+      "checked": {
+        "$type": "color",
+        "$value": "{brand.primary.800}",
+        "$description": "Checked state of checked-type controls: Checkbox checked and indeterminate, Radio selected, Switch On (fill/border). Maps to checked / aria-checked. 10.5:1 on white. Selection of options, tabs or rows uses color/selection/*, not this token.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-control-checked",
+            "brandDependent": true,
+            "figma": {
+              "variableId": "VariableID:51:2",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/control/checked",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-control-checked)"
+              }
+            }
+          }
+        }
+      },
+      "checked-hover": {
+        "$type": "color",
+        "$value": "{brand.primary.900}",
+        "$description": "Hover of a checked control (Checkbox, Radio, Switch). 13.5:1 on white.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-control-checked-hover",
+            "brandDependent": true,
+            "figma": {
+              "variableId": "VariableID:51:3",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/control/checked-hover",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-control-checked-hover)"
+              }
+            }
+          }
+        }
       }
     },
     "focus": {
@@ -604,7 +714,171 @@
         }
       }
     },
+    "icon": {
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.500}",
+        "$description": "Disabled icons and internal control marks (check, dash, dot, thumb). 3.4:1 on white, 2.97:1 on surface/disabled. Disabled exemption is not a target: marks keep their shape so state stays structural.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-icon-disabled",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:158",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/icon/disabled",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-icon-disabled)"
+              }
+            }
+          }
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.0}",
+        "$description": "Icons and internal marks on dark or checked fills: Checkbox check/dash, Switch On thumb, icons on surface/inverse. 10.5:1 on control/checked.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-icon-inverse",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:159",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/icon/inverse",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-icon-inverse)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "surface": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.0}",
+        "$description": "Default surface for components and content areas: cards, fields, unchecked controls, Switch Off track.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-surface-default",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:162",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/surface/default",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-surface-default)"
+              }
+            }
+          }
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.100}",
+        "$description": "Background of disabled non-action controls (Text Field, Checkbox, Radio, Switch). Separate intent from action/disabled/background even though values match.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-surface-disabled",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:42:3",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/surface/disabled",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-surface-disabled)"
+              }
+            }
+          }
+        }
+      }
+    },
     "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.900}",
+        "$description": "Primary text: body copy, labels, values and headings on light surfaces. 13.5:1 on white. Default choice for any readable text.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-text-default",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:149",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/text/default",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "TEXT_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-text-default)"
+              }
+            }
+          }
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.500}",
+        "$description": "Text of disabled controls. 3.4:1 on white (disabled content is exempt from 1.4.3, but the exemption is not a target). Never for readable content that is merely de-emphasised; use text/subtle.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-text-disabled",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:151",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/text/disabled",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "TEXT_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-text-disabled)"
+              }
+            }
+          }
+        }
+      },
       "link": {
         "default": {
           "$type": "color",
@@ -658,6 +932,32 @@
                 "codeSyntax": {
                   "WEB": "var(--color-text-link-hover)"
                 }
+              }
+            }
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.700}",
+        "$description": "Secondary text: helper text, supporting text, metadata and captions. 7.4:1 on white. Not for disabled or placeholder content.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-text-subtle",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:150",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/text/subtle",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "TEXT_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-text-subtle)"
               }
             }
           }

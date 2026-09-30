@@ -115,18 +115,26 @@ where that target is required. `md` and `lg` exceed 44 px.
 - **Storybook** documentation: docs page, playground, sizes, states, brand comparison, examples, keyboard and
   long-label stories. Inline links are a documented recipe, not a component.
 
-Not yet included: loading, icons, Checkbox, Radio, Switch, Text Field (captured, not yet released), Select, full token
-export, native platforms.
+**Checkbox v1**:
+- native `<input type="checkbox">` in a wrapping label (the whole 44 px row is the target); unchecked / checked /
+  indeterminate with distinct marks; supporting text as description; visually hidden label for tables;
+- a **29-token closure** from its own capture; the stylesheet now publishes **62 public tokens**;
+- Financial / Invest through `data-brand` (only the selected colour changes); forced-colours treatment;
+- **Storybook**: selection, states, supporting text, select-all, fieldset/legend group, brand, long label, keyboard,
+  disabled. Group validation is future scope.
+
+Not yet included: loading, icons, Radio, Switch, Text Field (captured, not yet released), Select, full token export,
+native platforms.
 
 ## Verification
 
-`npm run verify -- --strict` runs 17 check groups on every build:
+`npm run verify -- --strict` runs 20 check groups on every build:
 - the read-only exporter never writes to Figma;
 - the sanitizer changes nothing but the approved identifiers;
 - generated tokens and CSS are fresh, deterministic and never hand-edited;
 - each released component's token closure matches its approved specification, and captures are mutually consistent;
-- components use only public tokens; Button is frozen against a regression baseline;
-- Chromium tests cover every Button hierarchy × size × state × brand and every Link size × state × brand;
+- components use only public tokens; Button and Link are frozen against regression baselines;
+- Chromium tests cover every Button hierarchy × size × state × brand every Link size × state × brand and every Checkbox selection × state × brand;
 - the Storybook static build, interaction tests and accessibility checks pass.
 
 The same verification runs in CI on every push.
@@ -156,7 +164,7 @@ npm run build-storybook           # static Storybook → storybook-static/
 |---|---|
 | `tools/figma-exporter/` | read-only Figma plugin that captures a component and its variables |
 | `packages/tokens/` | public snapshot, sanitizer, DTCG conversion, Style Dictionary build, `dist/ch-tokens.css` |
-| `packages/react/` | React components (Button v1, Link v1) and their tests |
+| `packages/react/` | React components (Button v1, Link v1, Checkbox v1) and their tests |
 | `.storybook/`, `*.stories.tsx`, `*.mdx` | Storybook configuration and component documentation |
 | `docs/decisions/` | architecture decision records |
 | `scripts/verify.mjs`, `tests/` | verification entry point and Storybook checks |

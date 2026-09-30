@@ -24,6 +24,31 @@
           }
         }
       }
+    },
+    "strong": {
+      "$type": "dimension",
+      "$value": "{border-width.2}",
+      "$description": "Emphasised edge for selection-control outlines and error borders on fields. Not for focus; use focus/width/*.",
+      "$extensions": {
+        "chavosh": {
+          "layer": "dimension",
+          "visibility": "public",
+          "css": "--ch-border-width-strong",
+          "figma": {
+            "variableId": "VariableID:5:87",
+            "collection": "Dimension",
+            "collectionId": "VariableCollectionId:5:58",
+            "path": "border-width/strong",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "STROKE_FLOAT"
+            ],
+            "codeSyntax": {
+              "WEB": "var(--border-width-strong)"
+            }
+          }
+        }
+      }
     }
   },
   "focus": {
@@ -129,6 +154,31 @@
               ],
               "codeSyntax": {
                 "WEB": "var(--font-weight-medium)"
+              }
+            }
+          }
+        }
+      },
+      "regular": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.400}",
+        "$description": "Weight for reading text: body copy, input values, supporting text and small data (body/*, data/sm). Not for labels or headings.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-font-weight-regular",
+            "figma": {
+              "variableId": "VariableID:5:60",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "font/weight/regular",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "FONT_WEIGHT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--font-weight-regular)"
               }
             }
           }
@@ -266,6 +316,31 @@
             }
           }
         }
+      },
+      "indicator": {
+        "$type": "dimension",
+        "$value": "{size.500}",
+        "$description": "Visible size of square/circular selection indicators (Checkbox box, Radio circle). Not the touch target; Switch geometry is intrinsic.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-size-control-indicator",
+            "figma": {
+              "variableId": "VariableID:51:4",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "size/control/indicator",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "WIDTH_HEIGHT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--size-control-indicator)"
+              }
+            }
+          }
+        }
       }
     },
     "touch-target": {
@@ -323,6 +398,31 @@
           }
         }
       },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{space.200}",
+        "$description": "Compact padding, e.g. top and bottom padding of Checkbox, Radio and Switch rows.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-component-sm",
+            "figma": {
+              "variableId": "VariableID:5:64",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/component/sm",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-component-sm)"
+              }
+            }
+          }
+        }
+      },
       "xl": {
         "$type": "dimension",
         "$value": "{space.600}",
@@ -350,6 +450,31 @@
       }
     },
     "gap": {
+      "md": {
+        "$type": "dimension",
+        "$value": "{space.300}",
+        "$description": "Gap between a selection control and its label (Checkbox, Radio, Switch).",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-gap-md",
+            "figma": {
+              "variableId": "VariableID:5:70",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/gap/md",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-gap-md)"
+              }
+            }
+          }
+        }
+      },
       "sm": {
         "$type": "dimension",
         "$value": "{space.200}",

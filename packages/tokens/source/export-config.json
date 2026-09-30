@@ -14,11 +14,17 @@
       "path": "snapshots/figma/chavosh-link.snapshot.public.json",
       "provenance": "snapshots/figma/chavosh-link.snapshot.public.provenance.json",
       "$comment": "Canonical Link capture (30 Sep 2026, exporter plugin v0.4.0). Released in M1 (ADR 0012)."
+    },
+    {
+      "id": "checkbox",
+      "components": ["Checkbox"],
+      "path": "snapshots/figma/chavosh-checkbox.snapshot.public.json",
+      "provenance": "snapshots/figma/chavosh-checkbox.snapshot.public.provenance.json",
+      "$comment": "Canonical Checkbox capture (30 Sep 2026, exporter plugin v0.4.0). Released in M2 (ADR 0014)."
     }
   ],
   "stagedSnapshots": [
     { "id": "text-field", "components": ["Text Field"], "path": "snapshots/figma/chavosh-text-field.snapshot.public.json", "provenance": "snapshots/figma/chavosh-text-field.snapshot.public.provenance.json" },
-    { "id": "checkbox", "components": ["Checkbox"], "path": "snapshots/figma/chavosh-checkbox.snapshot.public.json", "provenance": "snapshots/figma/chavosh-checkbox.snapshot.public.provenance.json" },
     { "id": "radio", "components": ["Radio"], "path": "snapshots/figma/chavosh-radio.snapshot.public.json", "provenance": "snapshots/figma/chavosh-radio.snapshot.public.provenance.json" },
     { "id": "switch", "components": ["Switch"], "path": "snapshots/figma/chavosh-switch.snapshot.public.json", "provenance": "snapshots/figma/chavosh-switch.snapshot.public.provenance.json" }
   ],
@@ -76,6 +82,14 @@
       "contract": "tests/link-v1-spec.json",
       "excludedLayers": ["leading-icon", "trailing-icon"],
       "$comment": "G4: export = dependency closure of Link's bindings. Link v1 is labels only (approved), so bindings on (or inside) the leading/trailing icon layers are recorded in the snapshot but do not enter the export closure. The Figma-only underline layer stays in scope: it binds the same link colours the production text-decoration uses. Layer names from the 30 Sep 2026 capture."
+    },
+    "Checkbox": {
+      "figmaNodeId": "52:1034",
+      "type": "COMPONENT_SET",
+      "exportScope": "checkbox-v1",
+      "contract": "tests/checkbox-v1-spec.json",
+      "excludedLayers": [],
+      "$comment": "G4: export = dependency closure of Checkbox's bindings. Every layer is in scope: the check/dash glyph is internal vector geometry (not an icon instance) and the supporting text is part of the v1 API. Layer names from the 30 Sep 2026 capture."
     }
   }
 }

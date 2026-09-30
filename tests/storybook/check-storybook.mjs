@@ -1,9 +1,9 @@
 // AUTHORED. Storybook verification (Storybook 10.6.0, Playwright 1.56.1 / Chromium) — complements, never replaces,
-// the component checks. Static: real Button and Link, token CSS loaded once, data-brand toolbar, no raw/duplicated values or
+// the component checks. Static: real Button, Link and Checkbox, token CSS loaded once, data-brand toolbar, no raw/duplicated values or
 // excluded props in stories. Build: the production static build succeeds; every story renders, its play function
 // passes (a failing play emits playFunctionThrewException while storyFinished still says "success", so both are
 // checked) and the a11y addon (axe-core) reports no violations; docs pages render; the Brand toolbar switches the real
-// Button and Link through data-brand; pseudo-state demos apply the real CSS rules. No output snapshots.
+// Button, Link and Checkbox through data-brand; pseudo-state demos apply the real CSS rules. No output snapshots.
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -17,14 +17,37 @@ const read = (p) => readFileSync(join(ROOT, p), "utf8");
 function assert(c, m) { if (!c) throw new Error(m); }
 const noComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1").replace(/\{\/\*[\s\S]*?\*\/\}/g, "");
 
-const STORY_FILES = ["packages/react/src/Button/Button.stories.tsx", "packages/react/src/Button/Button.mdx", "packages/react/src/Link/Link.stories.tsx", "packages/react/src/Link/Link.mdx", ".storybook/pages/Introduction.mdx", ".storybook/pages/Foundations.mdx"];
+const STORY_FILES = ["packages/react/src/Button/Button.stories.tsx", "packages/react/src/Button/Button.mdx", "packages/react/src/Link/Link.stories.tsx", "packages/react/src/Link/Link.mdx", "packages/react/src/Checkbox/Checkbox.stories.tsx", "packages/react/src/Checkbox/Checkbox.mdx", ".storybook/pages/Introduction.mdx", ".storybook/pages/Foundations.mdx"];
 const EXPECTED_ENTRIES = [
   "introduction--docs", "foundations-design-tokens--docs", "components-button--docs",
   "components-button--playground", "components-button--hierarchies", "components-button--sizes", "components-button--states",
   "components-button--brand-comparison", "components-button--long-label", "components-button--disabled", "components-button--keyboard",
   "components-link--docs", "components-link--playground", "components-link--sizes", "components-link--states",
   "components-link--brand-comparison", "components-link--examples", "components-link--long-label", "components-link--keyboard",
+  "components-checkbox--docs", "components-checkbox--playground", "components-checkbox--selection", "components-checkbox--states",
+  "components-checkbox--supporting-text", "components-checkbox--select-all", "components-checkbox--group", "components-checkbox--brand-comparison",
+  "components-checkbox--long-label", "components-checkbox--keyboard", "components-checkbox--disabled",
 ];
+const CHECKBOX_EXCLUDED = ["type", "error", "invalid", "size", "hover", "focus", "icon", "children", "variant"];
+// JSX attribute names of every <Tag …> in source (brace/quote aware, so arrow functions inside props are handled).
+function jsxAttrNames(src, tag) {
+  const out = [];
+  for (const m of src.matchAll(new RegExp(`<${tag}\\b`, "g"))) {
+    let i = m.index + tag.length + 1, depth = 0, quote = null, buf = "";
+    for (; i < src.length; i++) {
+      const c = src[i];
+      if (quote) { if (c === quote) quote = null; continue; }
+      if (c === '"' || c === "'" || c === "`") { if (depth === 0) buf += " "; quote = c; continue; }
+      if (c === "{") { depth++; continue; }
+      if (c === "}") { depth--; if (depth === 0) buf += " "; continue; }
+      if (depth > 0) continue;
+      if (c === ">") break;
+      buf += c;
+    }
+    out.push(...buf.replace(/=/g, " ").replace(/\//g, " ").trim().split(/\s+/).filter(Boolean));
+  }
+  return out;
+}
 const LINK_EXCLUDED = ["disabled", "as", "asChild", "leadingIcon", "trailingIcon", "icon", "visited", "variant", "current", "hover", "focus", "hierarchy"];
 const EXCLUDED = ["loading", "leadingIcon", "trailingIcon", "href", "as", "fullWidth", "disabledBehavior", "hover", "pressed", "focus", "spinner", "icon"];
 
@@ -43,6 +66,7 @@ function staticChecks() {
   assert(tokenImports.length === 1 && tokenImports[0] === ".storybook/preview.tsx", `ch-tokens.css must be imported exactly once, in .storybook/preview.tsx (found: ${tokenImports.join(", ") || "none"})`);
   assert(/import "\.\/button\.css"/.test(read("packages/react/src/Button/Button.tsx")), "Button must keep importing its own button.css");
   assert(/import "\.\/link\.css"/.test(read("packages/react/src/Link/Link.tsx")), "Link must import its own link.css");
+  assert(/import "\.\/checkbox\.css"/.test(read("packages/react/src/Checkbox/Checkbox.tsx")), "Checkbox must import its own checkbox.css");
 
   const stories = noComments(read("packages/react/src/Button/Button.stories.tsx"));
   assert(/import \{ Button[^}]*\} from "\.\/Button";/.test(stories) && /component: Button,/.test(stories), "stories must use the real Button (./Button)");
@@ -51,6 +75,7 @@ function staticChecks() {
     const code = f.endsWith(".mdx") ? noComments(read(f)).replace(/`[^`\n]*`/g, "") : noComments(read(f));
     assert(!/<button\b/.test(code), `${f}: renders a <button> of its own — stories must use the real Button`);
     assert(!/<a\b/.test(code), `${f}: renders an <a> of its own — stories must use the real Link`);
+    assert(!/<input\b/.test(code), `${f}: renders an <input> of its own — stories must use the real Checkbox`);
     assert(!/#[0-9a-fA-F]{3,8}\b|\b(rgba?|hsla?|oklch|lab)\(/.test(code), `${f}: raw colour value`);
     assert(!/--ch-[a-z0-9-]+\s*:/.test(code) && !/var\(--/.test(code), `${f}: token declarations or token references in documentation/stories`);
     assert(!/\bstyle=\{\{/.test(code), `${f}: inline styles`);
@@ -84,14 +109,29 @@ function staticChecks() {
   const linkKeys = [...linkArgTypes.matchAll(/^\s{4}(\w+):/gm)].map((m) => m[1]).sort();
   assert(JSON.stringify(linkKeys) === JSON.stringify(["children", "href", "onClick", "size"]), `Link argTypes ${linkKeys}`);
 
+  // Checkbox stories: the real Checkbox and only its API.
+  const cbStories = noComments(read("packages/react/src/Checkbox/Checkbox.stories.tsx"));
+  assert(/import \{ Checkbox[^}]*\} from "\.\/Checkbox";/.test(cbStories) && /component: Checkbox,/.test(cbStories), "stories must use the real Checkbox (./Checkbox)");
+  const cbProps = jsxAttrNames(cbStories, "Checkbox");
+  const cbArgs = [...cbStories.matchAll(/\bargs: \{([^}]*)\}/g)].flatMap((m) => [...m[1].matchAll(/(\w+):/g)].map((a) => a[1]));
+  const cbAllowed = new Set(["label", "supportingText", "hideLabel", "indeterminate", "disabled", "defaultChecked", "checked", "onChange", "name", "value", "key", "data-demo-state"]);
+  for (const p of [...cbProps, ...cbArgs]) assert(cbAllowed.has(p) && !CHECKBOX_EXCLUDED.includes(p), `prop "${p}" on Checkbox in stories is not part of the documented API`);
+  assert(cbProps.length >= 10 && cbArgs.includes("label"), "Checkbox prop scan found nothing — pattern out of date");
+  const cbInclude = /controls:\s*\{\s*include:\s*\[([^\]]*)\]/.exec(cbStories);
+  assert(cbInclude && JSON.stringify(cbInclude[1].match(/"([^"]+)"/g).map((x) => x.slice(1, -1)).sort()) === JSON.stringify(["defaultChecked", "disabled", "hideLabel", "indeterminate", "label", "supportingText"]), "Checkbox controls must be exactly label, supportingText, hideLabel, indeterminate, disabled, defaultChecked");
+  const cbArgTypes = /argTypes:\s*\{([\s\S]*?)\n  \},\n  parameters/.exec(cbStories)[1];
+  const cbKeys = [...cbArgTypes.matchAll(/^\s{4}(\w+):/gm)].map((m) => m[1]).sort();
+  assert(JSON.stringify(cbKeys) === JSON.stringify(["defaultChecked", "disabled", "hideLabel", "indeterminate", "label", "onChange", "supportingText"]), `Checkbox argTypes ${cbKeys}`);
+  assert(/<fieldset className="sb-fieldset">/.test(cbStories) && /<legend className="sb-legend">/.test(cbStories) && !/CheckboxGroup/.test(cbStories), "groups are native fieldset/legend composition (no CheckboxGroup)");
+
   // Brand toolbar via data-brand; viewport presets.
   assert(/value: "financial", title: "Financial"/.test(preview) && /value: "invest", title: "Invest"/.test(preview) && /initialGlobals: \{ brand: "financial" \}/.test(preview), "Brand toolbar: Financial (default) / Invest");
   assert(/<div data-brand=\{context\.globals\.brand \?\? "financial"\}>/.test(preview) && !/invest\s*\?|brand\s*===/.test(preview), "brand applied only through data-brand on the wrapper (no conditionals)");
   for (const w of ["375px", "768px", "1024px"]) assert(preview.includes(`width: "${w}"`), `viewport ${w}`);
   assert(read(".gitignore").includes("storybook-static/"), "storybook-static/ must be git-ignored");
   return [
-    "static: ch-tokens.css imported once (.storybook/preview.tsx); Button and Link keep their own button.css / link.css; stories use the real ./Button and ./Link; no <button> or <a>, raw colours, token declarations/references or inline styles in stories/docs; storybook.css is neutral layout",
-    "API: Button controls exactly hierarchy/size/type/disabled/children, no excluded props (loading, icons, href, as, fullWidth, state props, disabledBehavior); Link controls exactly href/size/children, no excluded props (disabled, as/asChild, icons, visited, variant, current, state props); stories render no <button>/<a> of their own; Brand toolbar Financial (default)/Invest via data-brand only; viewports 375/768/1024",
+    "static: ch-tokens.css imported once (.storybook/preview.tsx); Button, Link and Checkbox keep their own CSS; stories use the real ./Button, ./Link and ./Checkbox; no <button>, <a> or <input>, raw colours, token declarations/references or inline styles in stories/docs; storybook.css is neutral layout",
+    "API: Button controls exactly hierarchy/size/type/disabled/children, no excluded props (loading, icons, href, as, fullWidth, state props, disabledBehavior); Link controls exactly href/size/children, no excluded props (disabled, as/asChild, icons, visited, variant, current, state props); Checkbox controls exactly label/supportingText/hideLabel/indeterminate/disabled/defaultChecked, no excluded props (type, error/invalid, size, state props, icon, children); groups are native fieldset/legend; stories render no <button>/<a>/<input> of their own; Brand toolbar Financial (default)/Invest via data-brand only; viewports 375/768/1024",
   ];
 }
 
@@ -110,7 +150,7 @@ export async function run() {
     const ids = Object.keys(index.entries).sort();
     assert(JSON.stringify(ids) === JSON.stringify([...EXPECTED_ENTRIES].sort()), `story index ${ids}`);
     const storyCount = (c) => ids.filter((i) => i.startsWith(`components-${c}--`) && index.entries[i].type === "story").length;
-    lines.push(`static build: storybook build succeeded in ${Math.round((Date.now() - t0) / 1000)}s; index = Introduction, Foundations/Design tokens, Components/Button (docs + ${storyCount("button")} stories), Components/Link (docs + ${storyCount("link")} stories) — nothing else`);
+    lines.push(`static build: storybook build succeeded in ${Math.round((Date.now() - t0) / 1000)}s; index = Introduction, Foundations/Design tokens, Components/Button (docs + ${storyCount("button")} stories), Components/Link (docs + ${storyCount("link")} stories), Components/Checkbox (docs + ${storyCount("checkbox")} stories) — nothing else`);
 
     server = await serveStatic(out);
     browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
@@ -146,15 +186,15 @@ export async function run() {
       if (events.some((e) => e.type === "storyRenderPhaseChanged" && e.arg.newPhase === "played")) plays++;
       await page.close();
     }
-    assert(plays === 7, `expected 7 play functions to complete, saw ${plays}`);
+    assert(plays === 12, `expected 12 play functions to complete, saw ${plays}`);
     const axe = JSON.parse(read("node_modules/axe-core/package.json")).version;
-    lines.push(`stories: all ${ids.filter((i) => index.entries[i].type === "story").length} render; ${plays} play functions pass (Button: Playground click, Disabled non-activation + not focusable, Keyboard Tab/focus-visible/Enter/Space, Long label no clipping; Link: Playground click, Keyboard Tab/focus-visible/Enter activates/Space does not, Long label wraps underlined without clipping); a11y addon (axe-core ${axe}) reports 0 violations on every story (${a11yPasses} passed rule results) — automated evidence only`);
+    lines.push(`stories: all ${ids.filter((i) => index.entries[i].type === "story").length} render; ${plays} play functions pass (Button: Playground click, Disabled non-activation + not focusable, Keyboard Tab/focus-visible/Enter/Space, Long label no clipping; Link: Playground click, Keyboard Tab/focus-visible/Enter activates/Space does not, Long label wraps underlined without clipping; Checkbox: Playground label click, Select all indeterminate ↔ all, Long label first-line box, Keyboard Space toggles / Enter does not, Disabled cannot change or focus); a11y addon (axe-core ${axe}) reports 0 violations on every story (${a11yPasses} passed rule results) — automated evidence only`);
 
     for (const id of ids.filter((i) => index.entries[i].type === "docs")) {
       const { page } = await open(`id=${id}&viewMode=docs`, "docsRendered");
       await page.close();
     }
-    lines.push("docs: Introduction, Foundations/Design tokens and the Button and Link docs pages render without errors");
+    lines.push("docs: Introduction, Foundations/Design tokens and the Button, Link and Checkbox docs pages render without errors");
 
     // Brand toolbar → data-brand → real Button colours; token CSS present once in the preview.
     for (const brand of ["financial", "invest"]) {
@@ -184,7 +224,18 @@ export async function run() {
       assert(r.minH === `${resolve("size.touch-target.min", "financial").value}px` && r.linkRules === 1, `Link min-height ${r.minH} / link.css loaded ×${r.linkRules}`);
       await page.close();
     }
-    lines.push("brand toolbar: globals brand=financial|invest sets data-brand on the wrapper; the real Button resolves the matching DTCG primary colour and the real Link the matching link colour (underlined, 44px minimum); token stylesheet, button.css and link.css each loaded exactly once");
+    for (const brand of ["financial", "invest"]) {
+      const { page } = await open(`id=components-checkbox--selection&viewMode=story&globals=brand:${brand}`, "storyFinished");
+      const r = await page.evaluate(() => {
+        const input = [...document.querySelectorAll("#storybook-root input")].find((i) => i.checked);
+        const rules = [...document.styleSheets].flatMap((s) => { try { return [...s.cssRules]; } catch { return []; } });
+        return { root: input.closest("label").className, wrapper: input.closest("[data-brand]")?.getAttribute("data-brand"), bg: getComputedStyle(input.nextElementSibling).backgroundColor, minH: getComputedStyle(input.closest("label")).minHeight, cbRules: rules.filter((x) => x.selectorText === ".ch-checkbox").length };
+      });
+      assert(r.root === "ch-checkbox" && r.wrapper === brand && r.bg === colour("color.control.checked", brand), `${brand}: real Checkbox ${JSON.stringify(r)} ≠ ${colour("color.control.checked", brand)}`);
+      assert(r.minH === `${resolve("size.touch-target.min", "financial").value}px` && r.cbRules === 1, `Checkbox min-height ${r.minH} / checkbox.css loaded ×${r.cbRules}`);
+      await page.close();
+    }
+    lines.push("brand toolbar: globals brand=financial|invest sets data-brand on the wrapper; the real Button resolves the matching DTCG primary colour and the real Link the matching link colour (underlined, 44px minimum); the real Checkbox the matching control/checked fill (44px row); token stylesheet, button.css, link.css and checkbox.css each loaded exactly once");
 
     // Pseudo-state demonstrations apply the real CSS rules (incl. the @media (hover: hover) hover rule).
     const { page } = await open("id=components-button--states&viewMode=story", "storyFinished");
@@ -211,6 +262,20 @@ export async function run() {
       assert(ls.focus.deco === "underline" && ls.focus.outline === `solid ${resolve("focus.width.indicator", "financial").value}px`, `Link pseudo focus ${JSON.stringify(ls.focus)}`);
       await lp.close();
     }
+    {
+      const { page: cp } = await open("id=components-checkbox--states&viewMode=story", "storyFinished");
+      await cp.waitForTimeout(300);
+      const cs = await cp.evaluate(() => {
+        const boxes = [...document.querySelectorAll(".ch-checkbox__input")];
+        const q = (label) => boxes.find((i) => i.closest(".ch-checkbox").textContent === label);
+        const s = (i) => { const b = getComputedStyle(i.nextElementSibling); return { bg: b.backgroundColor, bc: b.borderTopColor, outline: `${b.outlineStyle} ${b.outlineWidth}`, disabled: i.disabled }; };
+        return { def: s(q("Unchecked · Default")), hover: s(q("Unchecked · Hover")), chHover: s(q("Checked · Hover")), focus: s(q("Checked · Focus-visible")), dis: s(q("Indeterminate · Disabled")) };
+      });
+      assert(cs.def.bc === colour("color.border.input", "financial") && cs.hover.bc === colour("color.border.strong", "financial") && cs.chHover.bg === colour("color.control.checked-hover", "financial"), `Checkbox pseudo hover ${JSON.stringify(cs)}`);
+      assert(cs.focus.outline === `solid ${resolve("focus.width.indicator", "financial").value}px` && cs.dis.disabled && cs.dis.bg === colour("color.surface.disabled", "financial"), `Checkbox pseudo focus/disabled ${JSON.stringify(cs)}`);
+      await cp.close();
+    }
+    lines.push("Checkbox States story: pseudo-states addon applies the real row :hover (border/strong unchecked, checked-hover fill) and box :focus-visible (3px ring); disabled is the native attribute — no state props");
     lines.push("Link States story: pseudo-states addon applies the real rules — underline 1px at rest; :hover (via @media (hover: hover)) hover colour + 2px underline; :focus-visible 3px ring with the underline kept — no state props");
   } finally {
     if (browser) await browser.close();

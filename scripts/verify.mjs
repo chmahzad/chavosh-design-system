@@ -16,8 +16,11 @@ const CHECKS = [
   "packages/react/tests/check-react-tokens.mjs",
   "packages/react/tests/check-react-browser.mjs",
   "packages/react/tests/check-button-baseline.mjs",
+  "packages/react/tests/check-link-baseline.mjs",
   "packages/react/tests/check-link-tokens.mjs",
   "packages/react/tests/check-link-browser.mjs",
+  "packages/react/tests/check-checkbox-tokens.mjs",
+  "packages/react/tests/check-checkbox-browser.mjs",
   "tests/storybook/check-storybook.mjs",
 ];
 const strict = process.argv.includes("--strict");

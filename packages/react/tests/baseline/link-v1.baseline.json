@@ -1,0 +1,150 @@
+{
+  "$comment": "AUTHORED. Link v1 regression baseline, recorded from commit 7da1127 (the committed Link v1 reference, ADR 0013). Link source, CSS, stories, docs, its verification files, contract and ADR 0013 must stay byte-identical, and the resolved CSS contract of its 15 public tokens (incl. the internal brand declarations they reference) must not change. Changing this file requires a new ADR. Checked by check-link-baseline (ADR 0014).",
+  "sourceCommit": "7da1127aae7dc7282b36eb4176d0881032fb84ee",
+  "files": {
+    "packages/react/src/Link/Link.tsx": "e92007fb1996227745610d8e04905da3b773191fa873756d0efdcfa21755c495",
+    "packages/react/src/Link/link.css": "284a4764fd8d92f99412fcabc61dbed04a8669fc85c57de16526e839a62aa847",
+    "packages/react/src/Link/Link.stories.tsx": "5dc05f21f7f9047a3b4e516cdf98653de562668fe52e182a6de076dd9016a3da",
+    "packages/react/src/Link/Link.mdx": "cecb6c7ab3d2fd0b237e27f047edec5d6158170a01225d314d1bc7f506b370c6",
+    "packages/react/tests/check-link-tokens.mjs": "6cdfed47662d0372ddcf091cd606ba234cf4eabf82fc1d80888ab6a39c737797",
+    "packages/react/tests/check-link-browser.mjs": "0eaedb46da1bf922f388e7feb4bb4552d77b7e8cfd23130f2d44e1c70bb38650",
+    "packages/react/tests/link-harness/index.html": "e6c9fa5a81d9e5074e8fce984f024998432ea62733b0e5c9168e1b8cc1a2fe5c",
+    "packages/react/tests/link-harness/main.tsx": "f96aeeea46eba99b0df63b340f8dbc75ecdf093cfbce49c40b1d8b7381042ef5",
+    "packages/react/tests/types/link-api.tsx": "feada03f0b63b4f7bba4782b64ae5f83b4481369ac3018b7a41600d84fc73b32",
+    "packages/tokens/tests/link-v1-spec.json": "1efd6a71c5b13c92b25f388477f8f053c1bd1188cd29b2850254af07f31ff6f7",
+    "docs/decisions/0013-link-v1-implementation-mapping.md": "b8a005b36639f61c5b2c619fa3fda91a24e6bc8ff794cf9726203df929d0ae18"
+  },
+  "publicTokens": [
+    "--ch-color-focus-indicator",
+    "--ch-color-focus-outer",
+    "--ch-color-text-link-default",
+    "--ch-color-text-link-hover",
+    "--ch-focus-width-indicator",
+    "--ch-focus-width-outer",
+    "--ch-font-family-sans",
+    "--ch-font-line-height-label-md",
+    "--ch-font-line-height-label-sm",
+    "--ch-font-size-label-md",
+    "--ch-font-size-label-sm",
+    "--ch-font-weight-medium",
+    "--ch-radius-sm",
+    "--ch-size-touch-target-min",
+    "--ch-space-gap-xs"
+  ],
+  "declarations": [
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-text-link-default",
+      "value": "var(--ch-brand-primary-700)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-text-link-hover",
+      "value": "var(--ch-brand-primary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-indicator",
+      "value": "3px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-outer",
+      "value": "2px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-family-sans",
+      "value": "Inter, system-ui, sans-serif"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-weight-medium",
+      "value": "500"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-radius-sm",
+      "value": "0.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-touch-target-min",
+      "value": "2.75rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-gap-xs",
+      "value": "0.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-label-md",
+      "value": "1.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-label-sm",
+      "value": "1.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-label-md",
+      "value": "1rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-label-sm",
+      "value": "0.875rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-indicator",
+      "value": "#fbdf06"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-outer",
+      "value": "#1b222c"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-700",
+      "value": "#335493"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#1e3d7a"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-700",
+      "value": "#7226c9"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#590da2"
+    }
+  ]
+}
