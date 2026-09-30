@@ -62,12 +62,27 @@
       "rawCaptureSha256": "081685a52695d4c779006db16aedb358fd5c27cf513998abba21ff7995c77402",
       "extractorVersion": "0.3.0",
       "sourceFileName": "Chavosh Financial — Design System"
+    },
+    {
+      "id": "switch",
+      "components": [
+        "Switch"
+      ],
+      "path": "snapshots/figma/chavosh-switch.snapshot.public.json",
+      "sha256": "30dc2d694d75b7cc7afd0d6d0386e89f5487a37d332540f0986554e3681fb699",
+      "bytes": 102187,
+      "schema": "chavosh.figma-public-snapshot",
+      "schemaVersion": "1.0.0",
+      "sanitizerVersion": "1.0.0",
+      "rawCaptureSha256": "25f2859b173fcc0a7a2ef7b9d985d7d4d562c809fc7ed260ee5af4e2ef3c6e1e",
+      "extractorVersion": "0.3.0",
+      "sourceFileName": "Chavosh Financial — Design System"
     }
   ],
   "tokenCounts": {
     "brand-financial": 9,
     "brand-invest": 9,
-    "color": 34,
+    "color": 36,
     "dimension": 21,
     "primitives": 50,
     "responsive-desktop": 8,
@@ -262,6 +277,52 @@
           "body/sm"
         ],
         "excludedOnly": []
+      },
+      {
+        "name": "Switch",
+        "figmaNodeId": "63:1411",
+        "exportScope": "switch-v1",
+        "variants": 8,
+        "bindings": 252,
+        "bindingsInScope": 252,
+        "excludedLayers": [],
+        "boundTokens": [
+          "border-width/strong",
+          "color/border/disabled",
+          "color/border/input",
+          "color/border/strong",
+          "color/control/checked",
+          "color/control/checked-hover",
+          "color/focus/indicator",
+          "color/focus/outer",
+          "color/icon/default",
+          "color/icon/disabled",
+          "color/icon/inverse",
+          "color/icon/subtle",
+          "color/surface/default",
+          "color/surface/disabled",
+          "color/text/default",
+          "color/text/disabled",
+          "color/text/subtle",
+          "focus/width/indicator",
+          "focus/width/outer",
+          "font/family/sans",
+          "font/line-height/body/md",
+          "font/line-height/body/sm",
+          "font/size/body/md",
+          "font/size/body/sm",
+          "font/weight/regular",
+          "radius/full",
+          "size/touch-target/min",
+          "space/component/sm",
+          "space/gap/md",
+          "space/gap/xs"
+        ],
+        "styles": [
+          "body/md",
+          "body/sm"
+        ],
+        "excludedOnly": []
       }
     ],
     "textStyles": [
@@ -349,7 +410,7 @@
   "files": {
     "brand-financial.tokens.json": "63ae0c6313579dd1c933159cee19e740b717d1b105d47650c959352607b6fa84",
     "brand-invest.tokens.json": "9cdaa9b8f89279c5f87b973c9e050079360f5c08a5e13689d1fd3ceecc813a7b",
-    "color.tokens.json": "bc6c59a5773d06e6fb54023d4375b8a0201216aea0d7481064b141eb23ec6247",
+    "color.tokens.json": "377c6c86f4bd776d4909e8fa253bbe2f9eae815e0be0ea326bbf6caf8a8ea988",
     "dimension.tokens.json": "aa1b3c58bde3ab8416d1ee8b50f5a14b4258ab97d4052a48ff347ff62ff629c9",
     "primitives.tokens.json": "a7eb3e59602bb2d95a4b1d64d678c5d0e5979d5c699e6dc6fbc91cf638394dab",
     "responsive-desktop.tokens.json": "69e4c7c8abbf0ebced4f9c99083661b9bfa462dde14f2fb3c102b1416773f865",

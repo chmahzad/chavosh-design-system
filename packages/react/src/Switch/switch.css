@@ -1,0 +1,171 @@
+/*
+ * AUTHORED. Chavosh Financial — Switch v1. Contract: docs/decisions/0016-switch-v1-implementation-mapping.md.
+ * Consumes ONLY public --ch-* tokens from @chavosh/tokens/ch-tokens.css (loaded once at the application entry, not here).
+ * Never: primitives, --ch-brand-*, raw design values. Documented exceptions (ADR 0016):
+ * - approved intrinsic Switch geometry (Switch architecture §2/§8, Foundations review): track 44×24, thumb 16×16,
+ *   4px inset → 20px travel. Expressed in rem (2.75rem × 1.5rem, 1rem thumb drawn as a 0.5rem border, 0.25rem inset,
+ *   1.25rem travel) so it scales with text like every tokenised control dimension (web policy decision 4);
+ * - approved motion (Select architecture §12, Foundations motion rules; tokens deferred): 150ms,
+ *   cubic-bezier(0.2, 0, 0, 1); 0ms under prefers-reduced-motion: reduce; state commits immediately;
+ * - layout keywords and 0 / 100% (hidden native input over the track); system colours in forced-colours mode.
+ * --_sw-* are PRIVATE implementation variables of this file (not tokens, not API), set only from public tokens.
+ */
+.ch-switch {
+  --_sw-bg: var(--ch-color-surface-default);
+  --_sw-border: var(--ch-color-border-input);
+  --_sw-thumb: var(--ch-color-icon-subtle);
+  --_sw-label: var(--ch-color-text-default);
+  --_sw-support: var(--ch-color-text-subtle);
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start; /* top-aligned: wrapping text keeps the track on the first line */
+  gap: var(--ch-space-gap-md);
+  min-height: var(--ch-size-touch-target-min); /* the whole row is the target; it grows with text */
+  margin: 0;
+  padding-block: var(--ch-space-component-sm);
+  padding-inline: 0px;
+  cursor: pointer;
+  font-family: var(--ch-font-family-sans);
+  font-weight: var(--ch-font-weight-regular);
+}
+
+/* ---- Text first (fills the row), control trailing ------------------------------------------------------------- */
+.ch-switch__text {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ch-space-gap-xs);
+  min-width: 0;
+}
+.ch-switch__label {
+  color: var(--_sw-label);
+  font-size: var(--ch-font-size-body-md);
+  line-height: var(--ch-font-line-height-body-md);
+  overflow-wrap: break-word;
+}
+.ch-switch__supporting {
+  color: var(--_sw-support);
+  font-size: var(--ch-font-size-body-sm);
+  line-height: var(--ch-font-line-height-body-sm);
+  overflow-wrap: break-word;
+}
+
+/* ---- Control: track aligned to the first label line (Figma control-wrap = body/md line height) ----------------- */
+.ch-switch__control {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--ch-font-line-height-body-md);
+}
+.ch-switch__track {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 2.75rem; /* intrinsic: 44px track */
+  height: 1.5rem; /* intrinsic: 24px track */
+  border: var(--ch-border-width-strong) solid var(--_sw-border);
+  border-radius: var(--ch-radius-full);
+  background-color: var(--_sw-bg);
+  transition: background-color 150ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+/* Native input: transparent, exactly over the track — real checkbox/switch semantics, focus, keyboard and click. */
+.ch-switch__input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+/* Thumb: 16px circle, 4px from the track's outer edge; drawn as a border so it survives forced colours. */
+.ch-switch__thumb {
+  position: absolute;
+  top: calc(0.25rem - var(--ch-border-width-strong)); /* intrinsic: 4px inset from the outer edge */
+  inset-inline-start: calc(0.25rem - var(--ch-border-width-strong));
+  box-sizing: border-box;
+  width: 0px;
+  height: 0px;
+  border: 0.5rem solid var(--_sw-thumb); /* intrinsic: 16px thumb */
+  border-radius: var(--ch-radius-full);
+  transition: transform 150ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---- On: thumb at the end (position, not colour, carries the state); selection colour ---------------------------- */
+.ch-switch__input:checked + .ch-switch__track {
+  --_sw-bg: var(--ch-color-control-checked);
+  --_sw-border: var(--ch-color-control-checked);
+  --_sw-thumb: var(--ch-color-icon-inverse);
+}
+.ch-switch__input:checked + .ch-switch__track .ch-switch__thumb {
+  transform: translateX(1.25rem); /* intrinsic: 20px travel (thumb x 4 → 24) */
+}
+.ch-switch__input:checked + .ch-switch__track .ch-switch__thumb:dir(rtl) {
+  transform: translateX(-1.25rem);
+}
+
+/* ---- Hover (row or track; hover-capable pointers only; never when disabled) ------------------------------------ */
+@media (hover: hover) {
+  .ch-switch:hover .ch-switch__input:enabled + .ch-switch__track {
+    --_sw-border: var(--ch-color-border-strong);
+    --_sw-thumb: var(--ch-color-icon-default);
+  }
+  .ch-switch:hover .ch-switch__input:enabled:checked + .ch-switch__track {
+    --_sw-bg: var(--ch-color-control-checked-hover);
+    --_sw-border: var(--ch-color-control-checked-hover);
+    --_sw-thumb: var(--ch-color-icon-inverse);
+  }
+}
+
+/* ---- Focus: keyboard focus only, pill ring around the track; 3px indicator (outline) + 2px outer ring ----------- */
+.ch-switch__input:focus-visible + .ch-switch__track {
+  outline: var(--ch-focus-width-indicator) solid var(--ch-color-focus-indicator);
+  outline-offset: 0px;
+  box-shadow: 0 0 0 calc(var(--ch-focus-width-indicator) + var(--ch-focus-width-outer)) var(--ch-color-focus-outer);
+}
+
+/* ---- Disabled (native, incl. a disabled <fieldset>): grey track; the thumb keeps its position ------------------- */
+.ch-switch__input:disabled + .ch-switch__track {
+  --_sw-bg: var(--ch-color-surface-disabled);
+  --_sw-border: var(--ch-color-border-disabled);
+  --_sw-thumb: var(--ch-color-icon-disabled);
+}
+.ch-switch:has(.ch-switch__input:disabled) {
+  --_sw-label: var(--ch-color-text-disabled);
+  --_sw-support: var(--ch-color-text-disabled);
+  cursor: default;
+}
+
+/* ---- Reduced motion: instant (the state never waits for an animation) ------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .ch-switch__track,
+  .ch-switch__thumb {
+    transition-duration: 0ms;
+  }
+}
+
+/* ---- Forced colours: real track boundary, thumb in the system text colour, focus outline preserved -------------- */
+@media (forced-colors: active) {
+  .ch-switch__track,
+  .ch-switch__input:checked + .ch-switch__track {
+    border-color: CanvasText;
+    background-color: Canvas;
+  }
+  .ch-switch__thumb {
+    border-color: CanvasText;
+  }
+  .ch-switch__input:disabled + .ch-switch__track,
+  .ch-switch__input:disabled + .ch-switch__track .ch-switch__thumb {
+    border-color: GrayText;
+  }
+  .ch-switch:has(.ch-switch__input:disabled) .ch-switch__label,
+  .ch-switch:has(.ch-switch__input:disabled) .ch-switch__supporting {
+    color: GrayText;
+  }
+  .ch-switch__input:focus-visible + .ch-switch__track {
+    outline-color: Highlight;
+  }
+}

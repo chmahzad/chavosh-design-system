@@ -28,11 +28,17 @@
       "path": "snapshots/figma/chavosh-radio.snapshot.public.json",
       "provenance": "snapshots/figma/chavosh-radio.snapshot.public.provenance.json",
       "$comment": "Canonical Radio capture (30 Sep 2026, exporter plugin v0.4.0). Released in M3 (ADR 0015)."
+    },
+    {
+      "id": "switch",
+      "components": ["Switch"],
+      "path": "snapshots/figma/chavosh-switch.snapshot.public.json",
+      "provenance": "snapshots/figma/chavosh-switch.snapshot.public.provenance.json",
+      "$comment": "Canonical Switch capture (30 Sep 2026, exporter plugin v0.4.0). Released in M4 (ADR 0016)."
     }
   ],
   "stagedSnapshots": [
-    { "id": "text-field", "components": ["Text Field"], "path": "snapshots/figma/chavosh-text-field.snapshot.public.json", "provenance": "snapshots/figma/chavosh-text-field.snapshot.public.provenance.json" },
-    { "id": "switch", "components": ["Switch"], "path": "snapshots/figma/chavosh-switch.snapshot.public.json", "provenance": "snapshots/figma/chavosh-switch.snapshot.public.provenance.json" }
+    { "id": "text-field", "components": ["Text Field"], "path": "snapshots/figma/chavosh-text-field.snapshot.public.json", "provenance": "snapshots/figma/chavosh-text-field.snapshot.public.provenance.json" }
   ],
   "$stagedSnapshotsComment": "Recorded canonical captures (30 Sep 2026) whose components are not released yet. They pass the same provenance gate and cross-capture consistency check as publicSnapshots but do not enter the build or the public CSS surface. Each moves to publicSnapshots (with a components entry and contract) in its own milestone.",
   "cssPrefix": "ch",
@@ -104,6 +110,14 @@
       "contract": "tests/radio-v1-spec.json",
       "excludedLayers": [],
       "$comment": "G4: export = dependency closure of Radio's bindings. Every layer is in scope: the dot is intrinsic Radio geometry (not an icon) and the supporting text is part of the v1 API. Layer names from the 30 Sep 2026 capture."
+    },
+    "Switch": {
+      "figmaNodeId": "63:1411",
+      "type": "COMPONENT_SET",
+      "exportScope": "switch-v1",
+      "contract": "tests/switch-v1-spec.json",
+      "excludedLayers": [],
+      "$comment": "G4: export = dependency closure of Switch's bindings. Every layer is in scope: the track and thumb are intrinsic Switch geometry (not icons) and the supporting text is part of the v1 API. Layer names from the 30 Sep 2026 capture."
     }
   }
 }

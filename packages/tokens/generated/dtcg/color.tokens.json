@@ -715,6 +715,33 @@
       }
     },
     "icon": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.800}",
+        "$description": "Standalone meaningful icons at full emphasis. 10.5:1 on white.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-icon-default",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:156",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/icon/default",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-icon-default)"
+              }
+            }
+          }
+        }
+      },
       "disabled": {
         "$type": "color",
         "$value": "{color.neutral.500}",
@@ -764,6 +791,33 @@
               ],
               "codeSyntax": {
                 "WEB": "var(--color-icon-inverse)"
+              }
+            }
+          }
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.600}",
+        "$description": "Secondary icons and neutral control marks: field leading icons, Select chevron, Switch Off thumb. 5.0:1 on white — meets 3:1 for meaningful graphics.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-icon-subtle",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:157",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/icon/subtle",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "SHAPE_FILL",
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-icon-subtle)"
               }
             }
           }

@@ -1,0 +1,81 @@
+import { Meta, Title, Subtitle, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as SwitchStories from "./Switch.stories";
+
+<Meta of={SwitchStories} />
+
+<Title>Switch</Title>
+<Subtitle>A binary setting that takes effect immediately. v1.</Subtitle>
+
+## Purpose
+Switch turns one setting on or off, and the change takes effect straight away — for example "Show balances on dashboard" or "Sign in with Face ID". It is a native `<input type="checkbox" role="switch">`; the text comes first and the switch trails; the whole row is the target.
+
+**Switch or Checkbox?** Use Switch only for immediate, reversible settings. Use Checkbox for choices that are submitted later, for consents and terms, and in forms. **Never** use a Switch for high-consequence or irreversible actions (for example opting out of insurance cover) — use a dedicated flow with an explanation and confirmation.
+
+<Canvas of={SwitchStories.Playground} />
+<Controls of={SwitchStories.Playground} />
+
+## States
+States are browser behaviour, not props. Off and On are shown by the thumb's position — left for Off, right for On — in every state, so they never depend on colour alone.
+- **Hover** (hover-capable pointers only): anywhere on the row — a stronger track border and darker thumb when Off, a darker track when On.
+- **Focus-visible** (keyboard): the Chavosh focus ring around the track — a 3px indicator and a 2px outer ring, pill-shaped.
+- **Disabled**: the native `disabled` attribute, including a disabled `<fieldset>`.
+
+The examples below are a documentation-only simulation: Hover and Focus-visible are forced by the Storybook pseudo-states addon, which applies Switch's real CSS rules. The **Playground** is the real browser interaction.
+
+<Canvas of={SwitchStories.States} />
+
+## Label and supporting text
+The label names the setting and never changes with the state — there is no visible "On/Off" text. Optional supporting text is announced as the description.
+
+<Canvas of={SwitchStories.SupportingText} />
+
+## Settings lists
+Group related settings with a native `<fieldset>` and `<legend>`. Each switch is independent and its own tab stop — there is no Switch Group component.
+
+<Canvas of={SwitchStories.Settings} />
+
+## Immediate effect
+The state changes as soon as the switch is toggled; the owner applies the setting (`checked` + `onChange` for controlled use). If the effect isn't visible on screen, announce the result with a status message. Pending and failure feedback belong to the surrounding pattern (an inline status or toast; revert and explain on failure).
+
+<Canvas of={SwitchStories.Controlled} />
+
+## Motion
+The thumb slides and the track colour changes over 150ms (`cubic-bezier(0.2, 0, 0, 1)`). The state is committed immediately — the animation never delays it. With **reduced motion** turned on in the operating system, the change is instant.
+
+## Behaviour
+- The row is at least 44px high and grows with wrapping text; the switch stays trailing, aligned with the first line of the label.
+- The track (44×24), thumb (16) and its 4px inset scale with the text size.
+- In right-to-left layouts the thumb moves the other way.
+
+<Canvas of={SwitchStories.LongLabel} />
+
+## Accessibility
+- Native checkbox with `role="switch"`: announced as a switch that is on or off, from the native checked state.
+- Name: the label text only; description: the supporting text (and any `aria-describedby` you pass).
+- Keyboard: Tab reaches each switch in document order; **Space** toggles it; Enter and arrow keys do not. Keyboard focus shows the focus ring on the track; a mouse click does not.
+- Target: the whole row, at least 44px high.
+- Forced-colours mode: the track keeps a system-colour border, the thumb stays visible in the system text colour (its position still shows the state), disabled uses `GrayText`, and the focus outline remains.
+- Automated checks (the Accessibility panel and the design system's browser tests) are evidence, **not** a WCAG 2.2 AA conformance claim. Screen-reader (VoiceOver, NVDA, TalkBack) and manual testing remain required.
+
+<Canvas of={SwitchStories.Keyboard} />
+
+## Disabled
+<Canvas of={SwitchStories.Disabled} />
+
+## Brand
+Switch has no brand logic. Only the On track follows the brand context — **Financial** by default, **Invest** under `data-brand="invest"`, including nested contexts. Off, thumb, disabled and focus colours are shared.
+
+<Canvas of={SwitchStories.BrandComparison} />
+
+## Forms
+A switch is a checkbox in forms: when on, it submits its `name` and `value` (`"on"` by default); when off, it submits nothing. The `name` is always yours to set — Switch never derives it from the label.
+
+## Known limitations
+- No visible On/Off text, no loading/pending state and no error state in v1.
+- One size. Track and thumb geometry are internal component values, not tokens; motion values are component-level until motion tokens exist.
+
+## API
+
+<ArgTypes of={SwitchStories.Playground} />
+
+Other native `<input>` attributes (for example `checked`, `onChange`, `name`, `value`, `required`, `form`, `id`, `aria-*`, `data-*`, `ref`) are passed to the input; `type` and `role` are fixed. `className` is applied to the row. Don't use `className` or `style` to override Switch's colours, spacing or typography.

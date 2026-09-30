@@ -11,3 +11,4 @@
 .sb-legend { padding: 0; margin-bottom: 0.5rem; font: 600 1rem/1.5 system-ui, sans-serif; }
 .sb-table { border-collapse: collapse; font: 0.875rem/1.4 system-ui, sans-serif; }
 .sb-table th, .sb-table td { padding: 0 1rem 0 0; text-align: start; vertical-align: middle; }
+.sb-narrow-md { max-width: 22rem; }

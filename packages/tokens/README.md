@@ -12,7 +12,7 @@ Public Figma snapshot (sanitized from a private raw capture, ADR 0011) → DTCG 
 | `build/build-css.mjs` | handwritten | policy check → Style Dictionary per brand × breakpoint → validation → CSS |
 | `build/lib/` | handwritten | description guard; unit/colour/font helpers |
 | `generated/dtcg/` | generated | 8 DTCG sets + `_manifest.json` (incl. traceability) |
-| `dist/ch-tokens.css` | generated | 63 public properties (union of the Button, Link, Checkbox and Radio closures) + 18 internal `--ch-brand-*` declarations |
+| `dist/ch-tokens.css` | generated | 65 public properties (union of the Button, Link, Checkbox, Radio and Switch closures) + 18 internal `--ch-brand-*` declarations |
 | `tests/` | tests | units, DTCG, CSS, Chromium, determinism/freshness, production state |
 
 Consumption: import `@chavosh/tokens/ch-tokens.css` once; components use only public `var(--ch-*)` tokens — never `--ch-brand-*`, never raw values. Brand via `data-brand` on any ancestor (Financial by default); breakpoints are in the stylesheet.

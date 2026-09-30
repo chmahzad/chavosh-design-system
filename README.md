@@ -129,18 +129,21 @@ where that target is required. `md` and `lg` exceed 44 px.
 - a **28-token closure** from its own capture; the stylesheet now publishes **63 public tokens**;
 - selected state shown by a dot (never colour alone); forced-colours treatment; Financial / Invest through `data-brand`.
 
-Not yet included: loading, icons, Switch, Text Field (captured, not yet released), Select, full token export, native
-platforms.
+**Switch v1**: native `<input type="checkbox" role="switch">`, text first and switch trailing, 44×24 track with the
+thumb position showing Off/On, 150 ms motion (instant with reduced motion); a **30-token closure**; the stylesheet now
+publishes **65 public tokens**.
+
+Not yet included: loading, icons, Text Field (captured, not yet released), Select, full token export, native platforms.
 
 ## Verification
 
-`npm run verify -- --strict` runs 23 check groups on every build:
+`npm run verify -- --strict` runs 26 check groups on every build:
 - the read-only exporter never writes to Figma;
 - the sanitizer changes nothing but the approved identifiers;
 - generated tokens and CSS are fresh, deterministic and never hand-edited;
 - each released component's token closure matches its approved specification, and captures are mutually consistent;
-- components use only public tokens; Button, Link and Checkbox are frozen against regression baselines;
-- Chromium tests cover every Button hierarchy × size × state × brand every Link size × state × brand every Checkbox and Radio selection × state × brand, and native radio grouping and keyboard;
+- components use only public tokens; Button, Link, Checkbox and Radio are frozen against regression baselines;
+- Chromium tests cover every Button hierarchy × size × state × brand every Link size × state × brand every Checkbox, Radio and Switch state × brand, and native radio grouping and keyboard;
 - the Storybook static build, interaction tests and accessibility checks pass.
 
 The same verification runs in CI on every push.
@@ -170,7 +173,7 @@ npm run build-storybook           # static Storybook → storybook-static/
 |---|---|
 | `tools/figma-exporter/` | read-only Figma plugin that captures a component and its variables |
 | `packages/tokens/` | public snapshot, sanitizer, DTCG conversion, Style Dictionary build, `dist/ch-tokens.css` |
-| `packages/react/` | React components (Button v1, Link v1, Checkbox v1, Radio v1) and their tests |
+| `packages/react/` | React components (Button v1, Link v1, Checkbox v1, Radio v1, Switch v1) and their tests |
 | `.storybook/`, `*.stories.tsx`, `*.mdx` | Storybook configuration and component documentation |
 | `docs/decisions/` | architecture decision records |
 | `scripts/verify.mjs`, `tests/` | verification entry point and Storybook checks |

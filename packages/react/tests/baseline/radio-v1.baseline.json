@@ -1,0 +1,241 @@
+{
+  "$comment": "AUTHORED. Radio v1 regression baseline, recorded from commit 6d72708 (the committed Radio v1 reference, ADR 0015). Radio source, CSS, stories, docs, its verification files, contract and ADR 0015 must stay byte-identical, and the resolved CSS contract of its 28 public tokens (incl. the internal brand declarations they reference) must not change. Changing this file requires a new ADR. Checked by check-radio-baseline (ADR 0016).",
+  "sourceCommit": "6d727082b5bb4e1ed73e8e30f73178269efdbeb8",
+  "files": {
+    "packages/react/src/Radio/Radio.tsx": "e00b715a474be11d4c2a089807868ccd17d2c84d182299f6ff10038dd22b0a58",
+    "packages/react/src/Radio/radio.css": "fe71cd54d4c330c6707a6c86a450d26dc71e11b6bb3e9e15772a0e32b8c0d275",
+    "packages/react/src/Radio/Radio.stories.tsx": "3a231c14a20185a958a66aec81316b4c821830babc6cb16ba5ffb90905fd3348",
+    "packages/react/src/Radio/Radio.mdx": "ad8f99bc098a7d99fdc34df420e5977a99241bc74bbf7166ebd401f3cbd9c9a5",
+    "packages/react/tests/check-radio-tokens.mjs": "296e507ab94e0201112e09245e2d08a55120dca3cd824241d5a34991cc92e56e",
+    "packages/react/tests/check-radio-browser.mjs": "481890689129e6f04640ddc98bd4353803de95459700f27cf6e242c2e050a101",
+    "packages/react/tests/radio-harness/index.html": "4125c94704f9563c9115e03ca6899fb320e464f832b4f1d41e9469f1cb3f640e",
+    "packages/react/tests/radio-harness/main.tsx": "99bad2d023a28adfdecc3112844de1096665ce572e5400c6fabf778c5a48de8b",
+    "packages/react/tests/types/radio-api.tsx": "c993ae34b1eb8fb96d31c4c346e9a77e2b2bb070080679d37a2730ced5e25943",
+    "packages/tokens/tests/radio-v1-spec.json": "0206f2bf8c9e8164294987c877953c94fd10de7c555c9c81728c00e00c31b5cd",
+    "docs/decisions/0015-radio-v1-implementation-mapping.md": "cbb0c3bc531a7e7416438c27cd5417976d9db658febe1afa555ed64aee180ac8"
+  },
+  "publicTokens": [
+    "--ch-border-width-strong",
+    "--ch-color-border-disabled",
+    "--ch-color-border-input",
+    "--ch-color-border-strong",
+    "--ch-color-control-checked",
+    "--ch-color-control-checked-hover",
+    "--ch-color-focus-indicator",
+    "--ch-color-focus-outer",
+    "--ch-color-icon-disabled",
+    "--ch-color-surface-default",
+    "--ch-color-surface-disabled",
+    "--ch-color-text-default",
+    "--ch-color-text-disabled",
+    "--ch-color-text-subtle",
+    "--ch-focus-width-indicator",
+    "--ch-focus-width-outer",
+    "--ch-font-family-sans",
+    "--ch-font-line-height-body-md",
+    "--ch-font-line-height-body-sm",
+    "--ch-font-size-body-md",
+    "--ch-font-size-body-sm",
+    "--ch-font-weight-regular",
+    "--ch-radius-full",
+    "--ch-size-control-indicator",
+    "--ch-size-touch-target-min",
+    "--ch-space-component-sm",
+    "--ch-space-gap-md",
+    "--ch-space-gap-xs"
+  ],
+  "declarations": [
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-control-checked",
+      "value": "var(--ch-brand-primary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-control-checked-hover",
+      "value": "var(--ch-brand-primary-900)"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-border-width-strong",
+      "value": "2px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-indicator",
+      "value": "3px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-outer",
+      "value": "2px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-family-sans",
+      "value": "Inter, system-ui, sans-serif"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-weight-regular",
+      "value": "400"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-radius-full",
+      "value": "9999px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-control-indicator",
+      "value": "1.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-touch-target-min",
+      "value": "2.75rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-component-sm",
+      "value": "0.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-gap-md",
+      "value": "0.75rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-gap-xs",
+      "value": "0.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-body-md",
+      "value": "1.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-body-sm",
+      "value": "1.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-body-md",
+      "value": "1rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-body-sm",
+      "value": "0.875rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-disabled",
+      "value": "#b8c0c9"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-input",
+      "value": "#68707b"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-strong",
+      "value": "#384049"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-indicator",
+      "value": "#fbdf06"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-outer",
+      "value": "#1b222c"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-icon-disabled",
+      "value": "#838c98"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-surface-default",
+      "value": "#ffffff"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-surface-disabled",
+      "value": "#ebf0f5"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-text-default",
+      "value": "#282f38"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-text-disabled",
+      "value": "#838c98"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-text-subtle",
+      "value": "#4e5661"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#1e3d7a"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-900",
+      "value": "#0e2b66"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#590da2"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-900",
+      "value": "#43037e"
+    }
+  ]
+}
