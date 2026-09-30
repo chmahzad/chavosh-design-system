@@ -1,6 +1,6 @@
 {
   "name": "Chavosh read-only token exporter v0.4.0",
-  "id": "chavosh-readonly-exporter-v3-local",
+  "id": "chavosh-readonly-exporter-v4-local",
   "api": "1.0.0",
   "main": "dist-plugin/code.js",
   "ui": "ui.html",

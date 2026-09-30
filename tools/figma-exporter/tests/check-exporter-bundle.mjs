@@ -24,6 +24,12 @@ async function runBundled(source) {
 export async function run() {
   const bundled = read("dist-plugin/code.js");
   assert(bundled === bundleSource(), "dist-plugin/code.js is stale or hand-edited — run `npm run bundle:exporter`");
+  // Packaging identity: Figma keys development plugins by manifest id, so a new plugin version needs its own id.
+  const manifest = JSON.parse(read("manifest.json"));
+  const version = /plugin v(\d+\.\d+\.\d+)/.exec(read("code.js"))[1];
+  assert(manifest.name === `Chavosh read-only token exporter v${version}` && manifest.id === `chavosh-readonly-exporter-v${version.split(".")[1]}-local` && manifest.main === "dist-plugin/code.js" && manifest.ui === "ui.html", `manifest.json must identify plugin v${version} (name, unique id, main, ui)`);
+  assert(read("ui.html").includes(`exporter v${version}</strong>`) && read("bundle.mjs").includes(`plugin v${version}`), `ui.html and bundle.mjs must show v${version}`);
+  assert(JSON.stringify(manifest.networkAccess) === JSON.stringify({ allowedDomains: ["none"] }), "the exporter must have no network access");
   const declared = /const CHAVOSH_CAPTURE_TARGETS = \[[\s\S]*?\n\];/;
   assert(declared.test(bundled) && captureTargets().length === 5, "bundle must declare the capture targets");
   // Point the real bundled plugin at the fixture: one resolvable root + one missing root.
@@ -34,5 +40,5 @@ export async function run() {
   const direct = await loadExtractor()(createReadOnlyFigma(loadFixture()).figma, FIXTURE_ROOTS);
   assert(ok.file === "chavosh-fixture-figma-snapshot.json" && ok.json === toText(direct), "bundled plugin output differs from a direct single-root extraction");
   assert(bad.error && /not found/.test(bad.error) && !bad.json, "a failing target must be reported as an error entry without a snapshot");
-  return [`bundle fresh; bundled plugin in a VM captures each target separately (direct-extraction bytes, ${JSON.parse(ok.json).variables.length} variables) and isolates a failing target; ${[...new Set(calls)].length} getter types`];
+  return [`manifest: "${manifest.name}", id ${manifest.id}, no network; bundle fresh; bundled plugin in a VM captures each target separately (direct-extraction bytes, ${JSON.parse(ok.json).variables.length} variables) and isolates a failing target; ${[...new Set(calls)].length} getter types`];
 }
