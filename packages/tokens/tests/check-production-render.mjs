@@ -13,7 +13,7 @@ const hexToRgb = (h) => `rgb(${parseInt(h.slice(1, 3), 16)}, ${parseInt(h.slice(
 
 export async function run() {
   const cfg = config();
-  if (!existsSync(join(ROOT, cfg.publicSnapshot.path))) return { status: "PENDING", lines: ["production render check waits for the public snapshot"] };
+  if (!cfg.publicSnapshots.some((e) => existsSync(join(ROOT, e.path)))) return { status: "PENDING", lines: ["production render check waits for the public snapshots"] };
   const dtcg = join(ROOT, "generated/dtcg");
   const load = (s) => new Map(flatten(JSON.parse(readFileSync(join(dtcg, `${s}.tokens.json`), "utf8"))));
   const prim = load("primitives"), color = load("color"), dim = load("dimension"), mob = load("responsive-mobile");

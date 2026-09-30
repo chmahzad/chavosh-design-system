@@ -1,4 +1,4 @@
-// AUTHORED. Bundles the exporter plugin v0.3.0: src/extract.js + code.js → dist-plugin/code.js (generated).
+// AUTHORED. Bundles the exporter plugin v0.4.0: src/extract.js + code.js → dist-plugin/code.js (generated).
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

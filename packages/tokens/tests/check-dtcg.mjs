@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { assert, throwsWith, config, fixtureSnapshot, fixtureRawSnapshot, flattenSets } from "./lib-dtcg.mjs";
-import { convertSnapshot, loadPublicSnapshot } from "../build/convert-snapshot.mjs";
+import { convertSnapshot, loadPublicSnapshot, mergeSnapshots } from "../build/convert-snapshot.mjs";
 import { sanitizeSnapshot, assertOnlyApprovedChanges, publicProvenance, publicStyleId, toPublicText } from "../build/sanitize-snapshot.mjs";
 import { toText } from "../../../tools/figma-exporter/tests/mock.mjs";
 
@@ -103,6 +103,24 @@ export async function run() {
     rmSync(tmp, { recursive: true, force: true });
   }
   lines.push("provenance gate: public SHA-256/size/schema/extractor/sanitizer version + raw attestation; tampered, identifier-carrying, raw or missing snapshot refused");
+
+  // Multi-snapshot merge (ADR 0012): identical shared records merge; any divergence or naming conflict is refused
+  {
+    const a = structuredClone(snap), b = structuredClone(snap);
+    b.components[0] = { ...b.components[0], name: "Other", nodeId: "99:1" };
+    b.source.roots = { components: [{ nodeId: "99:1", name: "Other", type: "COMPONENT_SET" }] };
+    const merged = mergeSnapshots([{ id: "a", snapshot: a }, { id: "b", snapshot: b }]);
+    assert(merged.components.map((c) => c.name).join() === "Button,Other" && merged.variables.length === snap.variables.length && merged.source.roots.components.length === 2, "consistent captures merge without duplicates");
+    assert(mergeSnapshots([{ id: "a", snapshot: a }]) === a, "a single capture is used unchanged");
+    const diverge = async (f, re, label) => { const c = structuredClone(b); f(c); await throwsWith(() => mergeSnapshots([{ id: "a", snapshot: a }, { id: "b", snapshot: c }]), re, label); };
+    await diverge((c) => { c.variables[0].description += "!"; }, /Cross-snapshot inconsistency: variable .* in \[description\]/, "diverging description");
+    await diverge((c) => { const v = c.variables.find((x) => Object.values(x.valuesByMode).some((m) => m && m.type === "VARIABLE_ALIAS")); const k = Object.keys(v.valuesByMode).find((m) => v.valuesByMode[m].type === "VARIABLE_ALIAS"); v.valuesByMode[k] = { type: "VARIABLE_ALIAS", id: "VariableID:0:0" }; }, /in \[valuesByMode\]/, "diverging alias");
+    await diverge((c) => { c.variables.push({ ...structuredClone(c.variables[0]), id: "VariableID:0:1" }); }, /naming conflict/, "same name, different ID");
+    await diverge((c) => { c.collections[0].modes = []; }, /collection .* differs/, "diverging collection");
+    await diverge((c) => { c.components[0].name = "Button"; }, /appears in captures a and b/, "component in two captures");
+    await diverge((c) => { c.source.fileName = "Another file"; }, /comes from "Another file"/, "different Figma file");
+  }
+  lines.push("multi-snapshot merge: identical shared variables/collections/styles merge once; diverging values, aliases, descriptions or collections, a name with two IDs, a component in two captures and a different source file are refused");
 
   // Failure modes
   const mut = async (f) => { const s = structuredClone(snap); f(s); return () => convertSnapshot(s, cfg); };

@@ -18,3 +18,4 @@ lineage. Labels such as G1–G8 identify the original architecture decisions eac
 | [0009](0009-pipeline-rules-v0-3.md) | v0.3 pipeline rules: unused policy rules, alias chains, exporter preconditions, PENDING state | Accepted (29 Sep 2026) |
 | [0010](0010-button-v1-implementation-mapping.md) | Button v1 implementation mapping — API, states, tokens, accessibility, decisions 1–12 | **Accepted — frozen for React Button v1** |
 | [0011](0011-public-snapshot-and-identifier-minimisation.md) | Private raw capture → deterministic sanitizer → public snapshot; Figma file/library keys never published | Accepted (29 Sep 2026) |
+| [0012](0012-component-expansion-captures-and-button-baseline.md) | Per-component captures (Button frozen), cross-capture consistency, per-component contracts, Button regression baseline | Accepted (30 Sep 2026) |

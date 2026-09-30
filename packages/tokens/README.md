@@ -6,9 +6,9 @@ Public Figma snapshot (sanitized from a private raw capture, ADR 0011) → DTCG 
 |---|---|---|
 | `source/export-config.json` | handwritten | collections → layers/sets, FLOAT/STRING typing, effect support, component export scope, snapshot paths |
 | `source/web-policy.json` | handwritten | web units (each rule cites its architecture basis), colour, font stacks, brand attribute, breakpoints |
-| `snapshots/figma/` | derived | public Button snapshot + provenance (raw capture `adecb1cc…` attested, kept private) |
+| `snapshots/figma/` | derived | one public snapshot + provenance per component capture (raw captures attested, kept private; ADR 0011, 0012) |
 | `build/sanitize-snapshot.mjs` | handwritten | raw capture → public snapshot: removes Figma file/component/style keys, rule-checked |
-| `build/convert-snapshot.mjs` | handwritten | provenance gate → guard → scoped closure → DTCG sets + manifest |
+| `build/convert-snapshot.mjs` | handwritten | provenance gate per capture → cross-capture consistency merge → guard → scoped closure → DTCG sets + manifest |
 | `build/build-css.mjs` | handwritten | policy check → Style Dictionary per brand × breakpoint → validation → CSS |
 | `build/lib/` | handwritten | description guard; unit/colour/font helpers |
 | `generated/dtcg/` | generated | 8 DTCG sets (98 tokens) + `_manifest.json` (incl. traceability) |

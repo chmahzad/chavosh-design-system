@@ -15,6 +15,7 @@ const CHECKS = [
   "packages/react/tests/check-react-types.mjs",
   "packages/react/tests/check-react-tokens.mjs",
   "packages/react/tests/check-react-browser.mjs",
+  "packages/react/tests/check-button-baseline.mjs",
   "tests/storybook/check-storybook.mjs",
 ];
 const strict = process.argv.includes("--strict");

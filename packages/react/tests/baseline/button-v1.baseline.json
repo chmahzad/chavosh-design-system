@@ -1,0 +1,378 @@
+{
+  "$comment": "AUTHORED. Button v1 regression baseline, recorded from commit e509d35 (the published Button v1 reference). Button source, CSS, stories, docs, its verification files and its ADR must stay byte-identical, and the resolved CSS contract of its 37 public tokens (incl. the internal brand declarations they reference) must not change. Changing this file requires a new ADR (ADR 0012).",
+  "sourceCommit": "e509d35b9831e58ef0a0cb36267f3d789155d4f0",
+  "files": {
+    "packages/react/src/Button/Button.tsx": "0d0398d580d57dfb9f739556896ccb7c5b0e2190db5a31fb7958c26190459b0d",
+    "packages/react/src/Button/button.css": "48f5663f506d397b4a761eb8249835164c8e48cf64de4e6d0a3e675ad3d96cc6",
+    "packages/react/src/Button/Button.stories.tsx": "6f8fdeaa5740c543116bbe97f1bccef08461eb68c457979752543573804955f2",
+    "packages/react/src/Button/Button.mdx": "79986d463a77614d0a2a03f1045318dd18e4eb721542a6b07e4ac7e2f46a8e44",
+    "packages/react/tests/check-react-browser.mjs": "bd704daa00fc6698e81822e7baf12be1d2edec674a14961849f5cd3f04ce1e48",
+    "packages/react/tests/check-react-tokens.mjs": "99ef5010a89092387890da17eade7e6d33aa2a7f13e7c34dc233c525d4184f2b",
+    "packages/react/tests/check-react-types.mjs": "4edb6428c136b43a231310fa151a20d47688d08a7c98a913b13116bd23531834",
+    "packages/react/tests/build-harness.mjs": "b9d548717dbcbd2669440fc294cb024af776a366be7a6be9716ef16c7252dcf6",
+    "packages/react/tests/harness/index.html": "4c9cc885a6c61d1228ae0299585f74ea82083ad6e3fe98226862a4dc0abacfe2",
+    "packages/react/tests/harness/main.tsx": "2ac0ce66aac271b65baad2db066ed32cb4b12c0a17feadb1fbfe144311ef4eb8",
+    "packages/react/tests/types/button-api.tsx": "1720ce86b4a040f8185e4bd3d379eaf89132d2bf0d2e960f60f40eef404321a1",
+    "packages/tokens/tests/button-v1-spec.json": "007131688d1f0f132dada9fb8e2177208c8f8a913c4ffcd9016d49b6c91b7cdd",
+    "docs/decisions/0010-button-v1-implementation-mapping.md": "833deedca9aa63fc2b0060bfa08d7e36bb64efe2d75daf257d85edfce13726a9"
+  },
+  "publicTokens": [
+    "--ch-border-width-default",
+    "--ch-color-action-destructive-background-default",
+    "--ch-color-action-destructive-background-pressed",
+    "--ch-color-action-destructive-foreground-default",
+    "--ch-color-action-disabled-background",
+    "--ch-color-action-disabled-foreground",
+    "--ch-color-action-primary-background-default",
+    "--ch-color-action-primary-background-pressed",
+    "--ch-color-action-primary-foreground-default",
+    "--ch-color-action-secondary-background-default",
+    "--ch-color-action-secondary-background-pressed",
+    "--ch-color-action-secondary-border-default",
+    "--ch-color-action-secondary-border-hover",
+    "--ch-color-action-secondary-foreground-default",
+    "--ch-color-action-secondary-foreground-hover",
+    "--ch-color-action-tertiary-background-hover",
+    "--ch-color-action-tertiary-background-pressed",
+    "--ch-color-action-tertiary-foreground-default",
+    "--ch-color-action-tertiary-foreground-hover",
+    "--ch-color-border-disabled",
+    "--ch-color-focus-indicator",
+    "--ch-color-focus-outer",
+    "--ch-focus-width-indicator",
+    "--ch-focus-width-outer",
+    "--ch-font-family-sans",
+    "--ch-font-line-height-label-md",
+    "--ch-font-line-height-label-sm",
+    "--ch-font-size-label-md",
+    "--ch-font-size-label-sm",
+    "--ch-font-weight-medium",
+    "--ch-radius-md",
+    "--ch-size-control-height-lg",
+    "--ch-size-control-height-md",
+    "--ch-size-control-height-sm",
+    "--ch-space-component-lg",
+    "--ch-space-component-xl",
+    "--ch-space-gap-sm"
+  ],
+  "declarations": [
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-primary-background-default",
+      "value": "var(--ch-brand-primary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-primary-background-pressed",
+      "value": "var(--ch-brand-primary-950)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-secondary-background-pressed",
+      "value": "var(--ch-brand-secondary-100)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-secondary-border-default",
+      "value": "var(--ch-brand-secondary-700)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-secondary-border-hover",
+      "value": "var(--ch-brand-secondary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-secondary-foreground-default",
+      "value": "var(--ch-brand-secondary-700)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-secondary-foreground-hover",
+      "value": "var(--ch-brand-secondary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-tertiary-background-hover",
+      "value": "var(--ch-brand-primary-50)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-tertiary-background-pressed",
+      "value": "var(--ch-brand-primary-100)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-tertiary-foreground-default",
+      "value": "var(--ch-brand-primary-700)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-action-tertiary-foreground-hover",
+      "value": "var(--ch-brand-primary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-border-width-default",
+      "value": "1px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-indicator",
+      "value": "3px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-outer",
+      "value": "2px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-family-sans",
+      "value": "Inter, system-ui, sans-serif"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-weight-medium",
+      "value": "500"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-radius-md",
+      "value": "0.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-control-height-lg",
+      "value": "3.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-control-height-md",
+      "value": "3rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-control-height-sm",
+      "value": "2.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-component-lg",
+      "value": "1rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-component-xl",
+      "value": "1.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-gap-sm",
+      "value": "0.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-label-md",
+      "value": "1.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-label-sm",
+      "value": "1.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-label-md",
+      "value": "1rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-label-sm",
+      "value": "0.875rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-destructive-background-default",
+      "value": "#ae051b"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-destructive-background-pressed",
+      "value": "#65010b"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-destructive-foreground-default",
+      "value": "#ffffff"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-disabled-background",
+      "value": "#ebf0f5"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-disabled-foreground",
+      "value": "#838c98"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-primary-foreground-default",
+      "value": "#ffffff"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-action-secondary-background-default",
+      "value": "#ffffff"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-disabled",
+      "value": "#b8c0c9"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-indicator",
+      "value": "#fbdf06"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-outer",
+      "value": "#1b222c"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-100",
+      "value": "#e7effe"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-50",
+      "value": "#f5f8fe"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-700",
+      "value": "#335493"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#1e3d7a"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-950",
+      "value": "#021c56"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-secondary-100",
+      "value": "#ecefff"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-secondary-700",
+      "value": "#4d3dcb"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-secondary-800",
+      "value": "#3a27a4"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-100",
+      "value": "#f1edfe"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-50",
+      "value": "#f9f8ff"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-700",
+      "value": "#7226c9"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#590da2"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-950",
+      "value": "#320161"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-secondary-100",
+      "value": "#e7effe"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-secondary-700",
+      "value": "#335493"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-secondary-800",
+      "value": "#1e3d7a"
+    }
+  ]
+}

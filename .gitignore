@@ -13,6 +13,7 @@ node_modules/
 
 # Private raw Figma captures (ADR 0011) — only the sanitized public snapshot is committed
 *.snapshot.json
+*-figma-snapshot.json
 *.raw.json
 !*.snapshot.public.json
 

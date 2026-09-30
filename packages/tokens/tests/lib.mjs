@@ -7,7 +7,7 @@ import { mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadExtractor, loadFixture, createReadOnlyFigma, pluginRoots, toText } from "../../../tools/figma-exporter/tests/mock.mjs";
+import { loadExtractor, loadFixture, createReadOnlyFigma, FIXTURE_ROOTS, toText } from "../../../tools/figma-exporter/tests/mock.mjs";
 import { writeDtcg } from "../build/convert-snapshot.mjs";
 import { sanitizeSnapshot } from "../build/sanitize-snapshot.mjs";
 import { buildCss } from "../build/build-css.mjs";
@@ -30,7 +30,7 @@ export const policy = () => readJson("source/web-policy.json");
 export async function fixtureRawSnapshot(mutateFixture) {
   const fx = loadFixture();
   if (mutateFixture) mutateFixture(fx);
-  return loadExtractor()(createReadOnlyFigma(fx).figma, pluginRoots());
+  return loadExtractor()(createReadOnlyFigma(fx).figma, FIXTURE_ROOTS);
 }
 
 /** Public fixture snapshot: raw fixture capture → sanitizer, exactly as production (ADR 0011). */
@@ -45,7 +45,7 @@ export async function fixturePipeline({ snapshot, mutateSnapshot, cfg = config()
   const dir = mkdtempSync(join(tmpdir(), "ch-tokens-"));
   const dtcgDir = join(dir, "dtcg");
   const text = toText(snap);
-  const manifest = writeDtcg({ snapshot: snap, bytes: Buffer.from(text), hash: "fixture-not-canonical", config: cfg, outDir: dtcgDir, snapshotLabel: "tools/figma-exporter/tests/fixtures (fixture)" });
+  const manifest = writeDtcg({ snapshot: snap, sources: [{ id: "fixture", path: "tools/figma-exporter/tests/fixtures (fixture)", snapshot: snap, bytes: Buffer.from(text), hash: "fixture-not-canonical" }], config: cfg, outDir: dtcgDir });
   const build = await buildCss({ dtcgDir, outDir: join(dir, "dist"), ...(policyPath ? { policyPath } : {}) });
   return { dir, dtcgDir, cssText: build.css, build, manifest, snapshot: snap, cleanup: () => rmSync(dir, { recursive: true, force: true }) };
 }

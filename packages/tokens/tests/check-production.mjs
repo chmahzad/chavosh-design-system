@@ -1,54 +1,77 @@
-// AUTHORED. Production state of packages/tokens.
-// Without a public snapshot: status PENDING (manual read-only Figma exporter run + sanitizer required) and NO
+// AUTHORED. Production state of packages/tokens (multi-component, ADR 0011 + ADR 0012).
+// Without public snapshots: status PENDING (manual read-only Figma exporter run + sanitizer required) and NO
 // production outputs may exist (generated/dtcg, dist/ch-tokens.css) — nothing is fabricated.
-// With the public snapshot (ADR 0011): provenance gate on the PUBLIC SHA-256; the private raw capture is an attestation,
-// re-derived byte-for-byte only when CHAVOSH_RAW_SNAPSHOT points to it (optional, never required); snapshot roots =
-// exporter roots = export-config; generated/dtcg and
-// dist/ch-tokens.css equal a fresh build (freshness, no hand edits, no stale files); Button v1 closure equals the
-// approved Button architecture (button-v1-spec.json) — differences are Design/code mismatches for review.
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+// With public snapshots: each capture passes the provenance gate on its PUBLIC SHA-256 and contains exactly its
+// configured component (roots = export-config); the private raw captures are attestations, re-derived byte-for-byte
+// only when CHAVOSH_RAW_SNAPSHOT points to a raw file or a directory of raw files (optional, never required);
+// captures are mutually consistent (mergeSnapshots); exporter capture targets agree with export-config and never
+// include the frozen Button; generated/dtcg and dist/ch-tokens.css equal a fresh build; each component's closure
+// equals its approved contract (components.<name>.contract) — differences are Design/code mismatches for review;
+// the public CSS surface equals the union of the released contracts.
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { assert, config, readJson, diffDirs, parseCss, ROOT } from "./lib.mjs";
-import { convert, loadPublicSnapshot } from "../build/convert-snapshot.mjs";
+import { convert, loadPublicSnapshots, mergeSnapshots } from "../build/convert-snapshot.mjs";
 import { rederive } from "../build/sanitize-snapshot.mjs";
 import { buildCss, flatten } from "../build/build-css.mjs";
-import { pluginRoots } from "../../../tools/figma-exporter/tests/mock.mjs";
+import { captureTargets } from "../../../tools/figma-exporter/tests/mock.mjs";
+
+function rawCandidates(p) {
+  if (!p) return [];
+  if (!existsSync(p)) throw new Error(`CHAVOSH_RAW_SNAPSHOT ${p} does not exist`);
+  const files = statSync(p).isDirectory() ? readdirSync(p).filter((f) => f.endsWith(".json")).map((f) => join(p, f)) : [p];
+  return files.map((f) => ({ file: f, sha256: createHash("sha256").update(readFileSync(f)).digest("hex") }));
+}
 
 export async function run() {
   const cfg = config();
-  const snapPath = join(ROOT, cfg.publicSnapshot.path);
-  const provPath = join(ROOT, cfg.publicSnapshot.provenance);
   const dtcgDir = join(ROOT, "generated/dtcg");
   const distDir = join(ROOT, "dist");
-  const roots = pluginRoots();
-  assert(JSON.stringify(roots.components.map((r) => [r.name, r.nodeId, r.type])) === JSON.stringify(Object.entries(cfg.components).map(([n, c]) => [n, c.figmaNodeId, c.type])), "exporter roots (code.js) must equal export-config components");
+  const targets = captureTargets();
+  assert(!targets.some((t) => t.name === "Button"), "exporter capture targets must not include the frozen Button");
+  for (const t of targets) {
+    const c = cfg.components[t.name];
+    if (c) assert(c.figmaNodeId === t.nodeId && c.type === t.type, `capture target ${t.name} ${t.nodeId} ≠ export-config ${c.figmaNodeId}`);
+  }
+  for (const [name, c] of Object.entries(cfg.components)) assert(name === "Button" || targets.some((t) => t.name === name), `configured component ${name} is not a capture target`);
+  const configured = cfg.publicSnapshots.flatMap((e) => e.components).sort();
+  assert(JSON.stringify(configured) === JSON.stringify(Object.keys(cfg.components).sort()), `publicSnapshots components [${configured}] ≠ configured components [${Object.keys(cfg.components)}]`);
 
-  if (!existsSync(snapPath)) {
-    assert(!existsSync(provPath), "provenance record exists without a public snapshot");
+  const present = cfg.publicSnapshots.filter((e) => existsSync(join(ROOT, e.path)));
+  if (!present.length) {
+    assert(cfg.publicSnapshots.every((e) => !existsSync(join(ROOT, e.provenance))), "provenance record exists without a public snapshot");
     assert(!existsSync(dtcgDir) && !existsSync(distDir), "production outputs exist without a public snapshot — they cannot be genuine");
     return {
       status: "PENDING",
       lines: [
-        `public snapshot ${cfg.publicSnapshot.path} not present yet — manual read-only Figma exporter run + sanitizer required`,
-        "no production outputs present (generated/dtcg, dist/ch-tokens.css): nothing fabricated; exporter roots match export-config (Button 20:2)",
+        "no public snapshot present yet — manual read-only Figma exporter run + sanitizer required",
+        "no production outputs present (generated/dtcg, dist/ch-tokens.css): nothing fabricated",
       ],
     };
   }
+  assert(present.length === cfg.publicSnapshots.length, `configured public snapshots missing: ${cfg.publicSnapshots.filter((e) => !present.includes(e)).map((e) => e.path)}`);
 
   const lines = [];
-  const { snapshot, hash, bytes, provenance } = loadPublicSnapshot(snapPath, provPath);
-  assert(JSON.stringify(snapshot.source.roots) === JSON.stringify(roots), "snapshot was taken with different exporter roots");
-  lines.push(`public snapshot: sha256 ${hash.slice(0, 16)}… matches provenance; no private identifiers; roots = Button 20:2; extractor ${snapshot.extractor.version}; sanitizer ${snapshot.sanitizer.version} (${Object.entries(provenance.transformations).map(([k, v]) => `${k} ${v}`).join(", ")})`);
-  const rawPath = process.env.CHAVOSH_RAW_SNAPSHOT;
-  if (rawPath) {
-    const r = rederive(rawPath, bytes.toString("utf8"));
-    assert(r.rawSha256 === provenance.derivedFrom.sha256, `CHAVOSH_RAW_SNAPSHOT sha256 ${r.rawSha256} ≠ attested raw capture ${provenance.derivedFrom.sha256}`);
-    assert(r.identical, "re-deriving the public snapshot from the raw capture does not reproduce the committed public snapshot");
-    lines.push(`raw capture: attested sha256 ${provenance.derivedFrom.sha256.slice(0, 16)}… verified; sanitizer re-derivation byte-identical to the committed public snapshot`);
-  } else {
-    lines.push(`raw capture: attested sha256 ${provenance.derivedFrom.sha256.slice(0, 16)}… (${provenance.derivedFrom.bytes} bytes; private, not in this repository — re-derivation runs only when CHAVOSH_RAW_SNAPSHOT is set)`);
+  const loaded = loadPublicSnapshots(cfg);
+  for (const l of loaded) {
+    const expected = { components: l.components.map((n) => ({ nodeId: cfg.components[n].figmaNodeId, name: n, type: cfg.components[n].type })) };
+    assert(JSON.stringify(l.snapshot.source.roots) === JSON.stringify(expected), `snapshot ${l.id} was taken with roots ${JSON.stringify(l.snapshot.source.roots)}, expected ${JSON.stringify(expected)}`);
   }
+  mergeSnapshots(loaded.map((l) => ({ id: l.id, snapshot: l.snapshot })));
+  lines.push(`public snapshots: ${loaded.map((l) => `${l.id} ${l.hash.slice(0, 12)}…`).join(", ")} match provenance; no private identifiers; roots = export-config; extractor ${[...new Set(loaded.map((l) => l.snapshot.extractor.version))]}; sanitizer ${[...new Set(loaded.map((l) => l.snapshot.sanitizer.version))]}${loaded.length > 1 ? `; ${loaded.length} captures mutually consistent` : ""}`);
+  const raws = rawCandidates(process.env.CHAVOSH_RAW_SNAPSHOT);
+  const verified = [];
+  for (const l of loaded) {
+    const raw = raws.find((r) => r.sha256 === l.provenance.derivedFrom.sha256);
+    if (!raw) continue;
+    const r = rederive(raw.file, l.bytes.toString("utf8"));
+    assert(r.identical, `re-deriving public snapshot ${l.id} from its raw capture does not reproduce the committed file`);
+    verified.push(l.id);
+  }
+  if (raws.length) assert(verified.length > 0, "CHAVOSH_RAW_SNAPSHOT is set but contains no file matching an attested raw capture");
+  lines.push(`raw captures: ${loaded.map((l) => `${l.id} ${l.provenance.derivedFrom.sha256.slice(0, 12)}… ${verified.includes(l.id) ? "re-derived byte-identical" : "attested (private, not in this repository)"}`).join("; ")}`);
 
   const tmp = mkdtempSync(join(tmpdir(), "ch-prod-"));
   try {
@@ -62,13 +85,18 @@ export async function run() {
     assert(cd.length === 0, `dist is stale or hand-edited (${cd.join(", ")}) — run \`npm run build:css\``);
     lines.push(`freshness: generated/dtcg (${Object.keys(m.files).length} sets) and dist/ch-tokens.css equal a fresh build`);
 
-    const spec = readJson("tests/button-v1-spec.json");
-    const btn = m.traceability.components.find((c) => c.name === "Button");
-    const missing = spec.boundTokens.filter((t) => !btn.boundTokens.includes(t));
-    const extra = btn.boundTokens.filter((t) => !spec.boundTokens.includes(t));
-    const styleDiff = JSON.stringify([...btn.styles].filter((s) => !s.startsWith("elevation/")).sort()) !== JSON.stringify([...spec.textStyles].sort());
-    assert(!missing.length && !extra.length && !styleDiff, `Design/code mismatch vs ${spec.source}: missing [${missing}] extra [${extra}] styles [${btn.styles}] — review before changing anything`);
-    lines.push(`Button v1 closure = approved architecture: ${btn.boundTokens.length} bound tokens, text styles ${spec.textStyles.join(", ")}; excluded by labels-only scope: ${btn.excludedOnly.join(", ")}`);
+    const contractTokens = new Set();
+    for (const [name, policy] of Object.entries(cfg.components)) {
+      const spec = readJson(policy.contract);
+      const comp = m.traceability.components.find((c) => c.name === name);
+      const missing = spec.boundTokens.filter((t) => !comp.boundTokens.includes(t));
+      const extra = comp.boundTokens.filter((t) => !spec.boundTokens.includes(t));
+      const styleDiff = JSON.stringify([...comp.styles].filter((s) => !s.startsWith("elevation/")).sort()) !== JSON.stringify([...spec.textStyles].sort());
+      assert(!missing.length && !extra.length && !styleDiff, `Design/code mismatch (${name}) vs ${spec.source}: missing [${missing}] extra [${extra}] styles [${comp.styles}] — review before changing anything`);
+      spec.boundTokens.forEach((t) => contractTokens.add(t));
+      lines.push(`${name} closure = approved contract: ${comp.boundTokens.length} bound tokens, text styles ${spec.textStyles.join(", ")}; excluded by scope: ${comp.excludedOnly.join(", ") || "none"}`);
+    }
+    const spec = { boundTokens: [...contractTokens].sort() };
 
     // Public / internal surface of the production stylesheet
     const css = readFileSync(join(distDir, "ch-tokens.css"), "utf8");
@@ -87,7 +115,7 @@ export async function run() {
     assert(primNames.every((n) => !css.includes(`${n}:`) && !css.includes(`var(${n})`)), "a primitive is exposed in CSS");
     const refs = [...css.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/var\((--[a-z0-9-]+)\)/g)].map((x) => x[1]);
     assert(refs.every((r) => internal.includes(r) || publicNames.includes(r)), "var() to an undeclared property");
-    lines.push(`surface: ${publicNames.length} public properties = the ${spec.boundTokens.length}-token closure (${blocks[2].decls.size} brand-dependent on :root, [data-brand]); ${internal.length} internal --ch-brand-* declarations (${brandBlocks[0].decls.size} roles × 2 brands); ${primNames.length} primitives absent; Financial default on :root`);
+    lines.push(`surface: ${publicNames.length} public properties = union of the released contracts (${spec.boundTokens.length} tokens; ${blocks[2].decls.size} brand-dependent on :root, [data-brand]); ${internal.length} internal --ch-brand-* declarations (${brandBlocks[0].decls.size} roles × 2 brands); ${primNames.length} primitives absent; Financial default on :root`);
 
     // Responsive: every Responsive token keeps all three modes in DTCG; CSS emits overrides only where values differ
     const modes = ["mobile", "tablet", "desktop"].map((m) => flatten(JSON.parse(readFileSync(join(dtcgDir, `responsive-${m}.tokens.json`), "utf8"))));
@@ -95,7 +123,7 @@ export async function run() {
     const differs = modes[0].filter(([p], i) => modes.some((m) => JSON.stringify(m.find(([q]) => q === p)[1].$value) !== JSON.stringify(modes[0][i][1].$value))).map(([p]) => p);
     const mediaCount = blocks.filter((x) => x.media).reduce((n, x) => n + x.decls.size, 0);
     assert(differs.length === 0 ? mediaCount === 0 : mediaCount > 0, "responsive overrides do not match DTCG mode differences");
-    lines.push(`responsive: ${modes[0].length} Responsive tokens × 3 modes kept in DTCG; ${differs.length} differ by breakpoint → ${mediaCount} media overrides (label sizes are equal in all modes, so base only)`);
+    lines.push(`responsive: ${modes[0].length} Responsive tokens × 3 modes kept in DTCG; ${differs.length} differ by breakpoint → ${mediaCount} media overrides ${differs.length ? `(${differs.join(", ")})` : "(all equal across breakpoints, so base only)"}`);
   } finally {
     rmSync(tmp, { recursive: true, force: true });
   }

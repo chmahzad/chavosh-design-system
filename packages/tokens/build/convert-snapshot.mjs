@@ -61,6 +61,61 @@ export function loadPublicSnapshot(snapshotPath, provenancePath) {
   return { snapshot, bytes, hash, provenance: prov };
 }
 
+/**
+ * Merge per-component public snapshots into one conversion input (ADR 0012). Each snapshot is one canonical
+ * capture; the same Figma variable, collection or style may appear in several captures and must then be
+ * IDENTICAL everywhere (name, collection, type, description, scopes, code syntax, every mode value / alias).
+ * Any difference, a name shared by two different IDs, a component present in two captures, or captures from
+ * different files/schemas is refused — the fix is a new capture, never a silent choice.
+ */
+export function mergeSnapshots(entries) {
+  if (!entries.length) throw new Error("No public snapshots configured");
+  if (entries.length === 1) return entries[0].snapshot;
+  const first = entries[0].snapshot;
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  for (const { id, snapshot: s } of entries) {
+    for (const k of ["schema", "schemaVersion", "derivedFrom", "sanitizer"]) if (!same(s[k], first[k])) throw new Error(`Cross-snapshot inconsistency: ${id} ${k} ${JSON.stringify(s[k])} ≠ ${JSON.stringify(first[k])}`);
+    if (s.extractor?.name !== first.extractor?.name || s.extractor?.readOnly !== true) throw new Error(`Cross-snapshot inconsistency: ${id} extractor ${JSON.stringify(s.extractor)}`);
+    if (s.source?.fileName !== first.source?.fileName) throw new Error(`Cross-snapshot inconsistency: ${id} comes from "${s.source?.fileName}", not "${first.source?.fileName}"`);
+  }
+  const byId = (kind, list, id, origin) => {
+    const seen = origin[kind];
+    for (const item of list || []) {
+      const prev = seen.get(item.id);
+      if (prev && !same(prev.item, item)) {
+        const fields = Object.keys({ ...prev.item, ...item }).filter((k) => !same(prev.item[k], item[k]));
+        throw new Error(`Cross-snapshot inconsistency: ${kind} "${item.name}" (${item.id}) differs between captures ${prev.id} and ${id} in [${fields.join(", ")}] — re-capture, do not choose one`);
+      }
+      if (!prev) {
+        const clash = [...seen.values()].find((p) => p.item.name === item.name);
+        if (clash) throw new Error(`Cross-snapshot naming conflict: ${kind} "${item.name}" has IDs ${clash.item.id} (${clash.id}) and ${item.id} (${id})`);
+        seen.set(item.id, { id, item });
+      }
+    }
+  };
+  const origin = { variable: new Map(), collection: new Map(), "text style": new Map(), "effect style": new Map() };
+  const components = new Map();
+  for (const { id, snapshot: s } of entries) {
+    byId("collection", s.collections, id, origin);
+    byId("variable", s.variables, id, origin);
+    byId("text style", s.styles?.text, id, origin);
+    byId("effect style", s.styles?.effect, id, origin);
+    for (const c of s.components || []) {
+      if (components.has(c.name)) throw new Error(`Component "${c.name}" appears in captures ${components.get(c.name)} and ${id}`);
+      components.set(c.name, id);
+    }
+  }
+  const pick = (kind) => [...origin[kind].values()].map((v) => v.item);
+  return {
+    ...first,
+    source: { ...first.source, roots: { components: entries.flatMap((e) => e.snapshot.source.roots.components) } },
+    components: entries.flatMap((e) => e.snapshot.components),
+    collections: pick("collection"),
+    variables: pick("variable"),
+    styles: { text: pick("text style"), effect: pick("effect style") },
+  };
+}
+
 /** Bindings/style refs that enter the export closure after applying each component's export scope. */
 export function scopeComponents(snapshot, config) {
   const out = [];
@@ -278,17 +333,27 @@ export function convertSnapshot(snapshot, config) {
   return { sets, counts, report: { components, textStyles, outOfClosure } };
 }
 
-/** File-level conversion: provenance/hash gate, convert, write sets + manifest (stale files removed). */
-export function convert({ root = ROOT, outDir = join(root, DEFAULT_OUT_DIR), configPath = join(root, CONFIG_PATH), snapshotPath, provenancePath } = {}) {
-  const config = JSON.parse(readFileSync(configPath, "utf8"));
-  const snapPath = snapshotPath || join(root, config.publicSnapshot.path);
-  const provPath = provenancePath || join(root, config.publicSnapshot.provenance);
-  const { snapshot, bytes, hash, provenance } = loadPublicSnapshot(snapPath, provPath);
-  return writeDtcg({ snapshot, bytes, hash, config, outDir, snapshotLabel: config.publicSnapshot.path, rawSha256: provenance.derivedFrom.sha256 });
+/** Load every configured public snapshot through the provenance gate; each must contain exactly its configured components. */
+export function loadPublicSnapshots(config, root = ROOT) {
+  return config.publicSnapshots.map((e) => {
+    const loaded = loadPublicSnapshot(join(root, e.path), join(root, e.provenance));
+    const found = (loaded.snapshot.components || []).map((c) => c.name);
+    if (JSON.stringify(found) !== JSON.stringify(e.components)) throw new Error(`Public snapshot ${e.id} contains [${found}], configured [${e.components}]`);
+    return { ...e, ...loaded };
+  });
 }
 
-/** Write sets + manifest for an already-validated snapshot (also used by tests on fixture snapshots). */
-export function writeDtcg({ snapshot, bytes, hash, config, outDir, snapshotLabel, rawSha256 = null }) {
+/** File-level conversion: provenance/hash gate per snapshot, cross-snapshot merge, convert, write sets + manifest. */
+export function convert({ root = ROOT, outDir = join(root, DEFAULT_OUT_DIR), configPath = join(root, CONFIG_PATH) } = {}) {
+  const config = JSON.parse(readFileSync(configPath, "utf8"));
+  const loaded = loadPublicSnapshots(config, root);
+  const snapshot = mergeSnapshots(loaded.map((l) => ({ id: l.id, snapshot: l.snapshot })));
+  const sources = loaded.map((l) => ({ id: l.id, path: l.path, snapshot: l.snapshot, bytes: l.bytes, hash: l.hash, rawSha256: l.provenance.derivedFrom.sha256 }));
+  return writeDtcg({ snapshot, sources, config, outDir });
+}
+
+/** Write sets + manifest for an already-validated (merged) snapshot; `sources` describes each capture it came from. */
+export function writeDtcg({ snapshot, sources, config, outDir }) {
   const { sets, counts, report } = convertSnapshot(snapshot, config);
   mkdirSync(outDir, { recursive: true });
   for (const f of readdirSync(outDir)) if (f.endsWith(".json")) rmSync(join(outDir, f));
@@ -303,11 +368,11 @@ export function writeDtcg({ snapshot, bytes, hash, config, outDir, snapshotLabel
     generated: true,
     notice: "GENERATED by packages/tokens/build/convert-snapshot.mjs — do not edit. Regenerate with `npm run convert`.",
     converterVersion: CONVERTER_VERSION,
-    snapshot: {
-      path: snapshotLabel, sha256: hash, bytes: bytes.length, schema: snapshot.schema, schemaVersion: snapshot.schemaVersion,
-      sanitizerVersion: snapshot.sanitizer.version, rawCaptureSha256: rawSha256,
-      extractorVersion: snapshot.extractor.version, sourceFileName: snapshot.source.fileName,
-    },
+    snapshots: sources.map((s) => ({
+      id: s.id, components: s.snapshot.components.map((c) => c.name), path: s.path, sha256: s.hash, bytes: s.bytes.length,
+      schema: s.snapshot.schema, schemaVersion: s.snapshot.schemaVersion, sanitizerVersion: s.snapshot.sanitizer.version,
+      rawCaptureSha256: s.rawSha256 ?? null, extractorVersion: s.snapshot.extractor.version, sourceFileName: s.snapshot.source.fileName,
+    })),
     tokenCounts: counts,
     traceability: report,
     files,

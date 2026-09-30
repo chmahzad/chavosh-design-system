@@ -1,4 +1,4 @@
-// AUTHORED. Read-only mock of the Figma Plugin API for exporter v0.3.0 tests, backed by
+// AUTHORED. Read-only mock of the Figma Plugin API for exporter tests (extractor v0.3.0, plugin v0.4.0), backed by
 // fixtures/plugin-api.fixture.json (test data — see its $comment; not Figma evidence).
 // - Every object handed to the extractor is a Proxy: set/define/delete/setPrototypeOf throw, and looking up a
 //   missing mutator-like member (set*, create*, remove*, load*, …) throws.
@@ -105,9 +105,12 @@ export function createReadOnlyFigma(fixture, { shuffle = false } = {}) {
 
 export const toText = (snapshot) => JSON.stringify(JSON.parse(JSON.stringify(snapshot)), null, 2) + "\n";
 
-/** The component roots declared in code.js (parsed, not executed). */
-export function pluginRoots() {
-  const m = /const CHAVOSH_COMPONENT_ROOTS = (\{[\s\S]*?\n\});/.exec(read("code.js"));
-  if (!m) throw new Error("CHAVOSH_COMPONENT_ROOTS not found in code.js");
+/** Roots used by the extractor tests: the fixture's Button set (test data, not a capture target). */
+export const FIXTURE_ROOTS = { components: [{ nodeId: "20:2", name: "Button", type: "COMPONENT_SET" }] };
+
+/** The capture targets declared in code.js (parsed, not executed). */
+export function captureTargets() {
+  const m = /const CHAVOSH_CAPTURE_TARGETS = (\[[\s\S]*?\n\]);/.exec(read("code.js"));
+  if (!m) throw new Error("CHAVOSH_CAPTURE_TARGETS not found in code.js");
   return vm.runInNewContext(`(${m[1]})`);
 }

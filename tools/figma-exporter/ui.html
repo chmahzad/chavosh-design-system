@@ -1,31 +1,41 @@
-<!-- Chavosh Financial — exporter v0.3.0 UI. AUTHORED. Displays and downloads the raw snapshot; no network access. -->
+<!-- Chavosh Financial — exporter v0.4.0 UI. AUTHORED. Lists one raw snapshot per component and downloads each; no network access. -->
 <style>
   body { font: 13px/1.4 system-ui, sans-serif; margin: 12px; }
-  textarea { width: 100%; height: 200px; font: 11px/1.3 ui-monospace, monospace; }
-  button { margin-top: 8px; }
+  li { margin-bottom: 10px; }
+  .err { color: #b00020; white-space: pre-wrap; }
+  button { margin-top: 4px; }
 </style>
-<p><strong>Chavosh read-only exporter v0.3.0</strong> — component dependency closure (nothing converted, nothing changed).</p>
-<p id="summary">Extracting…</p>
-<textarea id="out" readonly></textarea>
-<button id="dl" disabled>Download snapshot</button>
+<p><strong>Chavosh read-only exporter v0.4.0</strong> — one dependency-closure snapshot per component (nothing converted, nothing changed).</p>
+<p id="status">Extracting…</p>
+<ol id="list"></ol>
 <button id="close">Close</button>
 <script>
-  let json = "";
   onmessage = (e) => {
     const m = e.data.pluginMessage;
-    if (m.type === "snapshot") {
-      json = m.json;
-      out.value = json;
-      dl.disabled = false;
-      summary.textContent = `${m.summary.components} · ${m.summary.variables} variables · ${m.summary.collections} collections · ${m.summary.textStyles} text style(s) · ${m.summary.effectStyles} effect style(s)`;
+    if (m.type === "error") { status.textContent = "ERROR: " + m.message; status.className = "err"; return; }
+    if (m.type !== "snapshots") return;
+    const failed = m.results.filter((r) => r.error).length;
+    status.textContent = failed ? `${failed} of ${m.results.length} component(s) failed — report the error; do not adjust anything.` : `${m.results.length} snapshots ready. Download each file.`;
+    for (const r of m.results) {
+      const li = document.createElement("li");
+      if (r.error) {
+        li.innerHTML = `<strong></strong><div class="err"></div>`;
+        li.querySelector("strong").textContent = r.name;
+        li.querySelector(".err").textContent = "ERROR: " + r.error;
+      } else {
+        li.innerHTML = `<div></div><button type="button"></button>`;
+        li.querySelector("div").textContent = r.summary;
+        const b = li.querySelector("button");
+        b.textContent = "Download " + r.file;
+        b.onclick = () => {
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(new Blob([r.json], { type: "application/json" }));
+          a.download = r.file;
+          a.click();
+        };
+      }
+      list.appendChild(li);
     }
-    if (m.type === "error") { summary.textContent = "ERROR"; out.value = "ERROR: " + m.message; }
-  };
-  dl.onclick = () => {
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
-    a.download = "chavosh-button-figma-snapshot.json";
-    a.click();
   };
   document.getElementById("close").onclick = () => parent.postMessage({ pluginMessage: { type: "close" } }, "*");
 </script>

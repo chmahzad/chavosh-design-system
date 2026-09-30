@@ -1,9 +1,14 @@
 {
   "$comment": "AUTHORED. Token export policy v0.3 for snapshot → DTCG (architecture: chavosh-token-export-architecture.md, frozen; evolved from the proof archive, tags proof-1-closed / proof-2-closed; see docs/decisions). Contains no token values: all values come from the public Figma snapshot (derived from the private raw capture; ADR 0011).",
-  "publicSnapshot": {
-    "path": "snapshots/figma/chavosh-button.snapshot.public.json",
-    "provenance": "snapshots/figma/chavosh-button.snapshot.public.provenance.json"
-  },
+  "publicSnapshots": [
+    {
+      "id": "button",
+      "components": ["Button"],
+      "path": "snapshots/figma/chavosh-button.snapshot.public.json",
+      "provenance": "snapshots/figma/chavosh-button.snapshot.public.provenance.json",
+      "$comment": "Frozen canonical Button capture (29 Sep 2026). Never re-captured (ADR 0012)."
+    }
+  ],
   "cssPrefix": "ch",
   "collections": {
     "Primitives": { "layer": "primitive", "visibility": "source-only", "set": "primitives" },
@@ -46,6 +51,7 @@
       "figmaNodeId": "20:2",
       "type": "COMPONENT_SET",
       "exportScope": "button-v1-labels-only",
+    "contract": "tests/button-v1-spec.json",
       "excludedLayers": ["leading-icon", "trailing-icon", "spinner"],
       "$comment": "G4: export = dependency closure of Button's bindings. G6: Button v1 is labels only, so bindings on (or inside) the icon and spinner layers are recorded in the snapshot but do not enter the export closure. Layer names as they exist in Figma (read-only inspection, 29 Sep 2026)."
     }

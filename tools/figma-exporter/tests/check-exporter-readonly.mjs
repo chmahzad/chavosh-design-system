@@ -1,6 +1,6 @@
-// AUTHORED. Exporter v0.3.0 is read-only: static scan for mutation APIs, write-throwing mock self-test,
+// AUTHORED. Exporter (extractor v0.3.0, plugin v0.4.0) is read-only: static scan for mutation APIs, write-throwing mock self-test,
 // and a dynamic run that may only call allow-listed getters.
-import { read, assert, loadExtractor, loadFixture, createReadOnlyFigma, pluginRoots, ALLOWED_CALLS } from "./mock.mjs";
+import { read, assert, loadExtractor, loadFixture, createReadOnlyFigma, FIXTURE_ROOTS, ALLOWED_CALLS } from "./mock.mjs";
 
 const FORBIDDEN = [
   /\bcreate[A-Z]\w*\s*\(/, /\bset[A-Z]\w*\s*\(/, /\.remove\s*\(/, /\bdelete\s+\w/, /\bimport\w*Async\s*\(/,
@@ -29,7 +29,7 @@ export async function run() {
     assert(threw, `mock self-test ${i} did not throw — the read-only mock is not trustworthy`);
   }
   const { figma, calls } = createReadOnlyFigma(loadFixture(), { shuffle: true });
-  await loadExtractor()(figma, pluginRoots());
+  await loadExtractor()(figma, FIXTURE_ROOTS);
   const used = [...new Set(calls)].sort();
   const bad = used.filter((c) => !ALLOWED_CALLS.includes(c));
   assert(bad.length === 0, `extractor called non-allow-listed APIs: ${bad.join(", ")}`);
