@@ -1114,6 +1114,31 @@
           }
         }
       }
+    },
+    "max": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$description": "End of the radius scale (fully rounded). Index-based radius scale: radius/100 = 4px; \"max\" avoids a false numeric reading. Semantic alias: Dimension radius/full.",
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:28",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "radius/max",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--radius-max)"
+            }
+          }
+        }
+      }
     }
   },
   "size": {

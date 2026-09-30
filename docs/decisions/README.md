@@ -21,3 +21,4 @@ lineage. Labels such as G1–G8 identify the original architecture decisions eac
 | [0012](0012-component-expansion-captures-and-button-baseline.md) | Per-component captures (Button frozen), cross-capture consistency, per-component contracts, Button regression baseline | Accepted (30 Sep 2026) |
 | [0013](0013-link-v1-implementation-mapping.md) | Link v1 implementation mapping; staged (recorded, unreleased) captures; Button token-check amendment | Accepted (30 Sep 2026) |
 | [0014](0014-checkbox-v1-implementation-mapping.md) | Checkbox v1 implementation mapping; Link regression baseline | Accepted (30 Sep 2026) |
+| [0015](0015-radio-v1-implementation-mapping.md) | Radio v1 implementation mapping; Checkbox regression baseline | Accepted (30 Sep 2026) |

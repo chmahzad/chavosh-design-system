@@ -21,11 +21,17 @@
       "path": "snapshots/figma/chavosh-checkbox.snapshot.public.json",
       "provenance": "snapshots/figma/chavosh-checkbox.snapshot.public.provenance.json",
       "$comment": "Canonical Checkbox capture (30 Sep 2026, exporter plugin v0.4.0). Released in M2 (ADR 0014)."
+    },
+    {
+      "id": "radio",
+      "components": ["Radio"],
+      "path": "snapshots/figma/chavosh-radio.snapshot.public.json",
+      "provenance": "snapshots/figma/chavosh-radio.snapshot.public.provenance.json",
+      "$comment": "Canonical Radio capture (30 Sep 2026, exporter plugin v0.4.0). Released in M3 (ADR 0015)."
     }
   ],
   "stagedSnapshots": [
     { "id": "text-field", "components": ["Text Field"], "path": "snapshots/figma/chavosh-text-field.snapshot.public.json", "provenance": "snapshots/figma/chavosh-text-field.snapshot.public.provenance.json" },
-    { "id": "radio", "components": ["Radio"], "path": "snapshots/figma/chavosh-radio.snapshot.public.json", "provenance": "snapshots/figma/chavosh-radio.snapshot.public.provenance.json" },
     { "id": "switch", "components": ["Switch"], "path": "snapshots/figma/chavosh-switch.snapshot.public.json", "provenance": "snapshots/figma/chavosh-switch.snapshot.public.provenance.json" }
   ],
   "$stagedSnapshotsComment": "Recorded canonical captures (30 Sep 2026) whose components are not released yet. They pass the same provenance gate and cross-capture consistency check as publicSnapshots but do not enter the build or the public CSS surface. Each moves to publicSnapshots (with a components entry and contract) in its own milestone.",
@@ -90,6 +96,14 @@
       "contract": "tests/checkbox-v1-spec.json",
       "excludedLayers": [],
       "$comment": "G4: export = dependency closure of Checkbox's bindings. Every layer is in scope: the check/dash glyph is internal vector geometry (not an icon instance) and the supporting text is part of the v1 API. Layer names from the 30 Sep 2026 capture."
+    },
+    "Radio": {
+      "figmaNodeId": "56:1281",
+      "type": "COMPONENT_SET",
+      "exportScope": "radio-v1",
+      "contract": "tests/radio-v1-spec.json",
+      "excludedLayers": [],
+      "$comment": "G4: export = dependency closure of Radio's bindings. Every layer is in scope: the dot is intrinsic Radio geometry (not an icon) and the supporting text is part of the v1 API. Layer names from the 30 Sep 2026 capture."
     }
   }
 }

@@ -1,0 +1,153 @@
+/*
+ * AUTHORED. Chavosh Financial — Radio v1. Contract: docs/decisions/0015-radio-v1-implementation-mapping.md.
+ * Consumes ONLY public --ch-* tokens from @chavosh/tokens/ch-tokens.css (loaded once at the application entry, not here).
+ * Never: primitives, --ch-brand-*, raw design values. Documented exceptions (ADR 0015): layout keywords and 0 / 100%
+ * (hidden native input over the circle); the dot as intrinsic Radio geometry — 8px in the 20px circle in Figma, so
+ * 0.4 × size/control/indicator (drawn as a border-only circle of 0.2 × the indicator on each side, so it scales with the
+ * control and survives forced colours); system colours in forced-colours mode.
+ * --_rd-* are PRIVATE implementation variables of this file (not tokens, not API), set only from public tokens.
+ */
+.ch-radio {
+  --_rd-bg: var(--ch-color-surface-default);
+  --_rd-border: var(--ch-color-border-input);
+  --_rd-dot: var(--ch-color-control-checked);
+  --_rd-label: var(--ch-color-text-default);
+  --_rd-support: var(--ch-color-text-subtle);
+
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start; /* top-aligned: wrapping text keeps the circle on the first line */
+  gap: var(--ch-space-gap-md);
+  width: fit-content;
+  max-width: 100%;
+  min-height: var(--ch-size-touch-target-min); /* the whole row is the target; it grows with text */
+  margin: 0;
+  padding-block: var(--ch-space-component-sm);
+  padding-inline: 0px;
+  cursor: pointer;
+  font-family: var(--ch-font-family-sans);
+  font-weight: var(--ch-font-weight-regular);
+}
+
+/* ---- Control: circle aligned to the first label line (Figma control-wrap = body/md line height) ---------------- */
+.ch-radio__control {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--ch-font-line-height-body-md);
+}
+.ch-radio__circle {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: var(--ch-size-control-indicator);
+  height: var(--ch-size-control-indicator);
+  border: var(--ch-border-width-strong) solid var(--_rd-border);
+  border-radius: var(--ch-radius-full);
+  background-color: var(--_rd-bg);
+}
+/* Native input: transparent, exactly over the circle — real radio semantics, grouping, focus, keyboard and click. */
+.ch-radio__input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+/* Dot: Selected only (structural, never colour alone). A border-only circle centred in the control. */
+.ch-radio__dot {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: none;
+  width: 0px;
+  height: 0px;
+  margin: auto;
+  border: calc(var(--ch-size-control-indicator) * 0.2) solid var(--_rd-dot);
+  border-radius: var(--ch-radius-full);
+}
+.ch-radio__input:checked + .ch-radio__circle .ch-radio__dot {
+  display: block;
+}
+
+/* ---- Text: label body/md, supporting text body/sm ------------------------------------------------------------ */
+.ch-radio__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ch-space-gap-xs);
+  min-width: 0;
+}
+.ch-radio__label {
+  color: var(--_rd-label);
+  font-size: var(--ch-font-size-body-md);
+  line-height: var(--ch-font-line-height-body-md);
+  overflow-wrap: break-word;
+}
+.ch-radio__supporting {
+  color: var(--_rd-support);
+  font-size: var(--ch-font-size-body-sm);
+  line-height: var(--ch-font-line-height-body-sm);
+  overflow-wrap: break-word;
+}
+
+/* ---- Selected: ring + dot on the default surface (deliberately different from the filled Checkbox) -------------- */
+.ch-radio__input:checked + .ch-radio__circle {
+  --_rd-border: var(--ch-color-control-checked);
+}
+
+/* ---- Hover (row or circle; hover-capable pointers only; never when disabled) ----------------------------------- */
+@media (hover: hover) {
+  .ch-radio:hover .ch-radio__input:enabled + .ch-radio__circle {
+    --_rd-border: var(--ch-color-border-strong);
+  }
+  .ch-radio:hover .ch-radio__input:enabled:checked + .ch-radio__circle {
+    --_rd-border: var(--ch-color-control-checked-hover);
+    --_rd-dot: var(--ch-color-control-checked-hover);
+  }
+}
+
+/* ---- Focus: keyboard focus only, circular ring around the circle; 3px indicator (outline) + 2px outer ring ------ */
+.ch-radio__input:focus-visible + .ch-radio__circle {
+  outline: var(--ch-focus-width-indicator) solid var(--ch-color-focus-indicator);
+  outline-offset: 0px;
+  box-shadow: 0 0 0 calc(var(--ch-focus-width-indicator) + var(--ch-focus-width-outer)) var(--ch-color-focus-outer);
+}
+
+/* ---- Disabled (native, incl. a disabled <fieldset>): grey circle; the dot stays when selected ------------------- */
+.ch-radio__input:disabled + .ch-radio__circle {
+  --_rd-bg: var(--ch-color-surface-disabled);
+  --_rd-border: var(--ch-color-border-disabled);
+  --_rd-dot: var(--ch-color-icon-disabled);
+}
+.ch-radio:has(.ch-radio__input:disabled) {
+  --_rd-label: var(--ch-color-text-disabled);
+  --_rd-support: var(--ch-color-text-disabled);
+  cursor: default;
+}
+
+/* ---- Forced colours: real circular boundary, dot in the system text colour, focus outline preserved ------------- */
+@media (forced-colors: active) {
+  .ch-radio__circle,
+  .ch-radio__input:checked + .ch-radio__circle {
+    border-color: CanvasText;
+    background-color: Canvas;
+  }
+  .ch-radio__dot {
+    border-color: CanvasText;
+  }
+  .ch-radio__input:disabled + .ch-radio__circle,
+  .ch-radio__input:disabled + .ch-radio__circle .ch-radio__dot {
+    border-color: GrayText;
+  }
+  .ch-radio:has(.ch-radio__input:disabled) .ch-radio__label,
+  .ch-radio:has(.ch-radio__input:disabled) .ch-radio__supporting {
+    color: GrayText;
+  }
+  .ch-radio__input:focus-visible + .ch-radio__circle {
+    outline-color: Highlight;
+  }
+}

@@ -13,8 +13,9 @@ Configured captures: see `source/export-config.json`.
 - `publicSnapshots` — released components, built into DTCG and CSS: Button (29 Sep 2026, raw SHA-256
   `adecb1cc8587634f057eb4bddb34a6a789012d65340f08cdd92dc81abe6b0a52`, frozen and never re-captured) and Link
   (30 Sep 2026, raw `aea3ff36c54d1096572d6cb8604dfd70632f3e7656b326c4c14da2c5b7c7bab4`) and Checkbox (30 Sep 2026, raw
-  `a18ff7ab351c6f865c845621173f62d4bea3cefa39daf19d35f1a382f38f70a7`).
-- `stagedSnapshots` — recorded canonical captures of components not released yet (30 Sep 2026): Text Field, Radio,
+  `a18ff7ab351c6f865c845621173f62d4bea3cefa39daf19d35f1a382f38f70a7`) and Radio (30 Sep 2026, raw
+  `081685a52695d4c779006db16aedb358fd5c27cf513998abba21ff7995c77402`).
+- `stagedSnapshots` — recorded canonical captures of components not released yet (30 Sep 2026): Text Field and
   Switch. They pass the provenance gate and the consistency check but produce no tokens until their milestone
   (ADR 0013).
 Captures must be mutually consistent: a variable shared by two captures must be identical in both.

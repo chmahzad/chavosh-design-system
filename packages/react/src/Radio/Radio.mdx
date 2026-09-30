@@ -1,0 +1,89 @@
+import { Meta, Title, Subtitle, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as RadioStories from "./Radio.stories";
+
+<Meta of={RadioStories} />
+
+<Title>Radio</Title>
+<Subtitle>One option in a mutually exclusive set. v1.</Subtitle>
+
+## Purpose
+Radio is one option of a small set where exactly one answer applies — for example payment frequency or statement delivery. It is a native `<input type="radio">` with its label; the whole row — circle, label and supporting text — is the target.
+
+Radios that share the same native `name` form one group: the browser keeps a single selection and handles the keyboard. There is no RadioGroup component in v1 — compose groups with `<fieldset>` and `<legend>`.
+
+**Radio, Checkbox or Switch?** Use Radio when exactly one option of a set applies. Use Checkbox for independent choices. Use Switch only for a setting that takes effect immediately. For many options with descriptions, fees or comparisons (for example choosing an investment option), a future selection-card pattern is more appropriate.
+
+<Canvas of={RadioStories.Playground} />
+<Controls of={RadioStories.Playground} />
+
+## Selection
+- **Unselected** — empty ring.
+- **Selected** — ring in the selection colour with a dot.
+
+The dot marks the selection, so it never depends on colour alone — also when disabled. A radio cannot be deselected by clicking it again; if "none" is a valid answer, offer it as an explicit option ("No preference").
+
+<Canvas of={RadioStories.Selection} />
+
+## States
+States are browser behaviour, not props.
+- **Hover** (hover-capable pointers only): anywhere on the row — a stronger ring when unselected, a darker ring and dot when selected.
+- **Focus-visible** (keyboard): the Chavosh focus ring around the circle — a 3px indicator and a 2px outer ring, circular.
+- **Disabled**: the native `disabled` attribute, including a disabled `<fieldset>`. Disabled radios are skipped by Tab and arrow keys.
+
+The examples below are a documentation-only simulation: Hover and Focus-visible are forced by the Storybook pseudo-states addon, which applies Radio's real CSS rules. The **Playground** is the real browser interaction.
+
+<Canvas of={RadioStories.States} />
+
+## Supporting text
+Optional detail under the label. It is announced as the radio's description, not as part of its name.
+
+<Canvas of={RadioStories.SupportingText} />
+
+## Groups
+Compose a group with a native `<fieldset>`, a `<legend>` that asks the question, and the **same `name`** on every radio. The `name` is always yours to set — Radio never derives it from the label. Group-level rules — required selection and errors such as "Select a payment frequency" — belong to a future Radio Group; Radio itself has no error state. Don't preselect an option where the choice has financial consequences.
+
+<Canvas of={RadioStories.Group} />
+
+## Keyboard
+Keyboard behaviour is native to the browser:
+- **Tab** enters the group as one stop — at the selected radio, or at an enabled radio when none is selected — and leaves it with the next Tab.
+- **Arrow keys** move focus **and** selection together, wrap around, and skip disabled options.
+- **Space** selects the focused radio.
+
+Because arrow keys change the selection immediately, changing a selection must not submit, navigate or trigger irreversible or financial recalculation (WCAG 3.2.2).
+
+<Canvas of={RadioStories.Keyboard} />
+
+## Behaviour
+- The row is at least 44px high and grows with wrapping text; the circle stays aligned with the first line of the label.
+- The dot scales with the circle.
+- Width follows the content, up to the width of the container.
+
+<Canvas of={RadioStories.LongLabel} />
+
+## Accessibility
+- Native radio semantics: announced as a radio button with its selected state and position in the group.
+- Name: the label text only; description: the supporting text (and any `aria-describedby` you pass). The group's name comes from the `<legend>`.
+- Keyboard: see above. Keyboard focus shows the focus ring; a mouse click does not.
+- Target: the whole row, at least 44px high.
+- Forced-colours mode: the circle keeps a system-colour boundary, the dot stays visible in the system text colour, disabled uses `GrayText`, and the focus outline remains.
+- Automated checks (the Accessibility panel and the design system's browser tests) are evidence, **not** a WCAG 2.2 AA conformance claim. Screen-reader (VoiceOver, NVDA, TalkBack) and manual testing remain required.
+
+## Disabled
+<Canvas of={RadioStories.Disabled} />
+
+## Brand
+Radio has no brand logic. Only the selected ring and dot follow the brand context — **Financial** by default, **Invest** under `data-brand="invest"`, including nested contexts. Unselected, disabled and focus colours are shared.
+
+<Canvas of={RadioStories.BrandComparison} />
+
+## Known limitations
+- No error state or group validation in v1 (future Radio Group).
+- No visually hidden label in v1 (a possible, non-breaking extension for "choose one account" table rows).
+- One size. The dot is internal component geometry (0.4 × the control size), not a token.
+
+## API
+
+<ArgTypes of={RadioStories.Playground} />
+
+Other native `<input>` attributes (for example `checked`, `onChange`, `required`, `form`, `id`, `aria-*`, `data-*`, `ref`) are passed to the input. `className` is applied to the row. Don't use `className` or `style` to override Radio's colours, spacing or typography.

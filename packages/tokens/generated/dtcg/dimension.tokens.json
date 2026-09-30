@@ -187,6 +187,31 @@
     }
   },
   "radius": {
+    "full": {
+      "$type": "dimension",
+      "$value": "{radius.max}",
+      "$description": "Fully rounded ends for circular or pill-shaped controls, e.g. Radio and Switch. Use instead of a large fixed radius.",
+      "$extensions": {
+        "chavosh": {
+          "layer": "dimension",
+          "visibility": "public",
+          "css": "--ch-radius-full",
+          "figma": {
+            "variableId": "VariableID:5:85",
+            "collection": "Dimension",
+            "collectionId": "VariableCollectionId:5:58",
+            "path": "radius/full",
+            "resolvedType": "FLOAT",
+            "scopes": [
+              "CORNER_RADIUS"
+            ],
+            "codeSyntax": {
+              "WEB": "var(--radius-full)"
+            }
+          }
+        }
+      }
+    },
     "md": {
       "$type": "dimension",
       "$value": "{radius.200}",

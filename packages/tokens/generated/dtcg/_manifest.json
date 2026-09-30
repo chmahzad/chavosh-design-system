@@ -47,14 +47,29 @@
       "rawCaptureSha256": "a18ff7ab351c6f865c845621173f62d4bea3cefa39daf19d35f1a382f38f70a7",
       "extractorVersion": "0.3.0",
       "sourceFileName": "Chavosh Financial — Design System"
+    },
+    {
+      "id": "radio",
+      "components": [
+        "Radio"
+      ],
+      "path": "snapshots/figma/chavosh-radio.snapshot.public.json",
+      "sha256": "845ade8a5ae0516cf5e3af13ca345d57ffa56f9c9a5e989e9996603237392bce",
+      "bytes": 106662,
+      "schema": "chavosh.figma-public-snapshot",
+      "schemaVersion": "1.0.0",
+      "sanitizerVersion": "1.0.0",
+      "rawCaptureSha256": "081685a52695d4c779006db16aedb358fd5c27cf513998abba21ff7995c77402",
+      "extractorVersion": "0.3.0",
+      "sourceFileName": "Chavosh Financial — Design System"
     }
   ],
   "tokenCounts": {
     "brand-financial": 9,
     "brand-invest": 9,
     "color": 34,
-    "dimension": 20,
-    "primitives": 49,
+    "dimension": 21,
+    "primitives": 50,
     "responsive-desktop": 8,
     "responsive-mobile": 8,
     "responsive-tablet": 8
@@ -203,6 +218,50 @@
           "body/sm"
         ],
         "excludedOnly": []
+      },
+      {
+        "name": "Radio",
+        "figmaNodeId": "56:1281",
+        "exportScope": "radio-v1",
+        "variants": 8,
+        "bindings": 264,
+        "bindingsInScope": 264,
+        "excludedLayers": [],
+        "boundTokens": [
+          "border-width/strong",
+          "color/border/disabled",
+          "color/border/input",
+          "color/border/strong",
+          "color/control/checked",
+          "color/control/checked-hover",
+          "color/focus/indicator",
+          "color/focus/outer",
+          "color/icon/disabled",
+          "color/surface/default",
+          "color/surface/disabled",
+          "color/text/default",
+          "color/text/disabled",
+          "color/text/subtle",
+          "focus/width/indicator",
+          "focus/width/outer",
+          "font/family/sans",
+          "font/line-height/body/md",
+          "font/line-height/body/sm",
+          "font/size/body/md",
+          "font/size/body/sm",
+          "font/weight/regular",
+          "radius/full",
+          "size/control/indicator",
+          "size/touch-target/min",
+          "space/component/sm",
+          "space/gap/md",
+          "space/gap/xs"
+        ],
+        "styles": [
+          "body/md",
+          "body/sm"
+        ],
+        "excludedOnly": []
       }
     ],
     "textStyles": [
@@ -291,8 +350,8 @@
     "brand-financial.tokens.json": "63ae0c6313579dd1c933159cee19e740b717d1b105d47650c959352607b6fa84",
     "brand-invest.tokens.json": "9cdaa9b8f89279c5f87b973c9e050079360f5c08a5e13689d1fd3ceecc813a7b",
     "color.tokens.json": "bc6c59a5773d06e6fb54023d4375b8a0201216aea0d7481064b141eb23ec6247",
-    "dimension.tokens.json": "fed0be014d8011d9b8edc96fb70dae8ab2b4d5260b9b9feb99c747daf4e6a000",
-    "primitives.tokens.json": "9e362c98fad35bd529ac16ece7610862ed714816192dcf41f9e705cbebb3a283",
+    "dimension.tokens.json": "aa1b3c58bde3ab8416d1ee8b50f5a14b4258ab97d4052a48ff347ff62ff629c9",
+    "primitives.tokens.json": "a7eb3e59602bb2d95a4b1d64d678c5d0e5979d5c699e6dc6fbc91cf638394dab",
     "responsive-desktop.tokens.json": "69e4c7c8abbf0ebced4f9c99083661b9bfa462dde14f2fb3c102b1416773f865",
     "responsive-mobile.tokens.json": "d3704e078d20430e7dea4b8794643452cd4baf65e7a29cf7857d2b445d34f128",
     "responsive-tablet.tokens.json": "8e9b182b144bd381ffbc10ef659d7a91e148553644c45c1e517e3f79104ec637"

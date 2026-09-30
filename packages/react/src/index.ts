@@ -6,3 +6,5 @@ export { Link } from "./Link/Link";
 export type { LinkProps, LinkSize } from "./Link/Link";
 export { Checkbox } from "./Checkbox/Checkbox";
 export type { CheckboxProps } from "./Checkbox/Checkbox";
+export { Radio } from "./Radio/Radio";
+export type { RadioProps } from "./Radio/Radio";

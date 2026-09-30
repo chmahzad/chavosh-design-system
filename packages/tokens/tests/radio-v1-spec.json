@@ -1,0 +1,16 @@
+{
+  "$comment": "AUTHORED. Cross-check contract for the Radio v1 export closure, transcribed from chavosh-radio-architecture.md (approved 29 Sep 2026; §1 anatomy, §4 token mapping and 'Token reuse (zero new tokens)', §6 geometry, §12 QA) and the Selection & Control Foundations Review. Used by check-production.mjs: the tokens Radio binds in scope must equal this list. Any difference is reported as a Design/code mismatch for designer review — never auto-corrected.",
+  "source": "chavosh-radio-architecture.md (Radio Architecture v1)",
+  "boundTokens": [
+    "color/surface/default", "color/surface/disabled",
+    "color/border/input", "color/border/strong", "color/border/disabled",
+    "color/control/checked", "color/control/checked-hover",
+    "color/icon/disabled",
+    "color/text/default", "color/text/subtle", "color/text/disabled",
+    "color/focus/indicator", "color/focus/outer", "focus/width/indicator", "focus/width/outer",
+    "size/control/indicator", "size/touch-target/min", "radius/full", "border-width/strong",
+    "space/gap/md", "space/gap/xs", "space/component/sm",
+    "font/family/sans", "font/weight/regular", "font/size/body/md", "font/size/body/sm", "font/line-height/body/md", "font/line-height/body/sm"
+  ],
+  "textStyles": ["body/md", "body/sm"]
+}
