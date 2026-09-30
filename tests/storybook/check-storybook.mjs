@@ -1,9 +1,9 @@
 // AUTHORED. Storybook verification (Storybook 10.6.0, Playwright 1.56.1 / Chromium) — complements, never replaces,
-// the component checks. Static: real Button, Link, Checkbox, Radio and Switch, token CSS loaded once, data-brand toolbar, no raw/duplicated values or
+// the component checks. Static: real Button, Link, Checkbox, Radio, Switch and Text Field, token CSS loaded once, data-brand toolbar, no raw/duplicated values or
 // excluded props in stories. Build: the production static build succeeds; every story renders, its play function
 // passes (a failing play emits playFunctionThrewException while storyFinished still says "success", so both are
 // checked) and the a11y addon (axe-core) reports no violations; docs pages render; the Brand toolbar switches the real
-// Button, Link, Checkbox, Radio and Switch through data-brand; pseudo-state demos apply the real CSS rules. No output snapshots.
+// Button, Link, Checkbox, Radio, Switch and Text Field through data-brand; pseudo-state demos apply the real CSS rules. No output snapshots.
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -17,7 +17,7 @@ const read = (p) => readFileSync(join(ROOT, p), "utf8");
 function assert(c, m) { if (!c) throw new Error(m); }
 const noComments = (s) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1").replace(/\{\/\*[\s\S]*?\*\/\}/g, "");
 
-const STORY_FILES = ["packages/react/src/Button/Button.stories.tsx", "packages/react/src/Button/Button.mdx", "packages/react/src/Link/Link.stories.tsx", "packages/react/src/Link/Link.mdx", "packages/react/src/Checkbox/Checkbox.stories.tsx", "packages/react/src/Checkbox/Checkbox.mdx", "packages/react/src/Radio/Radio.stories.tsx", "packages/react/src/Radio/Radio.mdx", "packages/react/src/Switch/Switch.stories.tsx", "packages/react/src/Switch/Switch.mdx", ".storybook/pages/Introduction.mdx", ".storybook/pages/Foundations.mdx"];
+const STORY_FILES = ["packages/react/src/Button/Button.stories.tsx", "packages/react/src/Button/Button.mdx", "packages/react/src/Link/Link.stories.tsx", "packages/react/src/Link/Link.mdx", "packages/react/src/Checkbox/Checkbox.stories.tsx", "packages/react/src/Checkbox/Checkbox.mdx", "packages/react/src/Radio/Radio.stories.tsx", "packages/react/src/Radio/Radio.mdx", "packages/react/src/Switch/Switch.stories.tsx", "packages/react/src/Switch/Switch.mdx", "packages/react/src/TextField/TextField.stories.tsx", "packages/react/src/TextField/TextField.mdx", ".storybook/pages/Introduction.mdx", ".storybook/pages/Foundations.mdx"];
 const EXPECTED_ENTRIES = [
   "introduction--docs", "foundations-design-tokens--docs", "components-button--docs",
   "components-button--playground", "components-button--hierarchies", "components-button--sizes", "components-button--states",
@@ -33,7 +33,11 @@ const EXPECTED_ENTRIES = [
   "components-switch--docs", "components-switch--playground", "components-switch--states", "components-switch--supporting-text",
   "components-switch--settings", "components-switch--controlled", "components-switch--brand-comparison",
   "components-switch--long-label", "components-switch--keyboard", "components-switch--disabled",
+  "components-text-field--docs", "components-text-field--playground", "components-text-field--states", "components-text-field--helper-and-optional",
+  "components-text-field--error-message", "components-text-field--financial-examples", "components-text-field--disabled-and-read-only",
+  "components-text-field--brand-comparison", "components-text-field--long-content", "components-text-field--keyboard",
 ];
+const TEXT_FIELD_EXCLUDED = ["error", "invalid", "aria-invalid", "size", "hover", "focus", "leadingIcon", "trailingIcon", "icon", "hideLabel", "children", "validation", "variant"];
 const SWITCH_EXCLUDED = ["type", "role", "error", "size", "hover", "focus", "indeterminate", "hideLabel", "children", "onLabel", "loading"];
 const RADIO_EXCLUDED = ["type", "error", "invalid", "size", "hover", "focus", "indeterminate", "hideLabel", "children", "variant"];
 const CHECKBOX_EXCLUDED = ["type", "error", "invalid", "size", "hover", "focus", "icon", "children", "variant"];
@@ -77,6 +81,7 @@ function staticChecks() {
   assert(/import "\.\/checkbox\.css"/.test(read("packages/react/src/Checkbox/Checkbox.tsx")), "Checkbox must import its own checkbox.css");
   assert(/import "\.\/radio\.css"/.test(read("packages/react/src/Radio/Radio.tsx")), "Radio must import its own radio.css");
   assert(/import "\.\/switch\.css"/.test(read("packages/react/src/Switch/Switch.tsx")), "Switch must import its own switch.css");
+  assert(/import "\.\/text-field\.css"/.test(read("packages/react/src/TextField/TextField.tsx")), "Text Field must import its own text-field.css");
 
   const stories = noComments(read("packages/react/src/Button/Button.stories.tsx"));
   assert(/import \{ Button[^}]*\} from "\.\/Button";/.test(stories) && /component: Button,/.test(stories), "stories must use the real Button (./Button)");
@@ -85,7 +90,7 @@ function staticChecks() {
     const code = f.endsWith(".mdx") ? noComments(read(f)).replace(/`[^`\n]*`/g, "") : noComments(read(f));
     assert(!/<button\b/.test(code), `${f}: renders a <button> of its own — stories must use the real Button`);
     assert(!/<a\b/.test(code), `${f}: renders an <a> of its own — stories must use the real Link`);
-    assert(!/<input\b/.test(code), `${f}: renders an <input> of its own — stories must use the real Checkbox / Radio`);
+    assert(!/<input\b/.test(code), `${f}: renders an <input> of its own — stories must use the real Checkbox / Radio / Switch / Text Field`);
     assert(!/#[0-9a-fA-F]{3,8}\b|\b(rgba?|hsla?|oklch|lab)\(/.test(code), `${f}: raw colour value`);
     assert(!/--ch-[a-z0-9-]+\s*:/.test(code) && !/var\(--/.test(code), `${f}: token declarations or token references in documentation/stories`);
     assert(!/\bstyle=\{\{/.test(code), `${f}: inline styles`);
@@ -164,14 +169,29 @@ function staticChecks() {
   assert(JSON.stringify(swKeys) === JSON.stringify(["defaultChecked", "disabled", "label", "onChange", "supportingText"]), `Switch argTypes ${swKeys}`);
   assert(/<fieldset className="sb-fieldset sb-narrow-md">/.test(swStories) && !/SwitchGroup/.test(swStories), "Switch settings lists are native fieldset/legend composition (no Switch Group)");
 
+  // Text Field stories: the real TextField and only its API (+ native input attributes); no unsupported combinations.
+  const tfStories = noComments(read("packages/react/src/TextField/TextField.stories.tsx"));
+  assert(/import \{ TextField[^}]*\} from "\.\/TextField";/.test(tfStories) && /component: TextField,/.test(tfStories), "stories must use the real TextField (./TextField)");
+  const tfProps = jsxAttrNames(tfStories, "TextField");
+  const tfArgs = [...tfStories.matchAll(/\bargs: \{([^}]*)\}/g)].flatMap((m) => [...m[1].matchAll(/(\w+):/g)].map((a) => a[1]));
+  const tfAllowed = new Set(["label", "helperText", "errorMessage", "optional", "placeholder", "disabled", "readOnly", "defaultValue", "value", "onChange", "onBlur", "type", "autoComplete", "inputMode", "name", "required", "key", "data-demo-state"]);
+  for (const p of [...tfProps, ...tfArgs]) assert(tfAllowed.has(p) && !TEXT_FIELD_EXCLUDED.includes(p), `prop "${p}" on TextField in stories is not part of the documented API`);
+  assert(tfProps.length >= 20 && tfArgs.includes("label"), "Text Field prop scan found nothing — pattern out of date");
+  const tfInclude = /controls:\s*\{\s*include:\s*\[([^\]]*)\]/.exec(tfStories);
+  assert(tfInclude && JSON.stringify(tfInclude[1].match(/"([^"]+)"/g).map((x) => x.slice(1, -1)).sort()) === JSON.stringify(["disabled", "errorMessage", "helperText", "label", "optional", "placeholder", "readOnly"]), "Text Field controls must be exactly label, helperText, errorMessage, optional, placeholder, disabled, readOnly");
+  const tfArgTypes = /argTypes:\s*\{([\s\S]*?)\n  \},\n  parameters/.exec(tfStories)[1];
+  const tfKeys = [...tfArgTypes.matchAll(/^\s{4}(\w+):/gm)].map((m) => m[1]).sort();
+  assert(JSON.stringify(tfKeys) === JSON.stringify(["disabled", "errorMessage", "helperText", "label", "onChange", "optional", "placeholder", "readOnly"]), `Text Field argTypes ${tfKeys}`);
+  for (const m of tfStories.matchAll(/<TextField\b[^>]*>/g)) assert(!(/errorMessage=/.test(m[0]) && /\b(disabled|readOnly)(=\{true\})?[\s/]/.test(m[0])), `unsupported Disabled/Read-only + Error combination in a story: ${m[0].slice(0, 120)}`);
+
   // Brand toolbar via data-brand; viewport presets.
   assert(/value: "financial", title: "Financial"/.test(preview) && /value: "invest", title: "Invest"/.test(preview) && /initialGlobals: \{ brand: "financial" \}/.test(preview), "Brand toolbar: Financial (default) / Invest");
   assert(/<div data-brand=\{context\.globals\.brand \?\? "financial"\}>/.test(preview) && !/invest\s*\?|brand\s*===/.test(preview), "brand applied only through data-brand on the wrapper (no conditionals)");
   for (const w of ["375px", "768px", "1024px"]) assert(preview.includes(`width: "${w}"`), `viewport ${w}`);
   assert(read(".gitignore").includes("storybook-static/"), "storybook-static/ must be git-ignored");
   return [
-    "static: ch-tokens.css imported once (.storybook/preview.tsx); Button, Link, Checkbox, Radio and Switch keep their own CSS; stories use the real ./Button, ./Link, ./Checkbox, ./Radio and ./Switch; no <button>, <a> or <input>, raw colours, token declarations/references or inline styles in stories/docs; storybook.css is neutral layout",
-    "API: Button controls exactly hierarchy/size/type/disabled/children, no excluded props (loading, icons, href, as, fullWidth, state props, disabledBehavior); Link controls exactly href/size/children, no excluded props (disabled, as/asChild, icons, visited, variant, current, state props); Checkbox controls exactly label/supportingText/hideLabel/indeterminate/disabled/defaultChecked, no excluded props (type, error/invalid, size, state props, icon, children); Radio controls exactly label/supportingText/name/value/disabled/defaultChecked, no excluded props (type, error/invalid, size, state props, indeterminate, hideLabel, children); Switch controls exactly label/supportingText/disabled/defaultChecked, no excluded props (type, role, error, size, state props, indeterminate, hideLabel, On/Off text, loading); groups are native fieldset/legend (no CheckboxGroup/RadioGroup/Switch Group); stories render no <button>/<a>/<input> of their own; Brand toolbar Financial (default)/Invest via data-brand only; viewports 375/768/1024",
+    "static: ch-tokens.css imported once (.storybook/preview.tsx); Button, Link, Checkbox, Radio, Switch and Text Field keep their own CSS; stories use the real ./Button, ./Link, ./Checkbox, ./Radio, ./Switch and ./TextField; no <button>, <a> or <input>, raw colours, token declarations/references or inline styles in stories/docs; storybook.css is neutral layout",
+    "API: Button controls exactly hierarchy/size/type/disabled/children, no excluded props (loading, icons, href, as, fullWidth, state props, disabledBehavior); Link controls exactly href/size/children, no excluded props (disabled, as/asChild, icons, visited, variant, current, state props); Checkbox controls exactly label/supportingText/hideLabel/indeterminate/disabled/defaultChecked, no excluded props (type, error/invalid, size, state props, icon, children); Radio controls exactly label/supportingText/name/value/disabled/defaultChecked, no excluded props (type, error/invalid, size, state props, indeterminate, hideLabel, children); Switch controls exactly label/supportingText/disabled/defaultChecked, no excluded props (type, role, error, size, state props, indeterminate, hideLabel, On/Off text, loading); Text Field controls exactly label/helperText/errorMessage/optional/placeholder/disabled/readOnly, no excluded props (error/invalid/aria-invalid, size, state props, icons, hideLabel, validation, children) and no unsupported Disabled/Read-only + Error story; groups are native fieldset/legend (no CheckboxGroup/RadioGroup/Switch Group); stories render no <button>/<a>/<input> of their own; Brand toolbar Financial (default)/Invest via data-brand only; viewports 375/768/1024",
   ];
 }
 
@@ -190,7 +210,7 @@ export async function run() {
     const ids = Object.keys(index.entries).sort();
     assert(JSON.stringify(ids) === JSON.stringify([...EXPECTED_ENTRIES].sort()), `story index ${ids}`);
     const storyCount = (c) => ids.filter((i) => i.startsWith(`components-${c}--`) && index.entries[i].type === "story").length;
-    lines.push(`static build: storybook build succeeded in ${Math.round((Date.now() - t0) / 1000)}s; index = Introduction, Foundations/Design tokens, Components/Button (docs + ${storyCount("button")} stories), Components/Link (docs + ${storyCount("link")} stories), Components/Checkbox (docs + ${storyCount("checkbox")} stories), Components/Radio (docs + ${storyCount("radio")} stories), Components/Switch (docs + ${storyCount("switch")} stories) — nothing else`);
+    lines.push(`static build: storybook build succeeded in ${Math.round((Date.now() - t0) / 1000)}s; index = Introduction, Foundations/Design tokens, Components/Button (docs + ${storyCount("button")} stories), Components/Link (docs + ${storyCount("link")} stories), Components/Checkbox (docs + ${storyCount("checkbox")} stories), Components/Radio (docs + ${storyCount("radio")} stories), Components/Switch (docs + ${storyCount("switch")} stories), Components/Text Field (docs + ${storyCount("text-field")} stories) — nothing else`);
 
     server = await serveStatic(out);
     browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
@@ -226,15 +246,15 @@ export async function run() {
       if (events.some((e) => e.type === "storyRenderPhaseChanged" && e.arg.newPhase === "played")) plays++;
       await page.close();
     }
-    assert(plays === 22, `expected 22 play functions to complete, saw ${plays}`);
+    assert(plays === 27, `expected 27 play functions to complete, saw ${plays}`);
     const axe = JSON.parse(read("node_modules/axe-core/package.json")).version;
-    lines.push(`stories: all ${ids.filter((i) => index.entries[i].type === "story").length} render; ${plays} play functions pass (Button: Playground click, Disabled non-activation + not focusable, Keyboard Tab/focus-visible/Enter/Space, Long label no clipping; Link: Playground click, Keyboard Tab/focus-visible/Enter activates/Space does not, Long label wraps underlined without clipping; Checkbox: Playground label click, Select all indeterminate ↔ all, Long label first-line box, Keyboard Space toggles / Enter does not, Disabled cannot change or focus; Radio: Playground label click with consumer name, Group single selection, Long label first-line circle, Keyboard Tab/Space/ArrowDown skips disabled, Disabled cannot select or focus; Switch: Playground row click, Controlled immediate effect, Long label trailing first-line track, Keyboard Space toggles / Enter does not, Disabled cannot change or focus); a11y addon (axe-core ${axe}) reports 0 violations on every story (${a11yPasses} passed rule results) — automated evidence only`);
+    lines.push(`stories: all ${ids.filter((i) => index.entries[i].type === "story").length} render; ${plays} play functions pass (Button: Playground click, Disabled non-activation + not focusable, Keyboard Tab/focus-visible/Enter/Space, Long label no clipping; Link: Playground click, Keyboard Tab/focus-visible/Enter activates/Space does not, Long label wraps underlined without clipping; Checkbox: Playground label click, Select all indeterminate ↔ all, Long label first-line box, Keyboard Space toggles / Enter does not, Disabled cannot change or focus; Radio: Playground label click with consumer name, Group single selection, Long label first-line circle, Keyboard Tab/Space/ArrowDown skips disabled, Disabled cannot select or focus; Switch: Playground row click, Controlled immediate effect, Long label trailing first-line track, Keyboard Space toggles / Enter does not, Disabled cannot change or focus; Text Field: Playground label click + typing, Error on blur sets/clears aria-invalid and the description, Disabled not focusable / Read-only focusable but not editable, Long content wraps and scrolls without widening, Keyboard Tab order skips disabled); a11y addon (axe-core ${axe}) reports 0 violations on every story (${a11yPasses} passed rule results) — automated evidence only`);
 
     for (const id of ids.filter((i) => index.entries[i].type === "docs")) {
       const { page } = await open(`id=${id}&viewMode=docs`, "docsRendered");
       await page.close();
     }
-    lines.push("docs: Introduction, Foundations/Design tokens and the Button, Link, Checkbox, Radio and Switch docs pages render without errors");
+    lines.push("docs: Introduction, Foundations/Design tokens and the Button, Link, Checkbox, Radio, Switch and Text Field docs pages render without errors");
 
     // Brand toolbar → data-brand → real Button colours; token CSS present once in the preview.
     for (const brand of ["financial", "invest"]) {
@@ -300,7 +320,18 @@ export async function run() {
       assert(r.minH === `${resolve("size.touch-target.min", "financial").value}px` && r.swRules === 1, `Switch min-height ${r.minH} / switch.css loaded ×${r.swRules}`);
       await page.close();
     }
-    lines.push("brand toolbar: globals brand=financial|invest sets data-brand on the wrapper; the real Button resolves the matching DTCG primary colour and the real Link the matching link colour (underlined, 44px minimum); the real Checkbox the matching control/checked fill (44px row); the real Radio the matching control/checked ring and dot (44px row); token stylesheet, button.css, link.css, checkbox.css, radio.css and switch.css each loaded exactly once; Switch brand panels resolve the Financial and Invest On track through data-brand");
+    for (const brand of ["financial", "invest"]) {
+      const { page } = await open(`id=components-text-field--brand-comparison&viewMode=story&globals=brand:${brand}`, "storyFinished");
+      const r = await page.evaluate(() => {
+        const pick = (b) => { const i = document.querySelector(`#storybook-root .sb-panel[data-brand="${b}"] input[aria-invalid="true"]`); const c = getComputedStyle(i); return { bc: c.borderTopColor, bw: c.borderTopWidth, err: getComputedStyle(i.closest(".ch-text-field").querySelector(".ch-text-field__error")).color, h: c.minHeight }; };
+        const rules = [...document.styleSheets].flatMap((s) => { try { return [...s.cssRules]; } catch { return []; } });
+        return { fin: pick("financial"), inv: pick("invest"), wrapper: document.querySelector("#storybook-root .sb-panel").closest("[data-brand]:not(.sb-panel)")?.getAttribute("data-brand"), tfRules: rules.filter((x) => x.selectorText === ".ch-text-field").length };
+      });
+      assert(r.wrapper === brand && JSON.stringify(r.fin) === JSON.stringify(r.inv) && r.fin.bc === colour("color.feedback.error.border", "financial") && r.fin.bw === `${resolve("border-width.strong", "financial").value}px` && r.fin.err === colour("color.feedback.error.foreground", "financial"), `Text Field brand panels ${JSON.stringify(r)}`);
+      assert(r.fin.h === `${resolve("size.control.height.md", "financial").value}px` && r.tfRules === 1, `Text Field min-height ${r.fin.h} / text-field.css loaded ×${r.tfRules}`);
+      await page.close();
+    }
+    lines.push("brand toolbar: globals brand=financial|invest sets data-brand on the wrapper; the real Button resolves the matching DTCG primary colour and the real Link the matching link colour (underlined, 44px minimum); the real Checkbox the matching control/checked fill (44px row); the real Radio the matching control/checked ring and dot (44px row); token stylesheet, button.css, link.css, checkbox.css, radio.css and switch.css each loaded exactly once; Switch brand panels resolve the Financial and Invest On track through data-brand; Text Field brand panels are identical in Financial and Invest (error border 2px feedback/error/border, error text, 48px) with text-field.css loaded once");
 
     // Pseudo-state demonstrations apply the real CSS rules (incl. the @media (hover: hover) hover rule).
     const { page } = await open("id=components-button--states&viewMode=story", "storyFinished");
@@ -369,6 +400,23 @@ export async function run() {
       await wp.close();
     }
     lines.push("Switch States story: pseudo-states addon applies the real row :hover (border/strong + icon/default thumb Off, checked-hover track On) and track :focus-visible (3px ring); disabled is native; thumb position Off 4px / On 24px — no state props");
+    {
+      const { page: tp } = await open("id=components-text-field--states&viewMode=story", "storyFinished");
+      await tp.waitForTimeout(300);
+      const ts = await tp.evaluate(() => {
+        const inputs = [...document.querySelectorAll(".ch-text-field__input")];
+        const q = (label) => inputs.find((i) => i.labels[0].textContent === label);
+        const s = (i) => { const c = getComputedStyle(i); return { bg: c.backgroundColor, bc: c.borderTopColor, bw: c.borderTopWidth, outline: `${c.outlineStyle} ${c.outlineWidth}`, disabled: i.disabled, readOnly: i.readOnly, invalid: i.getAttribute("aria-invalid") }; };
+        return { def: s(q("Default")), hover: s(q("Hover")), focus: s(q("Focus-visible")), dis: s(q("Disabled")), ro: s(q("Read-only")), err: s(q("Error · Default")), errHover: s(q("Error · Hover")), errFocus: s(q("Error · Focus-visible")), count: inputs.length };
+      });
+      const iw = `solid ${resolve("focus.width.indicator", "financial").value}px`;
+      assert(ts.count === 8 && ts.def.bc === colour("color.border.input", "financial") && ts.hover.bc === colour("color.border.strong", "financial") && ts.focus.bc === colour("color.border.input", "financial") && ts.focus.outline === iw, `Text Field pseudo hover/focus ${JSON.stringify(ts)}`);
+      assert(ts.dis.disabled && ts.dis.bg === colour("color.surface.disabled", "financial") && ts.ro.readOnly && ts.ro.bg === colour("color.surface.sunken", "financial") && ts.ro.bc === colour("color.border.input", "financial"), `Text Field disabled/read-only ${JSON.stringify(ts)}`);
+      for (const e of [ts.err, ts.errHover, ts.errFocus]) assert(e.invalid === "true" && e.bc === colour("color.feedback.error.border", "financial") && e.bw === `${resolve("border-width.strong", "financial").value}px`, `Text Field error states ${JSON.stringify(e)}`);
+      assert(ts.errFocus.outline === iw, `Text Field error + focus ring ${JSON.stringify(ts.errFocus)}`);
+      await tp.close();
+    }
+    lines.push("Text Field States story: the 8 designed states — pseudo-states addon applies the real :hover (border/strong) and :focus-visible (3px ring, border kept) rules; Disabled and Read-only are the native attributes (surface/disabled; surface/sunken + border/input); Error × Default/Hover/Focus-visible keep the 2px feedback/error/border and combine with the ring — no state props");
     lines.push("Link States story: pseudo-states addon applies the real rules — underline 1px at rest; :hover (via @media (hover: hover)) hover colour + 2px underline; :focus-visible 3px ring with the underline kept — no state props");
   } finally {
     if (browser) await browser.close();

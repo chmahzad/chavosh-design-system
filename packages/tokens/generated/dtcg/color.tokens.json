@@ -658,6 +658,89 @@
         }
       }
     },
+    "feedback": {
+      "error": {
+        "border": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Error boundary: 2px invalid-field border and error banner borders. 5.0:1 on white.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-feedback-error-border",
+              "brandDependent": false,
+              "figma": {
+                "variableId": "VariableID:1:196",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/feedback/error/border",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "STROKE_COLOR"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-feedback-error-border)"
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{color.red.700}",
+          "$description": "Text of error messages (e.g. Text Field error text). 7.4:1 on white. Brand-independent; always paired with an icon and clear wording.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-feedback-error-foreground",
+              "brandDependent": false,
+              "figma": {
+                "variableId": "VariableID:1:194",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/feedback/error/foreground",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "TEXT_FILL"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-feedback-error-foreground)"
+                }
+              }
+            }
+          }
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{color.red.600}",
+          "$description": "Error status icon (e.g. alert-circle in field errors). 5.0:1 on white.",
+          "$extensions": {
+            "chavosh": {
+              "layer": "semantic",
+              "visibility": "public",
+              "css": "--ch-color-feedback-error-icon",
+              "brandDependent": false,
+              "figma": {
+                "variableId": "VariableID:1:197",
+                "collection": "Color",
+                "collectionId": "VariableCollectionId:1:148",
+                "path": "color/feedback/error/icon",
+                "resolvedType": "COLOR",
+                "scopes": [
+                  "SHAPE_FILL",
+                  "STROKE_COLOR"
+                ],
+                "codeSyntax": {
+                  "WEB": "var(--color-feedback-error-icon)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "focus": {
       "indicator": {
         "$type": "color",
@@ -878,6 +961,33 @@
             }
           }
         }
+      },
+      "sunken": {
+        "$type": "color",
+        "$value": "{color.neutral.100}",
+        "$description": "Recessed areas such as read-only fields and wells. Do not place editable inputs directly on it without a white field (placeholder contrast).",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-surface-sunken",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:1:164",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/surface/sunken",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-surface-sunken)"
+              }
+            }
+          }
+        }
       }
     },
     "text": {
@@ -986,6 +1096,32 @@
                 "codeSyntax": {
                   "WEB": "var(--color-text-link-hover)"
                 }
+              }
+            }
+          }
+        }
+      },
+      "placeholder": {
+        "$type": "color",
+        "$value": "{color.neutral.600}",
+        "$description": "Placeholder text in form fields (5.0:1 on white). Never a substitute for a visible label.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "semantic",
+            "visibility": "public",
+            "css": "--ch-color-text-placeholder",
+            "brandDependent": false,
+            "figma": {
+              "variableId": "VariableID:42:2",
+              "collection": "Color",
+              "collectionId": "VariableCollectionId:1:148",
+              "path": "color/text/placeholder",
+              "resolvedType": "COLOR",
+              "scopes": [
+                "TEXT_FILL"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--color-text-placeholder)"
               }
             }
           }

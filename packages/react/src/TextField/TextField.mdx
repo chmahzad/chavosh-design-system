@@ -1,0 +1,86 @@
+import { Meta, Title, Subtitle, Canvas, Controls, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as TextFieldStories from "./TextField.stories";
+
+<Meta of={TextFieldStories} />
+
+<Title>Text Field</Title>
+<Subtitle>Single-line text entry with a persistent label. v1.</Subtitle>
+
+## Purpose
+Text Field collects a short, single-line answer — an account name, an email address, a mobile or account number. It is a native `<input>` with a visible label that never disappears, optional helper text and an error message. One size (48px).
+
+For amounts, searches and combined inputs (for example BSB + account number), dedicated patterns will follow: Currency Input, Search and a composite account-number pattern.
+
+<Canvas of={TextFieldStories.Playground} />
+<Controls of={TextFieldStories.Playground} />
+
+## Anatomy
+Label (with the optional "(optional)" indicator) → helper text → input → error message. The label, helper and error are part of the field; the input holds the value.
+
+## States
+States are browser behaviour and native attributes, not props:
+- **Hover** (hover-capable pointers only): a stronger border on editable fields.
+- **Focus-visible**: the Chavosh focus ring — a 3px indicator and a 2px outer ring. It can combine with an error.
+- **Disabled**: the native `disabled` attribute (including a disabled `<fieldset>`) — greyed, not focusable, not submitted.
+- **Read-only**: the native `readOnly` attribute — a sunken background with full-contrast text; focusable, selectable and submitted, and never looks disabled.
+- **Error**: set by `errorMessage` — a 2px error border, the alert icon and the message.
+
+The examples below are a documentation-only simulation: Hover and Focus-visible are forced by the Storybook pseudo-states addon, which applies Text Field's real CSS rules. The **Playground** is the real browser interaction.
+
+<Canvas of={TextFieldStories.States} />
+
+## Label, helper text and "(optional)"
+The label is always visible and is the field's accessible name; the placeholder never replaces it. Helper text gives instructions such as a format example and is announced as a description. Mark optional fields with `optional` ("(optional)" becomes part of the label); mark required fields with the native `required` — never with an asterisk alone.
+
+<Canvas of={TextFieldStories.HelperAndOptional} />
+
+## Errors
+Validate on submit or when the person leaves the field — not on every keystroke — then pass the message to `errorMessage`. The error is shown by a 2px border, an icon **and** the message text, never by colour alone. The field is exposed as invalid, and the message is announced before the helper text. The label does not change. A form-level error summary is a future pattern.
+
+<Canvas of={TextFieldStories.ErrorMessage} />
+
+## Financial examples
+Use the right native `type` and `autoComplete`. For account numbers, BSB and amounts use `inputMode="numeric"` (or `"decimal"`) with the default text type — never `type="number"`.
+
+<Canvas of={TextFieldStories.FinancialExamples} />
+
+## Disabled and read-only
+<Canvas of={TextFieldStories.DisabledAndReadOnly} />
+
+## Behaviour
+- The field fills its container; set the width with your layout.
+- The input is at least 48px high and grows with the text size; label, helper and error text wrap.
+- A long value scrolls inside the input (native behaviour); the field never grows sideways.
+
+<Canvas of={TextFieldStories.LongContent} />
+
+## Accessibility
+- Native `<input>` with a persistent `<label for>`: the name is the label text, including "(optional)".
+- Description: the error message, then the helper text, then any `aria-describedby` you pass. `aria-invalid` is set only by `errorMessage`, so an invalid field always has a visible, announced message.
+- The alert icon is decorative (hidden from assistive technology); the message carries the meaning.
+- Keyboard and editing are native: Tab reaches each enabled field, disabled fields are skipped, read-only fields are reachable but not editable.
+- Use the correct `autoComplete` values so browsers and password managers can fill fields.
+- Forced-colours mode: the field keeps a system-colour border, errors keep their 2px border, icon and message, disabled uses `GrayText`, and the focus outline remains.
+- Automated checks (the Accessibility panel and the design system's browser tests) are evidence, **not** a WCAG 2.2 AA conformance claim. Screen-reader (VoiceOver, NVDA, TalkBack) and manual testing remain required.
+
+<Canvas of={TextFieldStories.Keyboard} />
+
+## Brand
+Text Field has no brand logic and no brand-dependent colours: fields look the same under **Financial** and **Invest**.
+
+<Canvas of={TextFieldStories.BrandComparison} />
+
+## Forms
+Text Field is a native input: it submits its `name` and value, read-only fields are submitted and disabled fields are not. The `name` is always yours to set — Text Field never derives it from the label.
+
+## Known limitations
+- **Unsupported combinations:** Disabled + Error and Read-only + Error have no design in v1. Clear `errorMessage` before disabling a field or making it read-only; the combined rendering is not a designed state.
+- No leading or trailing icons, prefixes/suffixes, embedded actions (such as show password or clear), success or warning states, or sizes other than 48px in v1.
+- The "(optional)" text is English only in v1.
+- The error icon is temporary artwork until the Icon system exists.
+
+## API
+
+<ArgTypes of={TextFieldStories.Playground} />
+
+Other native `<input>` attributes (for example `type`, `value`, `defaultValue`, `onChange`, `onBlur`, `name`, `required`, `autoComplete`, `inputMode`, `maxLength`, `form`, `id`, `aria-*` except `aria-invalid`, `data-*`, `ref`) are passed to the input. `type` accepts `text`, `email`, `tel`, `url` and `password`. `className` is applied to the field wrapper. Don't use `className` or `style` to override Text Field's colours, spacing or typography.

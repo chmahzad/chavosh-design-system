@@ -368,6 +368,33 @@
         }
       }
     },
+    "icon": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{size.400}",
+        "$description": "Compact icon size, paired with small text (label/sm, body/sm) in small Buttons and Links.",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-size-icon-sm",
+            "figma": {
+              "variableId": "VariableID:5:74",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "size/icon/sm",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "WIDTH_HEIGHT"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--size-icon-sm)"
+              }
+            }
+          }
+        }
+      }
+    },
     "touch-target": {
       "min": {
         "$type": "dimension",
@@ -418,6 +445,31 @@
               ],
               "codeSyntax": {
                 "WEB": "var(--space-component-lg)"
+              }
+            }
+          }
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{space.300}",
+        "$description": "Standard left and right padding for field-like controls (Text Field, Select trigger).",
+        "$extensions": {
+          "chavosh": {
+            "layer": "dimension",
+            "visibility": "public",
+            "css": "--ch-space-component-md",
+            "figma": {
+              "variableId": "VariableID:5:65",
+              "collection": "Dimension",
+              "collectionId": "VariableCollectionId:5:58",
+              "path": "space/component/md",
+              "resolvedType": "FLOAT",
+              "scopes": [
+                "GAP"
+              ],
+              "codeSyntax": {
+                "WEB": "var(--space-component-md)"
               }
             }
           }

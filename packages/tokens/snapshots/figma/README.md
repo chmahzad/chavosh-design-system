@@ -15,8 +15,9 @@ Configured captures: see `source/export-config.json`.
   (30 Sep 2026, raw `aea3ff36c54d1096572d6cb8604dfd70632f3e7656b326c4c14da2c5b7c7bab4`) and Checkbox (30 Sep 2026, raw
   `a18ff7ab351c6f865c845621173f62d4bea3cefa39daf19d35f1a382f38f70a7`) and Radio (30 Sep 2026, raw
   `081685a52695d4c779006db16aedb358fd5c27cf513998abba21ff7995c77402`) and Switch (30 Sep 2026, raw
-  `25f2859b173fcc0a7a2ef7b9d985d7d4d562c809fc7ed260ee5af4e2ef3c6e1e`).
-- `stagedSnapshots` — recorded canonical captures of components not released yet (30 Sep 2026): Text Field. They pass the provenance gate and the consistency check but produce no tokens until their milestone
+  `25f2859b173fcc0a7a2ef7b9d985d7d4d562c809fc7ed260ee5af4e2ef3c6e1e`) and Text Field (30 Sep 2026, raw
+  `5f7fdfea52e5eeb42412eb071d95406b9a27b23d2114d0d5b88f713da70d332b`).
+- `stagedSnapshots` — recorded canonical captures of components not released yet (30 Sep 2026): none — every recorded capture is released. Staged captures pass the provenance gate and the consistency check but produce no tokens until their milestone
   (ADR 0013).
 Captures must be mutually consistent: a variable shared by two captures must be identical in both.
 

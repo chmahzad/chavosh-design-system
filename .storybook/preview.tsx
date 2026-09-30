@@ -1,6 +1,6 @@
 // AUTHORED. Storybook preview for the Chavosh Financial Design System.
 // - The generated token stylesheet is loaded ONCE here, exactly as an application entry would. Components import
-//   their own CSS (Button → button.css, Link → link.css, Checkbox → checkbox.css, Radio → radio.css, Switch → switch.css). No token values are defined in Storybook.
+//   their own CSS (Button → button.css, Link → link.css, Checkbox → checkbox.css, Radio → radio.css, Switch → switch.css, Text Field → text-field.css). No token values are defined in Storybook.
 // - Brand: the toolbar sets data-brand on the story wrapper — the production runtime (--ch-brand-* → semantic
 //   tokens re-declared on [data-brand]). No React conditionals, no Storybook-specific tokens.
 // - Viewports are preview sizes that sit in each band of the frozen web breakpoints (Tablet ≥ 48rem, Desktop ≥ 64rem);
@@ -41,7 +41,7 @@ const preview: Preview = {
     },
     a11y: { test: "error" },
     options: {
-      storySort: { order: ["Introduction", "Foundations", ["Design tokens"], "Components", ["Button", "Link", "Checkbox", "Radio", "Switch"]] },
+      storySort: { order: ["Introduction", "Foundations", ["Design tokens"], "Components", ["Button", "Link", "Checkbox", "Radio", "Switch", "Text Field"]] },
     },
   },
 };

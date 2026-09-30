@@ -23,3 +23,4 @@ lineage. Labels such as G1–G8 identify the original architecture decisions eac
 | [0014](0014-checkbox-v1-implementation-mapping.md) | Checkbox v1 implementation mapping; Link regression baseline | Accepted (30 Sep 2026) |
 | [0015](0015-radio-v1-implementation-mapping.md) | Radio v1 implementation mapping; Checkbox regression baseline | Accepted (30 Sep 2026) |
 | [0016](0016-switch-v1-implementation-mapping.md) | Switch v1 implementation mapping; Radio regression baseline | Accepted (30 Sep 2026) |
+| [0017](0017-text-field-v1-implementation-mapping.md) | Text Field v1 implementation mapping; Switch regression baseline | Accepted (30 Sep 2026) |

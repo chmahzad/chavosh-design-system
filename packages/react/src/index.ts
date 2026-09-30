@@ -10,3 +10,5 @@ export { Radio } from "./Radio/Radio";
 export type { RadioProps } from "./Radio/Radio";
 export { Switch } from "./Switch/Switch";
 export type { SwitchProps } from "./Switch/Switch";
+export { TextField } from "./TextField/TextField";
+export type { TextFieldProps } from "./TextField/TextField";

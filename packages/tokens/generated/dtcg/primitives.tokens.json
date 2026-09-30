@@ -621,6 +621,36 @@
       }
     },
     "red": {
+      "600": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8235294222831726,
+            0.18039216101169586,
+            0.20000000298023224
+          ],
+          "alpha": 1,
+          "hex": "#d22e33"
+        },
+        "$extensions": {
+          "chavosh": {
+            "layer": "primitive",
+            "visibility": "source-only",
+            "figma": {
+              "variableId": "VariableID:1:98",
+              "collection": "Primitives",
+              "collectionId": "VariableCollectionId:1:2",
+              "path": "color/red/600",
+              "resolvedType": "COLOR",
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-red-600)"
+              }
+            }
+          }
+        }
+      },
       "700": {
         "$type": "color",
         "$value": {
@@ -1142,6 +1172,30 @@
     }
   },
   "size": {
+    "400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "chavosh": {
+          "layer": "primitive",
+          "visibility": "source-only",
+          "figma": {
+            "variableId": "VariableID:5:15",
+            "collection": "Primitives",
+            "collectionId": "VariableCollectionId:1:2",
+            "path": "size/400",
+            "resolvedType": "FLOAT",
+            "scopes": [],
+            "codeSyntax": {
+              "WEB": "var(--size-400)"
+            }
+          }
+        }
+      }
+    },
     "500": {
       "$type": "dimension",
       "$value": {

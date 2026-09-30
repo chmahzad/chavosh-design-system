@@ -1,0 +1,155 @@
+/*
+ * AUTHORED. Chavosh Financial — Text Field v1. Contract: docs/decisions/0017-text-field-v1-implementation-mapping.md.
+ * Consumes ONLY public --ch-* tokens from @chavosh/tokens/ch-tokens.css (loaded once at the application entry, not here).
+ * Never: primitives, --ch-brand-*, raw design values. Documented exceptions (ADR 0017): layout keywords, 0px and the
+ * input's width: 100% (fills the field; a percentage width also stops the native input's intrinsic size from forcing
+ * overflow in min-content containers such as <fieldset>, so the field reflows at 320px / 400 % zoom); system colours in
+ * forced-colours mode. The error icon's 2px stroke is SVG artwork geometry (viewBox units in TextField.tsx).
+ * --_tf-* are PRIVATE implementation variables of this file (not tokens, not API), set only from public tokens.
+ * Disabled + Error and Read-only + Error are unsupported design combinations in v1 (no Figma variant); no rule here
+ * targets them.
+ */
+.ch-text-field {
+  --_tf-bg: var(--ch-color-surface-default);
+  --_tf-border: var(--ch-color-border-input);
+  --_tf-bw: var(--ch-border-width-default);
+  --_tf-value: var(--ch-color-text-default);
+  --_tf-placeholder: var(--ch-color-text-placeholder);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ch-space-gap-sm); /* label-row, helper, input and error */
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ch-font-family-sans);
+}
+
+/* ---- Label row: label/md label + body/md "(optional)" on a shared baseline (architecture §6) --------------------- */
+.ch-text-field__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--ch-space-gap-xs);
+  color: var(--ch-color-text-default); /* every state, incl. disabled and read-only (architecture §3) */
+  font-size: var(--ch-font-size-label-md);
+  line-height: var(--ch-font-line-height-label-md);
+  font-weight: var(--ch-font-weight-medium);
+}
+.ch-text-field__label-text {
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.ch-text-field__optional {
+  color: var(--ch-color-text-subtle);
+  font-size: var(--ch-font-size-body-md);
+  line-height: var(--ch-font-line-height-body-md);
+  font-weight: var(--ch-font-weight-regular);
+}
+
+/* ---- Helper text (body/sm, text/subtle in every state) ------------------------------------------------------------ */
+.ch-text-field__helper {
+  color: var(--ch-color-text-subtle);
+  font-size: var(--ch-font-size-body-sm);
+  line-height: var(--ch-font-line-height-body-sm);
+  font-weight: var(--ch-font-weight-regular);
+  overflow-wrap: break-word;
+}
+
+/* ---- Input: the native single-line <input> carries the 48px container (no adornments in v1) --------------------- */
+.ch-text-field__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--ch-size-control-height-md); /* a minimum: grows with text size */
+  margin: 0;
+  padding-block: 0px;
+  padding-inline: var(--ch-space-component-md);
+  border: var(--_tf-bw) solid var(--_tf-border);
+  border-radius: var(--ch-radius-sm);
+  background-color: var(--_tf-bg);
+  color: var(--_tf-value);
+  font-family: var(--ch-font-family-sans);
+  font-size: var(--ch-font-size-body-md);
+  line-height: var(--ch-font-line-height-body-md);
+  font-weight: var(--ch-font-weight-regular);
+  appearance: none;
+}
+.ch-text-field__input::placeholder {
+  color: var(--_tf-placeholder);
+  opacity: 1;
+}
+
+/* ---- Hover (hover-capable pointers; editable, unfocused fields only — never disabled or read-only) --------------- */
+@media (hover: hover) {
+  .ch-text-field__input:read-write:hover:not(:focus) {
+    --_tf-border: var(--ch-color-border-strong);
+  }
+}
+
+/* ---- Error (errorMessage): 2px error border in Default, Hover and Focus; the icon and message carry the meaning -- */
+.ch-text-field__input[aria-invalid="true"],
+.ch-text-field__input[aria-invalid="true"]:read-write:hover {
+  --_tf-border: var(--ch-color-feedback-error-border);
+  --_tf-bw: var(--ch-border-width-strong);
+}
+
+/* ---- Focus: 3px indicator (outline) + 2px outer ring; the border keeps its state colour (can combine with Error) - */
+.ch-text-field__input:focus-visible {
+  outline: var(--ch-focus-width-indicator) solid var(--ch-color-focus-indicator);
+  outline-offset: 0px;
+  box-shadow: 0 0 0 calc(var(--ch-focus-width-indicator) + var(--ch-focus-width-outer)) var(--ch-color-focus-outer);
+}
+
+/* ---- Disabled (native, incl. a disabled <fieldset>): not focusable, not submitted ------------------------------- */
+.ch-text-field__input:disabled {
+  --_tf-bg: var(--ch-color-surface-disabled);
+  --_tf-border: var(--ch-color-border-disabled);
+  --_tf-value: var(--ch-color-text-disabled);
+  --_tf-placeholder: var(--ch-color-text-disabled);
+}
+
+/* ---- Read-only (native readonly): sunken surface, full-contrast value, input border; focusable and submitted --- */
+.ch-text-field__input:read-only:enabled {
+  --_tf-bg: var(--ch-color-surface-sunken);
+}
+
+/* ---- Error row: 16px alert-circle icon + body/sm message ----------------------------------------------------------- */
+.ch-text-field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ch-space-gap-xs);
+  color: var(--ch-color-feedback-error-foreground);
+  font-size: var(--ch-font-size-body-sm);
+  line-height: var(--ch-font-line-height-body-sm);
+  font-weight: var(--ch-font-weight-regular);
+}
+.ch-text-field__error-icon {
+  flex: none;
+  display: block;
+  width: var(--ch-size-icon-sm);
+  height: var(--ch-size-icon-sm);
+  color: var(--ch-color-feedback-error-icon);
+}
+.ch-text-field__error-text {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* ---- Forced colours: system field boundary (error keeps its 2px width), GrayText disabled, Highlight focus ------- */
+@media (forced-colors: active) {
+  .ch-text-field__input {
+    border-color: CanvasText;
+  }
+  .ch-text-field__input:disabled {
+    border-color: GrayText;
+    color: GrayText;
+  }
+  .ch-text-field__error,
+  .ch-text-field__error-icon {
+    color: CanvasText;
+  }
+  .ch-text-field__input:focus-visible {
+    outline-color: Highlight;
+  }
+}

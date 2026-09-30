@@ -133,17 +133,21 @@ where that target is required. `md` and `lg` exceed 44 px.
 thumb position showing Off/On, 150 ms motion (instant with reduced motion); a **30-token closure**; the stylesheet now
 publishes **65 public tokens**.
 
-Not yet included: loading, icons, Text Field (captured, not yet released), Select, full token export, native platforms.
+**Text Field v1**: native `<input>` with a persistent label, optional helper text, an "(optional)" indicator and an error
+message (2px error border + icon + text, `aria-invalid` only from the message); native disabled and read-only; a
+**34-token closure**; the stylesheet now publishes **72 public tokens**.
+
+Not yet included: loading, icons, Select, full token export, native platforms.
 
 ## Verification
 
-`npm run verify -- --strict` runs 26 check groups on every build:
+`npm run verify -- --strict` runs 29 check groups on every build:
 - the read-only exporter never writes to Figma;
 - the sanitizer changes nothing but the approved identifiers;
 - generated tokens and CSS are fresh, deterministic and never hand-edited;
 - each released component's token closure matches its approved specification, and captures are mutually consistent;
-- components use only public tokens; Button, Link, Checkbox and Radio are frozen against regression baselines;
-- Chromium tests cover every Button hierarchy × size × state × brand every Link size × state × brand every Checkbox, Radio and Switch state × brand, and native radio grouping and keyboard;
+- components use only public tokens; Button, Link, Checkbox, Radio and Switch are frozen against regression baselines;
+- Chromium tests cover every Button hierarchy × size × state × brand every Link size × state × brand every Checkbox, Radio, Switch and Text Field state × brand, and native radio grouping and keyboard;
 - the Storybook static build, interaction tests and accessibility checks pass.
 
 The same verification runs in CI on every push.
@@ -173,7 +177,7 @@ npm run build-storybook           # static Storybook → storybook-static/
 |---|---|
 | `tools/figma-exporter/` | read-only Figma plugin that captures a component and its variables |
 | `packages/tokens/` | public snapshot, sanitizer, DTCG conversion, Style Dictionary build, `dist/ch-tokens.css` |
-| `packages/react/` | React components (Button v1, Link v1, Checkbox v1, Radio v1, Switch v1) and their tests |
+| `packages/react/` | React components (Button v1, Link v1, Checkbox v1, Radio v1, Switch v1, Text Field v1) and their tests |
 | `.storybook/`, `*.stories.tsx`, `*.mdx` | Storybook configuration and component documentation |
 | `docs/decisions/` | architecture decision records |
 | `scripts/verify.mjs`, `tests/` | verification entry point and Storybook checks |

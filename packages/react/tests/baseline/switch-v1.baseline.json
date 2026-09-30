@@ -1,0 +1,255 @@
+{
+  "$comment": "AUTHORED. Switch v1 regression baseline, recorded from commit 520932f (the committed Switch v1 reference, ADR 0016). Switch source, CSS, stories, docs, its verification files, contract and ADR 0016 must stay byte-identical, and the resolved CSS contract of its 30 public tokens (incl. the internal brand declarations they reference) must not change. Changing this file requires a new ADR. Checked by check-switch-baseline (ADR 0017).",
+  "sourceCommit": "520932ff029692343ea797c7892f45042050a9f4",
+  "files": {
+    "packages/react/src/Switch/Switch.tsx": "53c5876da2d97b22290938c3afe7e8c1ac4c7cc46cd0ff54fa74b461e05b5e76",
+    "packages/react/src/Switch/switch.css": "ac2a6837bd5bb5679317fdb0b73c84dc5fc6e34a2cac50c425b3cfc851d302e8",
+    "packages/react/src/Switch/Switch.stories.tsx": "a17b7b5af8287c3ada33fd201835b3067fc1759a761665d991835846bde670da",
+    "packages/react/src/Switch/Switch.mdx": "75af51c9c1b0fa0734c342649851907f3e16e9cd216ef1acba57ea1c44c36c40",
+    "packages/react/tests/check-switch-tokens.mjs": "c9a8e0437254ce5869cc063052142f07aab3b27cce7151ae0dc99c04819110be",
+    "packages/react/tests/check-switch-browser.mjs": "3653a45cfdefb0155040bb30e0884cc069f7aa09caeedab5a9c19380a2331cfd",
+    "packages/react/tests/switch-harness/index.html": "c584e77b5f27aacc77ca4ea1ee0e951da0cb8a423c688fd9ff809addb0c57f31",
+    "packages/react/tests/switch-harness/main.tsx": "67d822db3df4ad2a045360377f05d08c7d92a0f68e2f89ed96cd27d89a850f86",
+    "packages/react/tests/types/switch-api.tsx": "f5f99097227cbff9316ae60fc96cd4266955956a2074b41758fef8d77c400508",
+    "packages/tokens/tests/switch-v1-spec.json": "3be7faf5edafd7df5112f104f9cbc1518e40752b707090044cb664ab026bb336",
+    "docs/decisions/0016-switch-v1-implementation-mapping.md": "a32819e4551697ab6b7e0d19d8e108038dbd46b0f869125b49bae2c9323c4a98"
+  },
+  "publicTokens": [
+    "--ch-border-width-strong",
+    "--ch-color-border-disabled",
+    "--ch-color-border-input",
+    "--ch-color-border-strong",
+    "--ch-color-control-checked",
+    "--ch-color-control-checked-hover",
+    "--ch-color-focus-indicator",
+    "--ch-color-focus-outer",
+    "--ch-color-icon-default",
+    "--ch-color-icon-disabled",
+    "--ch-color-icon-inverse",
+    "--ch-color-icon-subtle",
+    "--ch-color-surface-default",
+    "--ch-color-surface-disabled",
+    "--ch-color-text-default",
+    "--ch-color-text-disabled",
+    "--ch-color-text-subtle",
+    "--ch-focus-width-indicator",
+    "--ch-focus-width-outer",
+    "--ch-font-family-sans",
+    "--ch-font-line-height-body-md",
+    "--ch-font-line-height-body-sm",
+    "--ch-font-size-body-md",
+    "--ch-font-size-body-sm",
+    "--ch-font-weight-regular",
+    "--ch-radius-full",
+    "--ch-size-touch-target-min",
+    "--ch-space-component-sm",
+    "--ch-space-gap-md",
+    "--ch-space-gap-xs"
+  ],
+  "declarations": [
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-control-checked",
+      "value": "var(--ch-brand-primary-800)"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand]",
+      "name": "--ch-color-control-checked-hover",
+      "value": "var(--ch-brand-primary-900)"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-border-width-strong",
+      "value": "2px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-indicator",
+      "value": "3px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-focus-width-outer",
+      "value": "2px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-family-sans",
+      "value": "Inter, system-ui, sans-serif"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-weight-regular",
+      "value": "400"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-radius-full",
+      "value": "9999px"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-size-touch-target-min",
+      "value": "2.75rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-component-sm",
+      "value": "0.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-gap-md",
+      "value": "0.75rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-space-gap-xs",
+      "value": "0.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-body-md",
+      "value": "1.5rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-line-height-body-sm",
+      "value": "1.25rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-body-md",
+      "value": "1rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-font-size-body-sm",
+      "value": "0.875rem"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-disabled",
+      "value": "#b8c0c9"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-input",
+      "value": "#68707b"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-border-strong",
+      "value": "#384049"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-indicator",
+      "value": "#fbdf06"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-focus-outer",
+      "value": "#1b222c"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-icon-default",
+      "value": "#384049"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-icon-disabled",
+      "value": "#838c98"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-icon-inverse",
+      "value": "#ffffff"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-icon-subtle",
+      "value": "#68707b"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-surface-default",
+      "value": "#ffffff"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-surface-disabled",
+      "value": "#ebf0f5"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-text-default",
+      "value": "#282f38"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-text-disabled",
+      "value": "#838c98"
+    },
+    {
+      "media": null,
+      "selector": ":root",
+      "name": "--ch-color-text-subtle",
+      "value": "#4e5661"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#1e3d7a"
+    },
+    {
+      "media": null,
+      "selector": ":root, [data-brand=\"financial\"]",
+      "name": "--ch-brand-primary-900",
+      "value": "#0e2b66"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-800",
+      "value": "#590da2"
+    },
+    {
+      "media": null,
+      "selector": "[data-brand=\"invest\"]",
+      "name": "--ch-brand-primary-900",
+      "value": "#43037e"
+    }
+  ]
+}

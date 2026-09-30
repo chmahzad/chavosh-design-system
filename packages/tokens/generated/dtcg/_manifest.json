@@ -77,14 +77,29 @@
       "rawCaptureSha256": "25f2859b173fcc0a7a2ef7b9d985d7d4d562c809fc7ed260ee5af4e2ef3c6e1e",
       "extractorVersion": "0.3.0",
       "sourceFileName": "Chavosh Financial — Design System"
+    },
+    {
+      "id": "text-field",
+      "components": [
+        "Text Field"
+      ],
+      "path": "snapshots/figma/chavosh-text-field.snapshot.public.json",
+      "sha256": "f5907c808c98a1d8b780eaf28bf6fbdec6c2b84d5d1a80b93b076defd8548ee8",
+      "bytes": 150646,
+      "schema": "chavosh.figma-public-snapshot",
+      "schemaVersion": "1.0.0",
+      "sanitizerVersion": "1.0.0",
+      "rawCaptureSha256": "5f7fdfea52e5eeb42412eb071d95406b9a27b23d2114d0d5b88f713da70d332b",
+      "extractorVersion": "0.3.0",
+      "sourceFileName": "Chavosh Financial — Design System"
     }
   ],
   "tokenCounts": {
     "brand-financial": 9,
     "brand-invest": 9,
-    "color": 36,
-    "dimension": 21,
-    "primitives": 50,
+    "color": 41,
+    "dimension": 23,
+    "primitives": 52,
     "responsive-desktop": 8,
     "responsive-mobile": 8,
     "responsive-tablet": 8
@@ -148,8 +163,7 @@
         ],
         "excludedOnly": [
           "size/icon/lg",
-          "size/icon/md",
-          "size/icon/sm"
+          "size/icon/md"
         ]
       },
       {
@@ -185,8 +199,7 @@
           "label/sm"
         ],
         "excludedOnly": [
-          "size/icon/md",
-          "size/icon/sm"
+          "size/icon/md"
         ]
       },
       {
@@ -323,6 +336,61 @@
           "body/sm"
         ],
         "excludedOnly": []
+      },
+      {
+        "name": "Text Field",
+        "figmaNodeId": "42:745",
+        "exportScope": "text-field-v1",
+        "variants": 8,
+        "bindings": 399,
+        "bindingsInScope": 375,
+        "excludedLayers": [
+          "leading-icon"
+        ],
+        "boundTokens": [
+          "border-width/default",
+          "border-width/strong",
+          "color/border/disabled",
+          "color/border/input",
+          "color/border/strong",
+          "color/feedback/error/border",
+          "color/feedback/error/foreground",
+          "color/feedback/error/icon",
+          "color/focus/indicator",
+          "color/focus/outer",
+          "color/surface/default",
+          "color/surface/disabled",
+          "color/surface/sunken",
+          "color/text/default",
+          "color/text/disabled",
+          "color/text/placeholder",
+          "color/text/subtle",
+          "focus/width/indicator",
+          "focus/width/outer",
+          "font/family/sans",
+          "font/line-height/body/md",
+          "font/line-height/body/sm",
+          "font/line-height/label/md",
+          "font/size/body/md",
+          "font/size/body/sm",
+          "font/size/label/md",
+          "font/weight/medium",
+          "font/weight/regular",
+          "radius/sm",
+          "size/control/height/md",
+          "size/icon/sm",
+          "space/component/md",
+          "space/gap/sm",
+          "space/gap/xs"
+        ],
+        "styles": [
+          "body/md",
+          "body/sm",
+          "label/md"
+        ],
+        "excludedOnly": [
+          "size/icon/md"
+        ]
       }
     ],
     "textStyles": [
@@ -400,19 +468,17 @@
       }
     ],
     "outOfClosure": [
-      "size/400",
       "size/600",
       "size/icon/lg",
-      "size/icon/md",
-      "size/icon/sm"
+      "size/icon/md"
     ]
   },
   "files": {
     "brand-financial.tokens.json": "63ae0c6313579dd1c933159cee19e740b717d1b105d47650c959352607b6fa84",
     "brand-invest.tokens.json": "9cdaa9b8f89279c5f87b973c9e050079360f5c08a5e13689d1fd3ceecc813a7b",
-    "color.tokens.json": "377c6c86f4bd776d4909e8fa253bbe2f9eae815e0be0ea326bbf6caf8a8ea988",
-    "dimension.tokens.json": "aa1b3c58bde3ab8416d1ee8b50f5a14b4258ab97d4052a48ff347ff62ff629c9",
-    "primitives.tokens.json": "a7eb3e59602bb2d95a4b1d64d678c5d0e5979d5c699e6dc6fbc91cf638394dab",
+    "color.tokens.json": "44139c5a16c50f7ce7b307fd8bf8c1cb72775c92092f12e5d5f9457928b06c55",
+    "dimension.tokens.json": "6fd7748acc20f68e2dfacb8b1009ffed58548a4354143f4baec96f3d80f1d87e",
+    "primitives.tokens.json": "835815c2d5e8c1d4a417387c88f93f40a15399778f8cbb6ad2a9da912a55fb5c",
     "responsive-desktop.tokens.json": "69e4c7c8abbf0ebced4f9c99083661b9bfa462dde14f2fb3c102b1416773f865",
     "responsive-mobile.tokens.json": "d3704e078d20430e7dea4b8794643452cd4baf65e7a29cf7857d2b445d34f128",
     "responsive-tablet.tokens.json": "8e9b182b144bd381ffbc10ef659d7a91e148553644c45c1e517e3f79104ec637"

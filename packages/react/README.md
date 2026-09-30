@@ -1,7 +1,7 @@
 # @chavosh/react
 
-Production React components of the Chavosh Financial Design System. **Current scope: Button v1 (labels only), Link v1 (standalone, labels only), Checkbox v1, Radio v1 and Switch v1.**
-Detailed implementation contracts: [`docs/decisions/0010-button-v1-implementation-mapping.md`](../../docs/decisions/0010-button-v1-implementation-mapping.md) (frozen) , [`0013-link-v1-implementation-mapping.md`](../../docs/decisions/0013-link-v1-implementation-mapping.md), [`0014-checkbox-v1-implementation-mapping.md`](../../docs/decisions/0014-checkbox-v1-implementation-mapping.md), [`0015-radio-v1-implementation-mapping.md`](../../docs/decisions/0015-radio-v1-implementation-mapping.md) and [`0016-switch-v1-implementation-mapping.md`](../../docs/decisions/0016-switch-v1-implementation-mapping.md). This README does not repeat them.
+Production React components of the Chavosh Financial Design System. **Current scope: Button v1 (labels only), Link v1 (standalone, labels only), Checkbox v1, Radio v1, Switch v1 and Text Field v1.**
+Detailed implementation contracts: [`docs/decisions/0010-button-v1-implementation-mapping.md`](../../docs/decisions/0010-button-v1-implementation-mapping.md) (frozen) , [`0013-link-v1-implementation-mapping.md`](../../docs/decisions/0013-link-v1-implementation-mapping.md), [`0014-checkbox-v1-implementation-mapping.md`](../../docs/decisions/0014-checkbox-v1-implementation-mapping.md), [`0015-radio-v1-implementation-mapping.md`](../../docs/decisions/0015-radio-v1-implementation-mapping.md), [`0016-switch-v1-implementation-mapping.md`](../../docs/decisions/0016-switch-v1-implementation-mapping.md) and [`0017-text-field-v1-implementation-mapping.md`](../../docs/decisions/0017-text-field-v1-implementation-mapping.md). This README does not repeat them.
 
 Stack: React 19.3.0 · TypeScript 7.0.2 (strict) · plain CSS · Vite 8.3.1 (bundling) — exact pins, npm workspaces, Node 22.
 
@@ -9,7 +9,7 @@ Stack: React 19.3.0 · TypeScript 7.0.2 (strict) · plain CSS · Vite 8.3.1 (bun
 Load the generated token stylesheet **once** at the application entry, then use components. Each component imports its own CSS.
 ```tsx
 import "@chavosh/tokens/ch-tokens.css"; // once, at the entry
-import { Button, Checkbox, Link, Radio, Switch } from "@chavosh/react";
+import { Button, Checkbox, Link, Radio, Switch, TextField } from "@chavosh/react";
 ```
 The package is source-first (`exports: "./src/index.ts"`) and expects a bundler that handles TSX and CSS imports (Vite). A published library build is not part of v1.
 
@@ -111,6 +111,13 @@ Other native input attributes reach the `<input>`; `className` goes on the row. 
 ```
 Props: `label` (required), `supportingText`, native checkbox attributes and `ref` (to the `<input>`; `type` and `role` fixed; `name` never derived from the label); `className` on the row. Only for settings that take effect immediately — use Checkbox for submitted choices and consents.
 
+## Text Field
+```tsx
+<TextField label="Email" type="email" autoComplete="email" helperText="We'll send your statements here" name="email" />
+<TextField label="Mobile" type="tel" autoComplete="tel" value={mobile} onChange={(e) => setMobile(e.currentTarget.value)} errorMessage={mobileError} />
+```
+Props: `label` (required, always visible), `helperText`, `errorMessage` (error treatment + `aria-invalid`), `optional` ("(optional)" in the label), `type` (`text` · `email` · `tel` · `url` · `password`), native input attributes and `ref` (to the `<input>`; `name` never derived from the label; no consumer `aria-invalid`); `className` on the field wrapper. Use `inputMode` rather than `type="number"` for account numbers and amounts. Disabled + Error and Read-only + Error are unsupported in v1.
+
 ## Storybook
 `npm run storybook` (repository root) opens the documentation and stories at http://localhost:6006.
 Button: Playground (controls = the real props), Hierarchies, Sizes, States, Brand comparison, Long label, Disabled, Keyboard.
@@ -118,10 +125,11 @@ Link: Playground, Sizes, States, Brand comparison, Examples, Long label, Keyboar
 Checkbox: Playground, Selection, States, Supporting text, Select all, Group, Brand comparison, Long label, Keyboard, Disabled.
 Radio: Playground, Selection, States, Supporting text, Group, Brand comparison, Long label, Keyboard, Disabled.
 Switch: Playground, States, Supporting text, Settings, Controlled, Brand comparison, Long label, Keyboard, Disabled.
+Text Field: Playground, States, Helper and optional, Error message, Financial examples, Disabled and read-only, Brand comparison, Long content, Keyboard.
 Stories sit next to each component (`src/<Component>/<Component>.stories.tsx`, `<Component>.mdx`) and must use only the real API.
 
 ## Verification
-`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). Link adds `check-link-tokens` (link.css consumes exactly Link's 15-token contract; API contract self-test) and `check-link-browser` (Chromium: size × state × brand incl. nested contexts, underline, 44px target, keyboard — Enter activates, Space does not — wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours); Checkbox adds `check-checkbox-tokens` and `check-checkbox-browser` (selection × state × brand, name/description/mixed, row target, keyboard — Space toggles, Enter does not — form submission, `<fieldset disabled>`, select-all, wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours). Radio adds `check-radio-tokens` and `check-radio-browser` (selection × state × brand, native grouping — one tab stop, arrow keys move focus and selection and skip disabled, Space selects, no deselection — consumer-only form `name`, required and submission, `<fieldset disabled>`, wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours). Switch adds `check-switch-tokens` and `check-switch-browser`. `check-button-baseline`, `check-link-baseline`, `check-checkbox-baseline` and `check-radio-baseline` keep Button, Link, Checkbox and Radio frozen. `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
+`npm run verify -- --strict` (repository root) includes three React groups: `check-react-types` (strict TypeScript + compile-time API contract), `check-react-tokens` (button.css uses only the 37 public Button tokens; no primitives, brand variables or raw values) and `check-react-browser` (Chromium: every hierarchy × size × state × brand, nested brands, keyboard, wrapping, 200 % text, hover-incapable devices, forced colours). Link adds `check-link-tokens` (link.css consumes exactly Link's 15-token contract; API contract self-test) and `check-link-browser` (Chromium: size × state × brand incl. nested contexts, underline, 44px target, keyboard — Enter activates, Space does not — wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours); Checkbox adds `check-checkbox-tokens` and `check-checkbox-browser` (selection × state × brand, name/description/mixed, row target, keyboard — Space toggles, Enter does not — form submission, `<fieldset disabled>`, select-all, wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours). Radio adds `check-radio-tokens` and `check-radio-browser` (selection × state × brand, native grouping — one tab stop, arrow keys move focus and selection and skip disabled, Space selects, no deselection — consumer-only form `name`, required and submission, `<fieldset disabled>`, wrapping, 200 % text, 320px reflow, hover-incapable devices, forced colours). Switch adds `check-switch-tokens` and `check-switch-browser`; Text Field adds `check-text-field-tokens` and `check-text-field-browser`. `check-button-baseline`, `check-link-baseline`, `check-checkbox-baseline`, `check-radio-baseline` and `check-switch-baseline` keep Button, Link, Checkbox, Radio and Switch frozen. `tests/storybook/check-storybook.mjs` additionally builds Storybook and runs every story's play function and the a11y addon.
 
 ## Toolchain notes
 - **`skipLibCheck: true`** (`tsconfig.json`) is a toolchain compatibility workaround: TypeScript 7.0.2 reports errors
